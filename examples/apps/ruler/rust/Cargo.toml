@@ -1,0 +1,17 @@
+[package]
+name = "ruler-example"
+version = "0.1.0"
+edition = "2024"
+description = "Ruler pattern example - Progressive rule generation with LLM"
+publish = false
+
+[dependencies]
+nxuskit = { path = "../../../../packages/nxuskit" }
+llm-patterns = { path = "../../../shared/rust-support" }
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+tokio = { version = "1.49", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+panic = "abort"

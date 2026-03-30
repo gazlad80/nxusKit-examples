@@ -1,0 +1,1532 @@
+{
+  "$schema": "./harness/example_smoke_matrix.schema.json",
+  "version": "1.0.0",
+  "description": "Apple Silicon local smoke runs for test-examples.sh --smoke-run",
+  "runs": [
+    {
+      "id": "basic-chat|rust",
+      "example": "basic-chat",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/basic-chat/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "basic-chat|go",
+      "example": "basic-chat",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/basic-chat/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "basic-chat|python",
+      "example": "basic-chat",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/basic-chat/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "streaming|rust",
+      "example": "streaming",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/streaming/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "streaming|go",
+      "example": "streaming",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/streaming/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "streaming|python",
+      "example": "streaming",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/streaming/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "multi-provider|rust",
+      "example": "multi-provider",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/multi-provider/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "multi-provider|go",
+      "example": "multi-provider",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/multi-provider/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "multi-provider|python",
+      "example": "multi-provider",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/multi-provider/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "convenience-api|rust",
+      "example": "convenience-api",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/convenience-api/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "convenience-api|go",
+      "example": "convenience-api",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/convenience-api/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "blocking-api|rust",
+      "example": "blocking-api",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/blocking-api/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "blocking-api|go",
+      "example": "blocking-api",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/blocking-api/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "capability-detection|rust",
+      "example": "capability-detection",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/capability-detection/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "capability-detection|go",
+      "example": "capability-detection",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/capability-detection/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "cost-routing|rust",
+      "example": "cost-routing",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/cost-routing/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "cost-routing|go",
+      "example": "cost-routing",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/cost-routing/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "cost-routing|python",
+      "example": "cost-routing",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/cost-routing/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "polymorphic|rust",
+      "example": "polymorphic",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/polymorphic/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "polymorphic|go",
+      "example": "polymorphic",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/polymorphic/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "retry-fallback|rust",
+      "example": "retry-fallback",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/retry-fallback/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "retry-fallback|go",
+      "example": "retry-fallback",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/retry-fallback/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "retry-fallback|python",
+      "example": "retry-fallback",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/retry-fallback/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "structured-output|rust",
+      "example": "structured-output",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/structured-output/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "structured-output|go",
+      "example": "structured-output",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/structured-output/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "structured-output|python",
+      "example": "structured-output",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/structured-output/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "timeout-config|rust",
+      "example": "timeout-config",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/timeout-config/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "timeout-config|go",
+      "example": "timeout-config",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/timeout-config/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "timeout-config|python",
+      "example": "timeout-config",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/timeout-config/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "token-budget|rust",
+      "example": "token-budget",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/token-budget/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "token-budget|go",
+      "example": "token-budget",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/token-budget/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "token-budget|python",
+      "example": "token-budget",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/token-budget/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "vision|rust",
+      "example": "vision",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/vision/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "vision|go",
+      "example": "vision",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/vision/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "vision|python",
+      "example": "vision",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/vision/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "auth-helper|rust",
+      "example": "auth-helper",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/auth-helper/cli",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "auth-helper|go",
+      "example": "auth-helper",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/auth-helper/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver|rust",
+      "example": "solver",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/solver/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver|go",
+      "example": "solver",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/solver/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--",
+        "--scenario",
+        "fantasy-draft"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver|python",
+      "example": "solver",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/solver/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bayesian-inference|rust",
+      "example": "bayesian-inference",
+      "tier": "community",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/bayesian-inference/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bayesian-inference|go",
+      "example": "bayesian-inference",
+      "tier": "community",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/bayesian-inference/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--",
+        "--scenario",
+        "coffee-shop"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bayesian-inference|python",
+      "example": "bayesian-inference",
+      "tier": "community",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/bayesian-inference/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver-what-if|rust",
+      "example": "solver-what-if",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "rust",
+      "cwd_rel": "examples/patterns/solver-what-if/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver-what-if|go",
+      "example": "solver-what-if",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "go",
+      "cwd_rel": "examples/patterns/solver-what-if/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "solver-what-if|python",
+      "example": "solver-what-if",
+      "tier": "pro",
+      "category": "patterns",
+      "language": "python",
+      "cwd_rel": "examples/patterns/solver-what-if/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "ollama|rust",
+      "example": "ollama",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/ollama/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--bin",
+        "ollama-example",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "ollama|go",
+      "example": "ollama",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/ollama/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": true
+    },
+    {
+      "id": "ollama|python",
+      "example": "ollama",
+      "tier": "community",
+      "category": "integrations",
+      "language": "python",
+      "cwd_rel": "examples/integrations/ollama/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "lmstudio|rust",
+      "example": "lmstudio",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/lmstudio/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": true,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "lmstudio|go",
+      "example": "lmstudio",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/lmstudio/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": true,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "alert-triage|rust",
+      "example": "alert-triage",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/alert-triage/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "alert-triage|go",
+      "example": "alert-triage",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/alert-triage/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": true
+    },
+    {
+      "id": "cli-assistant|rust",
+      "example": "cli-assistant",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/cli-assistant/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "cli-assistant|go",
+      "example": "cli-assistant",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/cli-assistant/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": true,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "clips-basics|rust",
+      "example": "clips-basics",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/clips-basics/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--bin",
+        "clips_basic",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "clips-basics|go",
+      "example": "clips-basics",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/clips-basics/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "clips-llm-hybrid|rust",
+      "example": "clips-llm-hybrid",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/clips-llm-hybrid/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "clips-llm-hybrid|go",
+      "example": "clips-llm-hybrid",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/clips-llm-hybrid/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": true
+    },
+    {
+      "id": "clips-llm-hybrid|python",
+      "example": "clips-llm-hybrid",
+      "tier": "community",
+      "category": "integrations",
+      "language": "python",
+      "cwd_rel": "examples/integrations/clips-llm-hybrid/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bn-solver-clips-pipeline|rust",
+      "example": "bn-solver-clips-pipeline",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/bn-solver-clips-pipeline/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bn-solver-clips-pipeline|go",
+      "example": "bn-solver-clips-pipeline",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/bn-solver-clips-pipeline/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--",
+        "--scenario",
+        "bakery"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "llm-solver-hybrid|rust",
+      "example": "llm-solver-hybrid",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/llm-solver-hybrid/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "llm-solver-hybrid|go",
+      "example": "llm-solver-hybrid",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/llm-solver-hybrid/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--",
+        "--scenario",
+        "dungeon"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "llm-solver-hybrid|python",
+      "example": "llm-solver-hybrid",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "python",
+      "cwd_rel": "examples/integrations/llm-solver-hybrid/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bn-structure-learning|rust",
+      "example": "bn-structure-learning",
+      "tier": "community",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/bn-structure-learning/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bn-structure-learning|go",
+      "example": "bn-structure-learning",
+      "tier": "community",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/bn-structure-learning/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "bn-structure-learning|python",
+      "example": "bn-structure-learning",
+      "tier": "community",
+      "category": "integrations",
+      "language": "python",
+      "cwd_rel": "examples/integrations/bn-structure-learning/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "zen-decisions|rust",
+      "example": "zen-decisions",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "rust",
+      "cwd_rel": "examples/integrations/zen-decisions/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "zen-decisions|go",
+      "example": "zen-decisions",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "go",
+      "cwd_rel": "examples/integrations/zen-decisions/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        ".",
+        "--"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "zen-decisions|python",
+      "example": "zen-decisions",
+      "tier": "pro",
+      "category": "integrations",
+      "language": "python",
+      "cwd_rel": "examples/integrations/zen-decisions/python",
+      "command": [
+        "python3",
+        "main.py"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "puzzler|rust",
+      "example": "puzzler",
+      "tier": "pro",
+      "category": "apps",
+      "language": "rust",
+      "cwd_rel": "examples/apps/puzzler/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--",
+        "sudoku",
+        "-p",
+        "easy",
+        "-a",
+        "clips"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "puzzler|go",
+      "example": "puzzler",
+      "tier": "pro",
+      "category": "apps",
+      "language": "go",
+      "cwd_rel": "examples/apps/puzzler/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        "./cmd",
+        "--",
+        "sudoku",
+        "-p",
+        "easy",
+        "-a",
+        "clips"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "racer|rust",
+      "example": "racer",
+      "tier": "pro",
+      "category": "apps",
+      "language": "rust",
+      "cwd_rel": "examples/apps/racer/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--",
+        "race",
+        "einstein-riddle"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "racer|go",
+      "example": "racer",
+      "tier": "pro",
+      "category": "apps",
+      "language": "go",
+      "cwd_rel": "examples/apps/racer/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        "./cmd",
+        "--",
+        "race",
+        "einstein-riddle"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "riffer|rust",
+      "example": "riffer",
+      "tier": "pro",
+      "category": "apps",
+      "language": "rust",
+      "cwd_rel": "examples/apps/riffer/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--",
+        "--help"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "riffer|go",
+      "example": "riffer",
+      "tier": "pro",
+      "category": "apps",
+      "language": "go",
+      "cwd_rel": "examples/apps/riffer/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        "./cmd/riffer",
+        "--",
+        "-help"
+      ],
+      "entitlement_probe": false,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "ruler|rust",
+      "example": "ruler",
+      "tier": "pro",
+      "category": "apps",
+      "language": "rust",
+      "cwd_rel": "examples/apps/ruler/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--",
+        "generate",
+        "classify adults"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "ruler|go",
+      "example": "ruler",
+      "tier": "pro",
+      "category": "apps",
+      "language": "go",
+      "cwd_rel": "examples/apps/ruler/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        "./cmd",
+        "--",
+        "generate",
+        "classify adults"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "arbiter|rust",
+      "example": "arbiter",
+      "tier": "pro",
+      "category": "apps",
+      "language": "rust",
+      "cwd_rel": "examples/apps/arbiter/rust",
+      "command": [
+        "cargo",
+        "run",
+        "--quiet",
+        "--",
+        "--input",
+        "test query",
+        "--max-retries",
+        "1"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    },
+    {
+      "id": "arbiter|go",
+      "example": "arbiter",
+      "tier": "pro",
+      "category": "apps",
+      "language": "go",
+      "cwd_rel": "examples/apps/arbiter/go",
+      "command": [
+        "go",
+        "run",
+        "-tags",
+        "nxuskit",
+        "./cmd",
+        "--",
+        "-help"
+      ],
+      "entitlement_probe": true,
+      "requires_cloud_llm": false,
+      "requires_local_lmstudio": false,
+      "requires_local_ollama_go": false
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "description": "Generate a 5-room dungeon layout with treasure rooms and boss placement",
+  "mock_llm_response": {
+    "constraints": [
+      {
+        "constraint_type": "equal",
+        "label": "Boss room is room 5 (the last room)",
+        "name": "boss_at_end",
+        "parameters": {
+          "value": 5
+        },
+        "variables": [
+          "boss_room"
+        ]
+      },
+      {
+        "constraint_type": "not_equal",
+        "label": "Treasure rooms cannot be the boss room",
+        "name": "treasure_not_boss_1",
+        "parameters": {},
+        "variables": [
+          "treasure_room_1",
+          "boss_room"
+        ]
+      },
+      {
+        "constraint_type": "not_equal",
+        "label": "Treasure rooms must be different",
+        "name": "treasure_rooms_different",
+        "parameters": {},
+        "variables": [
+          "treasure_room_1",
+          "treasure_room_2"
+        ]
+      },
+      {
+        "constraint_type": "linear",
+        "label": "Entry room is room 1",
+        "name": "entry_room_fixed",
+        "parameters": {
+          "operator": "==",
+          "rhs": 1
+        },
+        "variables": [
+          "entry_room"
+        ]
+      },
+      {
+        "constraint_type": "linear",
+        "label": "Difficulty increases: room difficulty >= room number",
+        "name": "difficulty_progression",
+        "parameters": {
+          "coefficients": [
+            1
+          ],
+          "operator": ">=",
+          "rhs": 1
+        },
+        "variables": [
+          "room_1_difficulty"
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Boss room location",
+        "name": "boss_room",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Entry room",
+        "name": "entry_room",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 10,
+          "min": 1
+        },
+        "label": "Room 1 difficulty",
+        "name": "room_1_difficulty",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 10,
+          "min": 2
+        },
+        "label": "Room 2 difficulty",
+        "name": "room_2_difficulty",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 10,
+          "min": 3
+        },
+        "label": "Room 3 difficulty",
+        "name": "room_3_difficulty",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 10,
+          "min": 4
+        },
+        "label": "Room 4 difficulty",
+        "name": "room_4_difficulty",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 10,
+          "min": 5
+        },
+        "label": "Room 5 difficulty",
+        "name": "room_5_difficulty",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 4,
+          "min": 1
+        },
+        "label": "First treasure room",
+        "name": "treasure_room_1",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 4,
+          "min": 2
+        },
+        "label": "Second treasure room",
+        "name": "treasure_room_2",
+        "var_type": "integer"
+      }
+    ]
+  },
+  "natural_language_constraints": [
+    "The dungeon has 5 rooms numbered 1 through 5",
+    "The boss must be in the last room (room 5)",
+    "There should be exactly 2 treasure rooms, neither of which is the boss room",
+    "Room 1 is always the entry point (not a boss or treasure room)",
+    "Difficulty should increase as you go deeper - each room is harder than the last",
+    "Treasure rooms should reward the player before the boss fight"
+  ],
+  "objective": {
+    "direction": "maximize",
+    "expression": "total_challenge",
+    "label": "Maximize total dungeon challenge while maintaining progression",
+    "name": "maximize_challenge"
+  },
+  "solver_config": {
+    "timeout_ms": 10000
+  },
+  "system_prompt": "You are a game design assistant. Model dungeon placement and difficulty as integer variables (room numbers 1-5). Return ONLY a JSON object (no markdown, no explanation) with 'variables' and 'constraints' arrays.\n\nVariable schema: {\"name\": \"var_name\", \"var_type\": \"integer\", \"label\": \"description\", \"domain\": {\"min\": 1, \"max\": 5}}\n\nConstraint schema: {\"name\": \"id\", \"constraint_type\": \"TYPE\", \"label\": \"description\", \"variables\": [...], \"parameters\": {}}\n\nValid constraint_type values:\n- 'equal': pin to value — vars: [\"v\"], params: {\"value\": N}\n- 'not_equal' (two vars): must differ — vars: [\"v1\",\"v2\"], params: {}\n- 'not_equal' (one var + value): exclude value — vars: [\"v\"], params: {\"value\": N}\n- 'lt': v1 < v2 — vars: [\"v1\",\"v2\"], params: {}\n- 'gt': v1 > v2 — vars: [\"v1\",\"v2\"], params: {}\n\nFor 'difficulty increases': use 'lt' between adjacent difficulty variables (room1_diff, room2_diff, ...). For 'treasure before boss': use 'lt' between treasure room var and boss room var. For 'exactly 2 treasure rooms': create two separate variables treasure_room_1 and treasure_room_2 with domains excluding entry (min:2) and boss (max:4), and add a 'not_equal' between them.\n\nIMPORTANT: 'var_type' not 'type', 'constraint_type' not 'type', domain as object {\"min\":N,\"max\":N}."
+}

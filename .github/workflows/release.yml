@@ -1,0 +1,85 @@
+# CD — Create a tagged release matching the SDK version.
+#
+# Reads the SDK version from conformance/examples_manifest.json (the schema
+# version tracks SDK compatibility) and creates a GitHub Release with
+# auto-generated source archives (.tar.gz, .zip).
+#
+# Skips if the tag already exists (idempotent on re-runs / unchanged version).
+
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Tag and release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Read version and stats
+        id: meta
+        run: |
+          # Hybrid tag: SDK version + date (e.g., v0.9.1-20260331)
+          # Allows interim examples releases between SDK versions
+          SDK_VERSION="0.9.1"
+          TAG="v${SDK_VERSION}-$(date -u +%Y%m%d)"
+
+          EXAMPLES=$(python3 -c "
+          import json
+          m = json.load(open('conformance/examples_manifest.json'))
+          total = len(m['examples'])
+          py = sum(1 for e in m['examples'] if 'python' in e.get('languages', []))
+          print(f'{total} examples ({py} with Python)')
+          ")
+
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "sdk_version=$SDK_VERSION" >> "$GITHUB_OUTPUT"
+          echo "examples=$EXAMPLES" >> "$GITHUB_OUTPUT"
+          echo "Tag: $TAG | SDK: $SDK_VERSION | $EXAMPLES"
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.meta.outputs.tag }}"
+          SDK="${{ steps.meta.outputs.sdk_version }}"
+          EXAMPLES="${{ steps.meta.outputs.examples }}"
+
+          # Skip if this exact tag+commit already exists
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            TAGGED_SHA=$(git rev-parse "$TAG")
+            HEAD_SHA=$(git rev-parse HEAD)
+            if [ "$TAGGED_SHA" = "$HEAD_SHA" ]; then
+              echo "Tag $TAG already points to HEAD — skipping."
+              exit 0
+            fi
+          fi
+
+          gh release create "$TAG" \
+            --title "nxusKit Examples $TAG" \
+            --notes "$(cat <<EOF
+          ## nxusKit Examples $TAG
+
+          $EXAMPLES in Rust, Go, and Python — compatible with nxusKit SDK v${SDK}.
+
+          ### Download
+
+          Download the source archive below to get all examples with scenario
+          data, conformance manifests, and helper scripts.
+
+          > **Note:** Examples require the [nxusKit SDK](https://github.com/nxus-SYSTEMS/nxusKit)
+          > v${SDK}+ to build and run. See the
+          > [README](https://github.com/nxus-SYSTEMS/nxusKit-examples#quick-start)
+          > for setup instructions.
+          EOF
+          )" \
+            --latest
+          echo "Created release $TAG"

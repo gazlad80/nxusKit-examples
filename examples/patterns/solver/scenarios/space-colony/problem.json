@@ -1,0 +1,375 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "mul",
+      "description": "Compute max housing capacity: habitat_modules * 20",
+      "expression": "habitat_modules * 20 = housing_capacity",
+      "label": "Housing capacity computation",
+      "name": "compute_housing",
+      "parameters": {
+        "left": "habitat_modules",
+        "result": "housing_capacity",
+        "right": 20
+      },
+      "variables": [
+        "habitat_modules",
+        "housing_capacity"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Colonists cannot exceed housing capacity",
+      "expression": "colonists <= housing_capacity",
+      "label": "Housing capacity limit",
+      "name": "housing_limit",
+      "variables": [
+        "colonists",
+        "housing_capacity"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled solar supply: solar_panels * 10",
+      "expression": "solar_panels * 10 = solar_supply_scaled",
+      "label": "Scaled solar supply",
+      "name": "compute_solar_supply",
+      "parameters": {
+        "left": "solar_panels",
+        "result": "solar_supply_scaled",
+        "right": 10
+      },
+      "variables": [
+        "solar_panels",
+        "solar_supply_scaled"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled power demand: colonists * 3 (represents 0.3 panels per colonist, scaled by 10)",
+      "expression": "colonists * 3 = power_demand_scaled",
+      "label": "Scaled power demand",
+      "name": "compute_power_demand",
+      "parameters": {
+        "left": "colonists",
+        "result": "power_demand_scaled",
+        "right": 3
+      },
+      "variables": [
+        "colonists",
+        "power_demand_scaled"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Solar supply must meet power demand (solar_panels >= colonists * 0.3, scaled by 10)",
+      "expression": "solar_supply_scaled >= power_demand_scaled",
+      "label": "Power requirement",
+      "name": "power_requirement",
+      "variables": [
+        "solar_supply_scaled",
+        "power_demand_scaled"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled water supply: water_recyclers * 100",
+      "expression": "water_recyclers * 100 = water_supply_scaled",
+      "label": "Scaled water supply",
+      "name": "compute_water_supply",
+      "parameters": {
+        "left": "water_recyclers",
+        "result": "water_supply_scaled",
+        "right": 100
+      },
+      "variables": [
+        "water_recyclers",
+        "water_supply_scaled"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled water demand: colonists * 2 (represents 0.02 recyclers per colonist, scaled by 100)",
+      "expression": "colonists * 2 = water_demand_scaled",
+      "label": "Scaled water demand",
+      "name": "compute_water_demand",
+      "parameters": {
+        "left": "colonists",
+        "result": "water_demand_scaled",
+        "right": 2
+      },
+      "variables": [
+        "colonists",
+        "water_demand_scaled"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Water recyclers must meet demand (water_recyclers >= colonists * 0.02, scaled by 100)",
+      "expression": "water_supply_scaled >= water_demand_scaled",
+      "label": "Water per person",
+      "name": "water_per_person",
+      "variables": [
+        "water_supply_scaled",
+        "water_demand_scaled"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled food supply: food_domes * 100",
+      "expression": "food_domes * 100 = food_supply_scaled",
+      "label": "Scaled food supply",
+      "name": "compute_food_supply",
+      "parameters": {
+        "left": "food_domes",
+        "result": "food_supply_scaled",
+        "right": 100
+      },
+      "variables": [
+        "food_domes",
+        "food_supply_scaled"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Food domes must meet demand (food_domes >= colonists * 0.01, scaled by 100: food_domes * 100 >= colonists)",
+      "expression": "food_supply_scaled >= colonists",
+      "label": "Food production",
+      "name": "food_production",
+      "variables": [
+        "food_supply_scaled",
+        "colonists"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute total oxygen production: oxygen_ratio * colonists (ratio in tenths of L/day)",
+      "expression": "oxygen_ratio * colonists = total_oxygen",
+      "label": "Total oxygen production",
+      "name": "compute_oxygen",
+      "parameters": {
+        "left": "oxygen_ratio",
+        "result": "total_oxygen",
+        "right": "colonists"
+      },
+      "variables": [
+        "oxygen_ratio",
+        "colonists",
+        "total_oxygen"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Total oxygen production must exceed safety threshold of 1000 tenths-of-liters/day",
+      "expression": "total_oxygen >= 1000",
+      "label": "Oxygen safety threshold",
+      "name": "oxygen_safety",
+      "parameters": {
+        "right": 1000
+      },
+      "variables": [
+        "total_oxygen"
+      ]
+    }
+  ],
+  "description": "Design a self-sustaining space colony by balancing population size against habitat modules, solar power, water recycling, and food production capacity. The goal is to maximize the colony population while meeting all life-support constraints.",
+  "name": "Space Colony Planning",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "colonists",
+      "label": "Maximize colony population for mission viability",
+      "name": "maximize_colonists",
+      "priority": 1,
+      "variable": "colonists",
+      "weight": 1.0
+    }
+  ],
+  "soft_constraints": [
+    {
+      "constraint_type": "eq",
+      "description": "A landing pad enables emergency evacuation; strongly preferred but not mission-critical",
+      "expression": "has_landing_pad == 1",
+      "label": "Emergency evacuation capability",
+      "name": "prefer_landing_pad",
+      "parameters": {
+        "right": 1
+      },
+      "variables": [
+        "has_landing_pad"
+      ],
+      "weight": 3.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 1000,
+        "min": 50
+      },
+      "label": "Number of colonists in the settlement",
+      "name": "colonists",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Number of enclosed agricultural food domes",
+      "name": "food_domes",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1000,
+        "min": 100
+      },
+      "label": "Scaled food supply (food_domes * 100, auxiliary)",
+      "name": "food_supply_scaled",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 50,
+        "min": 5
+      },
+      "label": "Number of pressurized habitat modules",
+      "name": "habitat_modules",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1,
+        "min": 0
+      },
+      "label": "Whether the colony includes a spacecraft landing pad (0=no, 1=yes)",
+      "name": "has_landing_pad",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1000,
+        "min": 100
+      },
+      "label": "Max housing capacity (habitat_modules * 20, auxiliary)",
+      "name": "housing_capacity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 5
+      },
+      "label": "Oxygen reserve ratio in tenths of liters per colonist per day (5=0.5L, 100=10.0L)",
+      "name": "oxygen_ratio",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3000,
+        "min": 150
+      },
+      "label": "Scaled power demand (colonists * 3, auxiliary)",
+      "name": "power_demand_scaled",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1400,
+        "min": 140
+      },
+      "label": "Reduced solar supply under storm (solar_panels * 7, auxiliary for what-if)",
+      "name": "reduced_solar_supply",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 200,
+        "min": 20
+      },
+      "label": "Number of solar panel arrays for power generation",
+      "name": "solar_panels",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 200
+      },
+      "label": "Scaled solar supply (solar_panels * 10, auxiliary)",
+      "name": "solar_supply_scaled",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100000,
+        "min": 250
+      },
+      "label": "Total oxygen production (oxygen_ratio * colonists, auxiliary)",
+      "name": "total_oxygen",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 100
+      },
+      "label": "Scaled water demand (colonists * 2, auxiliary)",
+      "name": "water_demand_scaled",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 2
+      },
+      "label": "Number of water recycling units",
+      "name": "water_recyclers",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 200
+      },
+      "label": "Scaled water supply (water_recyclers * 100, auxiliary)",
+      "name": "water_supply_scaled",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "mul",
+          "description": "Compute reduced solar supply: solar_panels * 7 (70% efficiency)",
+          "expression": "solar_panels * 7 = reduced_solar_supply",
+          "label": "Reduced solar computation",
+          "name": "compute_reduced_solar",
+          "parameters": {
+            "left": "solar_panels",
+            "result": "reduced_solar_supply",
+            "right": 7
+          },
+          "variables": [
+            "solar_panels",
+            "reduced_solar_supply"
+          ]
+        },
+        {
+          "constraint_type": "ge",
+          "description": "Under solar storm, 70% of panels must still meet power needs (solar_panels * 7 >= colonists * 3)",
+          "expression": "reduced_solar_supply >= power_demand_scaled",
+          "label": "Reduced solar efficiency",
+          "name": "solar_storm_power",
+          "variables": [
+            "reduced_solar_supply",
+            "power_demand_scaled"
+          ]
+        }
+      ],
+      "description": "Simulate a solar storm that reduces panel efficiency by 30%. Uses push/pop to temporarily tighten the power constraint and evaluate how many colonists the colony can sustain under degraded conditions.",
+      "name": "Solar Storm Scenario"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "evidence": {
+    "slow_growth": "yes",
+    "spots": "no",
+    "wilting": "yes",
+    "yellow_leaves": "yes"
+  },
+  "expected_observations": {
+    "disease_decreases": "Disease drops from prior 0.10 to ~0.05 because spots=no is strong evidence against disease (P(spots=yes|disease)=0.80). Even though disease explains wilting, the absence of spots outweighs it.",
+    "nutrient_deficiency_moderate": "Nutrient deficiency rises from prior 0.20 to ~0.42. It explains yellow_leaves (P=0.70-0.80) and slow_growth (P=0.60-0.75), but wilting is better explained by overwatering alone.",
+    "overwatering_dominant": "Overwatering rises from prior 0.25 to ~0.90, the strongest shift in the network. It directly explains wilting=yes (P=0.75 given overwatering, vs P=0.05 without) and contributes to yellow_leaves and slow_growth.",
+    "pest_decreases": "Pest infestation drops from prior 0.15 to ~0.06 because spots=no argues against pests (P(spots=yes|pest)=0.65). Pests do not explain any of the observed symptoms well.",
+    "sunlight_moderate": "Sunlight issue rises from prior 0.20 to ~0.38, contributing to yellow_leaves and slow_growth alongside nutrient deficiency and overwatering."
+  },
+  "notes": {
+    "description": "Golden expected output for the Plant Doctor Bayesian inference scenario. Posteriors computed via exact variable elimination over the 9-variable BIF model given evidence yellow_leaves=yes, wilting=yes, spots=no, slow_growth=yes. Overwatering is the dominant root cause, with nutrient deficiency as a secondary contributor.",
+    "inference_backend": "nxusKit Bayesian Network provider"
+  },
+  "scenario": "Plant Doctor",
+  "steps": {
+    "gibbs_sampling": {
+      "algorithm": "gibbs",
+      "burn_in": 1000,
+      "note": "Stochastic MCMC sampling. Overwatering is strongly indicated, so samples should concentrate there. With 10000 samples, posteriors should be within 0.05 of exact values.",
+      "num_samples": 10000,
+      "posteriors": {
+        "disease": {
+          "no": "~0.95 +/- 0.03",
+          "yes": "~0.05 +/- 0.03"
+        },
+        "nutrient_deficiency": {
+          "no": "~0.58 +/- 0.05",
+          "yes": "~0.42 +/- 0.05"
+        },
+        "overwatering": {
+          "no": "~0.10 +/- 0.05",
+          "yes": "~0.90 +/- 0.05"
+        },
+        "pest_infestation": {
+          "no": "~0.94 +/- 0.03",
+          "yes": "~0.06 +/- 0.03"
+        },
+        "sunlight_issue": {
+          "no": "~0.62 +/- 0.05",
+          "yes": "~0.38 +/- 0.05"
+        }
+      },
+      "seed": 42,
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "junction_tree": {
+      "algorithm": "jt",
+      "note": "Should match VE posteriors exactly (both are exact inference methods)",
+      "posteriors": {
+        "disease": {
+          "no": 0.9535,
+          "yes": 0.0465
+        },
+        "nutrient_deficiency": {
+          "no": 0.5752,
+          "yes": 0.4248
+        },
+        "overwatering": {
+          "no": 0.1017,
+          "yes": 0.8983
+        },
+        "pest_infestation": {
+          "no": 0.941,
+          "yes": 0.059
+        },
+        "sunlight_issue": {
+          "no": 0.6173,
+          "yes": 0.3827
+        }
+      },
+      "type": "exact"
+    },
+    "loopy_bp": {
+      "algorithm": "lbp",
+      "note": "Approximate message-passing. The overwatering signal is very strong, so convergence should be reliable. Nutrient deficiency and sunlight_issue have moderate posteriors that may show slightly more variance.",
+      "posteriors": {
+        "disease": {
+          "no": "~0.95 +/- 0.03",
+          "yes": "~0.05 +/- 0.03"
+        },
+        "nutrient_deficiency": {
+          "no": "~0.58 +/- 0.05",
+          "yes": "~0.42 +/- 0.05"
+        },
+        "overwatering": {
+          "no": "~0.10 +/- 0.05",
+          "yes": "~0.90 +/- 0.05"
+        },
+        "pest_infestation": {
+          "no": "~0.94 +/- 0.03",
+          "yes": "~0.06 +/- 0.03"
+        },
+        "sunlight_issue": {
+          "no": "~0.62 +/- 0.05",
+          "yes": "~0.38 +/- 0.05"
+        }
+      },
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "variable_elimination": {
+      "algorithm": "ve",
+      "note": "Exact posteriors for all unobserved variables. Overwatering is the dominant diagnosis at ~0.90 because it directly explains both wilting (P=0.75) and contributes to yellow_leaves and slow_growth. Disease drops from 0.10 to ~0.05 because spots=no argues strongly against it.",
+      "posteriors": {
+        "disease": {
+          "no": 0.9535,
+          "yes": 0.0465
+        },
+        "nutrient_deficiency": {
+          "no": 0.5752,
+          "yes": 0.4248
+        },
+        "overwatering": {
+          "no": 0.1017,
+          "yes": 0.8983
+        },
+        "pest_infestation": {
+          "no": 0.941,
+          "yes": 0.059
+        },
+        "sunlight_issue": {
+          "no": 0.6173,
+          "yes": 0.3827
+        }
+      },
+      "type": "exact"
+    }
+  }
+}

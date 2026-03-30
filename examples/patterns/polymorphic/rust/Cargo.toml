@@ -1,0 +1,13 @@
+[package]
+name = "polymorphic-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+nxuskit = { path = "../../../../packages/nxuskit" }
+tokio = { version = "1.49", features = ["full"] }
+
+[profile.release]
+panic = "abort"

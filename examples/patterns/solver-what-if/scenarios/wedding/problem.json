@@ -1,0 +1,350 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "add",
+      "description": "Sum venue and catering costs",
+      "expression": "venue_cost + catering_cost = cost_sum_1",
+      "label": "Cost sum 1",
+      "name": "compute_cost_sum_1",
+      "variables": [
+        "venue_cost",
+        "catering_cost",
+        "cost_sum_1"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add flowers cost to running total",
+      "expression": "cost_sum_1 + flowers_cost = cost_sum_2",
+      "label": "Cost sum 2",
+      "name": "compute_cost_sum_2",
+      "variables": [
+        "cost_sum_1",
+        "flowers_cost",
+        "cost_sum_2"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add photography cost to running total",
+      "expression": "cost_sum_2 + photography_cost = cost_sum_3",
+      "label": "Cost sum 3",
+      "name": "compute_cost_sum_3",
+      "variables": [
+        "cost_sum_2",
+        "photography_cost",
+        "cost_sum_3"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add music cost to running total",
+      "expression": "cost_sum_3 + music_cost = cost_sum_4",
+      "label": "Cost sum 4",
+      "name": "compute_cost_sum_4",
+      "variables": [
+        "cost_sum_3",
+        "music_cost",
+        "cost_sum_4"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Compute total wedding cost",
+      "expression": "cost_sum_4 + decor_cost = total_cost",
+      "label": "Total cost",
+      "name": "compute_total_cost",
+      "variables": [
+        "cost_sum_4",
+        "decor_cost",
+        "total_cost"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Total wedding costs must stay within $20,000 budget",
+      "expression": "total_cost <= 20000",
+      "label": "Budget constraint",
+      "name": "budget_limit",
+      "parameters": {
+        "right": 20000
+      },
+      "variables": [
+        "total_cost"
+      ]
+    },
+    {
+      "constraint_type": "div",
+      "description": "Compute 25% of total cost (total_cost / 4)",
+      "expression": "total_cost / 4 = catering_min_amount",
+      "label": "Catering min computation",
+      "name": "compute_catering_min",
+      "parameters": {
+        "left": "total_cost",
+        "result": "catering_min_amount",
+        "right": 4
+      },
+      "variables": [
+        "total_cost",
+        "catering_min_amount"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Catering should be at least 25% of total spend",
+      "expression": "catering_cost >= catering_min_amount",
+      "label": "Catering minimum share",
+      "name": "catering_min_share",
+      "variables": [
+        "catering_cost",
+        "catering_min_amount"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Photography must be at least $1,500 for quality results",
+      "expression": "photography_cost >= 1500",
+      "label": "Photography minimum",
+      "name": "photography_min",
+      "parameters": {
+        "right": 1500
+      },
+      "variables": [
+        "photography_cost"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Music must be at least $500 for a basic DJ package",
+      "expression": "music_cost >= 500",
+      "label": "Music minimum",
+      "name": "music_min",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "music_cost"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Flowers must be at least $500 for basic arrangements",
+      "expression": "flowers_cost >= 500",
+      "label": "Flowers minimum",
+      "name": "flowers_min",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "flowers_cost"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Decor must be at least $500 for basic decorations",
+      "expression": "decor_cost >= 500",
+      "label": "Decor minimum",
+      "name": "decor_min",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "decor_cost"
+      ]
+    }
+  ],
+  "description": "Plan a wedding with a $20,000 budget. Allocate spending across venue, catering, flowers, photography, music, and decor to maximize venue quality while respecting budget limits, catering minimums, and photography floors.",
+  "name": "Wedding Budget Planning",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "venue_cost",
+      "label": "Maximize venue quality as primary wedding metric",
+      "name": "maximize_total_quality",
+      "variable": "venue_cost",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 10000,
+        "min": 3000
+      },
+      "label": "Cost of catering in dollars",
+      "name": "catering_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 12500,
+        "min": 750
+      },
+      "label": "Minimum catering amount (25% of total, auxiliary)",
+      "name": "catering_min_amount",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 30000,
+        "min": 8000
+      },
+      "label": "Sum of venue + catering (auxiliary)",
+      "name": "cost_sum_1",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 33000,
+        "min": 8500
+      },
+      "label": "Sum of venue + catering + flowers (auxiliary)",
+      "name": "cost_sum_2",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 38000,
+        "min": 9500
+      },
+      "label": "Sum of venue + catering + flowers + photography (auxiliary)",
+      "name": "cost_sum_3",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 41000,
+        "min": 11000
+      },
+      "label": "Sum of first 5 costs (auxiliary)",
+      "name": "cost_sum_4",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 500
+      },
+      "label": "Cost of decorations in dollars",
+      "name": "decor_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3000,
+        "min": 500
+      },
+      "label": "Cost of flowers in dollars",
+      "name": "flowers_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3000,
+        "min": 0
+      },
+      "label": "Cost of music/DJ in dollars",
+      "name": "music_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5000,
+        "min": 1000
+      },
+      "label": "Cost of photography in dollars",
+      "name": "photography_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 43000,
+        "min": 11500
+      },
+      "label": "Total wedding cost (auxiliary)",
+      "name": "total_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20000,
+        "min": 5000
+      },
+      "label": "Cost of the venue in dollars",
+      "name": "venue_cost",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "ge",
+          "description": "Upgrade photography to premium tier ($3,000 minimum)",
+          "expression": "photography_cost >= 3000",
+          "label": "Premium photography",
+          "name": "premium_photo",
+          "parameters": {
+            "right": 3000
+          },
+          "variables": [
+            "photography_cost"
+          ]
+        }
+      ],
+      "description": "What if we upgrade to a premium photographer?",
+      "name": "premium_photography"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "Budget crisis: venue gave bad estimate, only $15K available",
+          "expression": "total_cost <= 15000",
+          "label": "Reduced budget",
+          "name": "reduced_budget",
+          "parameters": {
+            "right": 15000
+          },
+          "variables": [
+            "total_cost"
+          ]
+        }
+      ],
+      "description": "What if our budget shrinks to $15,000?",
+      "name": "budget_crunch"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "ge",
+          "description": "Splurge: premium flowers ($2,000+) and premium music ($2,000+)",
+          "expression": "flowers_cost >= 2000",
+          "label": "Premium flowers",
+          "name": "premium_flowers",
+          "parameters": {
+            "right": 2000
+          },
+          "variables": [
+            "flowers_cost"
+          ]
+        },
+        {
+          "constraint_type": "ge",
+          "description": "Splurge: premium live band ($2,000+)",
+          "expression": "music_cost >= 2000",
+          "label": "Premium music",
+          "name": "premium_music",
+          "parameters": {
+            "right": 2000
+          },
+          "variables": [
+            "music_cost"
+          ]
+        }
+      ],
+      "description": "What if we splurge on flowers and a live band?",
+      "name": "splurge_extras"
+    }
+  ]
+}

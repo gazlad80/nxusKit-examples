@@ -1,0 +1,80 @@
+{
+  "evaluation_rules": "classification-eval.clp",
+  "retry_scenarios": [
+    {
+      "description": "Intentionally vague input to trigger low_confidence failure",
+      "expected_failure": "low_confidence",
+      "id": "trigger-low-confidence",
+      "input": "help"
+    },
+    {
+      "description": "Input designed to make LLM return 'urgent' instead of valid category",
+      "expected_failure": "invalid_category",
+      "id": "trigger-invalid-category",
+      "input": "THIS IS URGENT!!! HELP NOW!!!"
+    }
+  ],
+  "scenarios": [
+    {
+      "description": "Urgent support ticket requiring immediate attention",
+      "expected": {
+        "category": "high",
+        "min_confidence": 0.8,
+        "reasoning_required": true
+      },
+      "id": "support-ticket-urgent",
+      "input": "My account has been hacked! Someone is making unauthorized purchases right now!"
+    },
+    {
+      "description": "Routine inquiry with no urgency",
+      "expected": {
+        "category": "low",
+        "min_confidence": 0.7,
+        "reasoning_required": false
+      },
+      "id": "support-ticket-routine",
+      "input": "How do I change my notification preferences in the settings?"
+    },
+    {
+      "description": "Moderate priority billing question",
+      "expected": {
+        "category": "medium",
+        "min_confidence": 0.75,
+        "reasoning_required": true
+      },
+      "id": "support-ticket-moderate",
+      "input": "I was charged twice for my subscription last month. Can you help me get a refund?"
+    },
+    {
+      "description": "Ambiguous input that may cause low confidence",
+      "expected": {
+        "category": "medium",
+        "may_require_retry": true,
+        "min_confidence": 0.5,
+        "reasoning_required": true
+      },
+      "id": "edge-case-ambiguous",
+      "input": "Issue with service"
+    },
+    {
+      "description": "Input that may cause LLM to invent category",
+      "expected": {
+        "category": "high",
+        "min_confidence": 0.9,
+        "reasoning_required": true,
+        "trap_categories": [
+          "critical",
+          "urgent",
+          "emergency"
+        ]
+      },
+      "id": "edge-case-invalid-category-trap",
+      "input": "SUPER CRITICAL: Need this fixed in the next 5 minutes or the company will lose $1 million!"
+    }
+  ],
+  "valid_categories": [
+    "high",
+    "medium",
+    "low"
+  ]
+}

@@ -1,0 +1,13 @@
+[package]
+name = "auth-helper-cli"
+version = "0.1.0"
+edition = "2024"
+description = "CLI auth helper example — credential management via terminal"
+publish = false
+
+[dependencies]
+auth-helper-core = { path = "../core" }
+clap = { version = "4.5", features = ["derive"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

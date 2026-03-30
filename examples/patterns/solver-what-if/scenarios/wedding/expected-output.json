@@ -1,0 +1,76 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Wedding Budget Planning what-if scenario. The base solve maximizes total quality (sum of all costs) subject to budget, catering ratio, and photography minimum constraints. What-if scenarios use push/pop to temporarily modify constraints.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Wedding Budget Planning",
+  "steps": {
+    "base": {
+      "key_assignments": {
+        "catering_cost": {
+          "expected_min": 6250,
+          "note": "Catering must be >= 25% of total. With total=25000, catering >= 6250"
+        },
+        "decor_cost": {
+          "expected_value": 2000,
+          "note": "Maximized to domain upper bound (2000)"
+        },
+        "flowers_cost": {
+          "expected_value": 3000,
+          "note": "Maximized to domain upper bound (3000)"
+        },
+        "music_cost": {
+          "expected_value": 3000,
+          "note": "Maximized to domain upper bound (3000)"
+        },
+        "photography_cost": {
+          "expected_value": 5000,
+          "note": "Maximized to domain upper bound (5000)"
+        },
+        "venue_cost": {
+          "note": "Fills remaining budget after all other items are maximized"
+        }
+      },
+      "note": "Maximize total spend. All categories pushed to domain max except those constrained by budget. Budget of 25000 is the binding constraint. Catering ratio and photography minimum are satisfied since domain mins already satisfy them.",
+      "objective_name": "maximize_total_quality",
+      "objective_value": 25000,
+      "status": "optimal"
+    },
+    "what_if": {
+      "cut_dj": {
+        "additional_constraints": [
+          "music_cost <= 800"
+        ],
+        "key_observations": {
+          "music_cost_max": 800,
+          "note": "Music capped at 800 (was 3000 at base). Budget still 25000, so savings from music allow other categories to absorb the difference. Total objective may decrease slightly since music is capped below its domain max, but the budget constraint still binds at 25000.",
+          "total_still_25000": "Budget is binding; freed music dollars flow to other categories"
+        },
+        "note": "Adds music_cost <= 800. Since budget is the binding constraint and total still maximized, the solver redistributes from music to other categories.",
+        "status": "optimal"
+      },
+      "double_budget": {
+        "additional_constraints": [
+          "total <= 50000"
+        ],
+        "key_observations": {
+          "note": "With doubled budget and push/pop adding a NEW le constraint on top of the base le constraint (25000), the original constraint still binds. The doubled budget constraint is less restrictive so the original budget_limit constraint still applies. However, since push/pop adds the new constraint as an ADDITIONAL constraint, the original 25000 limit still holds. The result depends on whether the base budget constraint was added with a label that makes it retractable.",
+          "total_capped_at": "25000 (base constraint still active) OR 38000 (sum of domain maxes) if base constraint overridden"
+        },
+        "note": "Adds a second budget constraint (total <= 50000) via push. The original budget_limit (total <= 25000) remains active, so the effective budget is still 25000 unless the solver's constraint model allows the new one to override. In practice, both constraints apply and the tighter one (25000) binds.",
+        "status": "optimal"
+      },
+      "fancy_venue": {
+        "additional_constraints": [
+          "venue_cost >= 12000"
+        ],
+        "key_observations": {
+          "note": "Venue floor raised to 12000. Budget still 25000. Other categories must shrink to accommodate. Catering minimum (25% of total) still applies.",
+          "venue_cost_min": 12000
+        },
+        "note": "Adds venue_cost >= 12000. Budget (25000) is still the binding constraint. With venue forced to 12000+, remaining budget for other 5 categories is reduced, pushing some toward domain minimums.",
+        "status": "optimal"
+      }
+    }
+  }
+}

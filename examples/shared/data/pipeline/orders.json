@@ -1,0 +1,209 @@
+{
+  "scenarios": {
+    "high-value-crypto": {
+      "description": "High-value crypto order - requires review",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T14:00:00Z",
+            "item-id": "ORD-005",
+            "item-type": {
+              "symbol": "order"
+            },
+            "stage": {
+              "symbol": "validation"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "order-request",
+          "values": {
+            "customer-id": "CUST-99999",
+            "customer-type": {
+              "symbol": "retail"
+            },
+            "item-count": 12,
+            "notes": "Bitcoin payment",
+            "order-id": "ORD-005",
+            "payment-method": {
+              "symbol": "crypto"
+            },
+            "priority": {
+              "symbol": "overnight"
+            },
+            "shipping-address": "321 Tech Park, San Francisco, CA 94102",
+            "total-amount": 15000.00
+          }
+        }
+      ]
+    },
+    "internal-prepaid": {
+      "description": "Internal prepaid order - skips pricing stage",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T12:00:00Z",
+            "item-id": "ORD-003",
+            "item-type": {
+              "symbol": "order"
+            },
+            "stage": {
+              "symbol": "validation"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "order-request",
+          "values": {
+            "customer-id": "INTERNAL-OPS",
+            "customer-type": {
+              "symbol": "internal"
+            },
+            "item-count": 5,
+            "notes": "Office supplies",
+            "order-id": "ORD-003",
+            "payment-method": {
+              "symbol": "prepaid"
+            },
+            "priority": {
+              "symbol": "standard"
+            },
+            "shipping-address": "789 HQ Building, Seattle, WA 98101",
+            "total-amount": 150.00
+          }
+        }
+      ]
+    },
+    "invalid-order": {
+      "description": "Order with validation errors - fails at stage 1",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T13:00:00Z",
+            "item-id": "ORD-004",
+            "item-type": {
+              "symbol": "order"
+            },
+            "stage": {
+              "symbol": "validation"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "order-request",
+          "values": {
+            "customer-id": "",
+            "customer-type": {
+              "symbol": "guest"
+            },
+            "item-count": 0,
+            "notes": "",
+            "order-id": "ORD-004",
+            "payment-method": {
+              "symbol": "credit"
+            },
+            "priority": {
+              "symbol": "standard"
+            },
+            "shipping-address": "",
+            "total-amount": 0.50
+          }
+        }
+      ]
+    },
+    "standard-order": {
+      "description": "Normal retail order - full 3-stage pipeline",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T10:00:00Z",
+            "item-id": "ORD-001",
+            "item-type": {
+              "symbol": "order"
+            },
+            "stage": {
+              "symbol": "validation"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "order-request",
+          "values": {
+            "customer-id": "CUST-12345",
+            "customer-type": {
+              "symbol": "retail"
+            },
+            "item-count": 3,
+            "notes": "",
+            "order-id": "ORD-001",
+            "payment-method": {
+              "symbol": "credit"
+            },
+            "priority": {
+              "symbol": "standard"
+            },
+            "shipping-address": "123 Main St, Los Angeles, CA 90210",
+            "total-amount": 249.99
+          }
+        }
+      ]
+    },
+    "wholesale-express": {
+      "description": "Wholesale order with express shipping - pricing discounts apply",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T11:00:00Z",
+            "item-id": "ORD-002",
+            "item-type": {
+              "symbol": "order"
+            },
+            "stage": {
+              "symbol": "validation"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "order-request",
+          "values": {
+            "customer-id": "CUST-67890",
+            "customer-type": {
+              "symbol": "wholesale"
+            },
+            "item-count": 50,
+            "notes": "Urgent restocking order",
+            "order-id": "ORD-002",
+            "payment-method": {
+              "symbol": "invoice"
+            },
+            "priority": {
+              "symbol": "express"
+            },
+            "shipping-address": "456 Commerce Ave, New York, NY 10001",
+            "total-amount": 8500.00
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "comparison": {
+    "notes": "Shared edges between Hill-Climb and K2 represent high-confidence causal links. weather->soil_moisture and fertilizer->green_speed should appear in both."
+  },
+  "data": {
+    "columns": [
+      "weather",
+      "soil_moisture",
+      "mowing",
+      "foot_traffic",
+      "fertilizer",
+      "green_speed",
+      "fairway_firmness",
+      "rough_thickness"
+    ],
+    "csv_file": "data.csv",
+    "row_count": 200
+  },
+  "fit_evaluation": {
+    "expected_range": [
+      -2500.0,
+      -800.0
+    ],
+    "metric": "log_likelihood",
+    "per_sample_range": [
+      -12.5,
+      -4.0
+    ]
+  },
+  "inference": {
+    "algorithm": "variable_elimination",
+    "evidence": {
+      "fertilizer": "heavy",
+      "weather": "rainy"
+    },
+    "expected_states": [
+      "slow",
+      "medium",
+      "fast",
+      "very_fast"
+    ],
+    "notes": "With rainy weather and heavy fertilizer, expect higher probability for fast/very_fast green_speed",
+    "query_variable": "green_speed"
+  },
+  "parameter_learning": {
+    "method": "MLE",
+    "pseudocount": 1.0,
+    "structure_source": "hill_climb",
+    "variables_with_cpts": 8
+  },
+  "scenario": "golf",
+  "structure_learning": {
+    "hill_climb_bic": {
+      "algorithm": "hill_climb",
+      "expected_edge_count_range": [
+        3,
+        10
+      ],
+      "max_parents": 5,
+      "max_steps": 1000,
+      "sample_edges": [
+        {
+          "from": "weather",
+          "to": "soil_moisture"
+        },
+        {
+          "from": "soil_moisture",
+          "to": "fairway_firmness"
+        },
+        {
+          "from": "fertilizer",
+          "to": "green_speed"
+        },
+        {
+          "from": "mowing",
+          "to": "rough_thickness"
+        }
+      ],
+      "scoring": "bic"
+    },
+    "k2_bdeu": {
+      "algorithm": "k2",
+      "ess": 10.0,
+      "expected_edge_count_range": [
+        3,
+        10
+      ],
+      "max_parents": 3,
+      "ordering": [
+        "weather",
+        "soil_moisture",
+        "mowing",
+        "foot_traffic",
+        "fertilizer",
+        "green_speed",
+        "fairway_firmness",
+        "rough_thickness"
+      ],
+      "scoring": "bdeu"
+    }
+  },
+  "title": "Golf Course Conditions"
+}

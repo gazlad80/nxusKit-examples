@@ -1,0 +1,168 @@
+{
+  "config": {
+    "include_trace": true
+  },
+  "facts": [
+    {
+      "template": "product",
+      "values": {
+        "category": {
+          "symbol": "widgets"
+        },
+        "name": "Premium Widget",
+        "reorder-point": 50,
+        "reorder-quantity": 100,
+        "sku": "WIDGET-001",
+        "supplier": "Acme Widgets Inc.",
+        "unit-cost": 12.50,
+        "unit-price": 29.99
+      }
+    },
+    {
+      "template": "product",
+      "values": {
+        "category": {
+          "symbol": "gadgets"
+        },
+        "name": "Super Gadget",
+        "reorder-point": 30,
+        "reorder-quantity": 60,
+        "sku": "GADGET-002",
+        "supplier": "Gadget World",
+        "unit-cost": 25.00,
+        "unit-price": 59.99
+      }
+    },
+    {
+      "template": "product",
+      "values": {
+        "category": {
+          "symbol": "gizmos"
+        },
+        "name": "Mega Gizmo",
+        "reorder-point": 100,
+        "reorder-quantity": 200,
+        "sku": "GIZMO-003",
+        "supplier": "Gizmo Factory",
+        "unit-cost": 8.00,
+        "unit-price": 19.99
+      }
+    },
+    {
+      "template": "product",
+      "values": {
+        "category": {
+          "symbol": "thingamajigs"
+        },
+        "name": "Deluxe Thingamajig",
+        "reorder-point": 20,
+        "reorder-quantity": 40,
+        "sku": "THINGAMAJIG-004",
+        "supplier": "Thingamajig Corp",
+        "unit-cost": 45.00,
+        "unit-price": 99.99
+      }
+    },
+    {
+      "template": "inventory",
+      "values": {
+        "last-updated": "2025-01-28",
+        "quantity-on-hand": 15,
+        "quantity-reserved": 5,
+        "sku": "WIDGET-001",
+        "warehouse": "MAIN"
+      }
+    },
+    {
+      "template": "inventory",
+      "values": {
+        "last-updated": "2025-01-28",
+        "quantity-on-hand": 180,
+        "quantity-reserved": 10,
+        "sku": "WIDGET-001",
+        "warehouse": "WEST"
+      }
+    },
+    {
+      "template": "inventory",
+      "values": {
+        "last-updated": "2025-01-28",
+        "quantity-on-hand": 0,
+        "quantity-reserved": 0,
+        "sku": "GADGET-002",
+        "warehouse": "MAIN"
+      }
+    },
+    {
+      "template": "inventory",
+      "values": {
+        "last-updated": "2025-01-28",
+        "quantity-on-hand": 450,
+        "quantity-reserved": 20,
+        "sku": "GIZMO-003",
+        "warehouse": "MAIN"
+      }
+    },
+    {
+      "template": "inventory",
+      "values": {
+        "last-updated": "2025-01-28",
+        "quantity-on-hand": 35,
+        "quantity-reserved": 0,
+        "sku": "THINGAMAJIG-004",
+        "warehouse": "MAIN"
+      }
+    },
+    {
+      "template": "sales-velocity",
+      "values": {
+        "daily-average": 8.5,
+        "sku": "WIDGET-001",
+        "trend": {
+          "symbol": "stable"
+        }
+      }
+    },
+    {
+      "template": "sales-velocity",
+      "values": {
+        "daily-average": 12.0,
+        "sku": "GADGET-002",
+        "trend": {
+          "symbol": "increasing"
+        }
+      }
+    },
+    {
+      "template": "sales-velocity",
+      "values": {
+        "daily-average": 1.2,
+        "sku": "GIZMO-003",
+        "trend": {
+          "symbol": "decreasing"
+        }
+      }
+    },
+    {
+      "template": "sales-velocity",
+      "values": {
+        "daily-average": 2.5,
+        "sku": "THINGAMAJIG-004",
+        "trend": {
+          "symbol": "stable"
+        }
+      }
+    },
+    {
+      "template": "incoming-shipment",
+      "values": {
+        "expected-date": "2025-02-01",
+        "quantity": 100,
+        "sku": "WIDGET-001",
+        "status": {
+          "symbol": "in-transit"
+        }
+      }
+    }
+  ]
+}

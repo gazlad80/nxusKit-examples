@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "examples": [
+    {
+      "complexity": "basic",
+      "description": "Create a rule that classifies a person as an adult if their age is 18 or older.",
+      "domain_hints": [
+        "age",
+        "classification",
+        "person"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule"
+      ],
+      "id": "basic-01-adult-classification"
+    },
+    {
+      "complexity": "basic",
+      "description": "Create rules to classify temperature readings as cold (below 32F), warm (32-75F), or hot (above 75F).",
+      "domain_hints": [
+        "temperature",
+        "classification",
+        "weather"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule"
+      ],
+      "id": "basic-02-temperature-state"
+    },
+    {
+      "complexity": "basic",
+      "description": "Create a rule that generates a reorder alert when inventory quantity falls below the minimum threshold.",
+      "domain_hints": [
+        "inventory",
+        "threshold",
+        "alert"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule"
+      ],
+      "id": "basic-03-inventory-alert"
+    },
+    {
+      "complexity": "intermediate",
+      "description": "Create rules with salience to process high-priority tasks before low-priority ones in a task queue.",
+      "domain_hints": [
+        "priority",
+        "queue",
+        "scheduling"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "salience"
+      ],
+      "id": "intermediate-01-priority-queue"
+    },
+    {
+      "complexity": "intermediate",
+      "description": "Create rules to determine loan eligibility based on credit score (>700), income (>50000), and debt-to-income ratio (<0.4).",
+      "domain_hints": [
+        "loan",
+        "eligibility",
+        "finance"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "test"
+      ],
+      "id": "intermediate-02-eligibility-check"
+    },
+    {
+      "complexity": "intermediate",
+      "description": "Create rules to match orders with available inventory items, considering quantity constraints.",
+      "domain_hints": [
+        "order",
+        "inventory",
+        "matching"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "test"
+      ],
+      "id": "intermediate-03-pattern-matching"
+    },
+    {
+      "complexity": "advanced",
+      "description": "Create an expert system for emergency room triage that uses multiple modules: intake, assessment, and disposition. Include helper functions for calculating severity scores.",
+      "domain_hints": [
+        "medical",
+        "triage",
+        "emergency",
+        "expert-system"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "defmodule",
+        "deffunction"
+      ],
+      "id": "advanced-01-medical-triage"
+    },
+    {
+      "complexity": "advanced",
+      "description": "Create a workflow engine with modules for task definition, dependency tracking, and execution. Include functions for calculating task completion percentages.",
+      "domain_hints": [
+        "workflow",
+        "tasks",
+        "dependencies",
+        "automation"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "defmodule",
+        "deffunction"
+      ],
+      "id": "advanced-02-workflow-engine"
+    },
+    {
+      "complexity": "advanced",
+      "description": "Create a product recommendation engine with modules for user profiling, product matching, and ranking. Include functions for similarity scoring.",
+      "domain_hints": [
+        "recommendation",
+        "products",
+        "matching",
+        "scoring"
+      ],
+      "expected_constructs": [
+        "deftemplate",
+        "defrule",
+        "defmodule",
+        "deffunction"
+      ],
+      "id": "advanced-03-recommendation-engine"
+    }
+  ]
+}

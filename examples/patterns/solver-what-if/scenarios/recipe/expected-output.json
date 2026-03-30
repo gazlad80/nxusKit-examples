@@ -1,0 +1,77 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Recipe Scaling what-if scenario. The base solve maximizes flour (servings) subject to flour/sugar ratio, eggs-per-flour, and butter-per-flour constraints. What-if scenarios explore limited eggs, vegan substitutions, and party-size scaling.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Recipe Scaling",
+  "steps": {
+    "base": {
+      "key_assignments": {
+        "butter_tbsp": {
+          "expected_min": 16,
+          "note": "butter_tbsp >= 2 * flour_cups. With flour=8, butter >= 16 (domain max). This is the binding constraint on flour."
+        },
+        "eggs": {
+          "expected_min": 6,
+          "note": "eggs * 3 >= 2 * flour_cups. With flour=8, eggs >= 5.33, so eggs >= 6"
+        },
+        "flour_cups": {
+          "expected_value": 8,
+          "note": "Maximized. Butter is the binding constraint: butter_tbsp(16) >= 2 * flour, so flour <= 8"
+        },
+        "milk_cups": {
+          "note": "Unconstrained; solver may pick any value in [0, 4]"
+        },
+        "sugar_cups": {
+          "expected_min": 2,
+          "note": "flour <= 4 * sugar, so sugar >= flour/4 = 2. Also flour >= 2 * sugar, so sugar <= flour/2 = 4"
+        },
+        "vanilla_tsp": {
+          "note": "Unconstrained; solver may pick any value in [0, 3]"
+        }
+      },
+      "note": "Maximize flour_cups. Butter (domain max 16) constrains flour to <= 8 (since butter >= 2*flour). Eggs require >= ceil(2*8/3) = 6. Sugar must be between flour/4=2 and flour/2=4.",
+      "objective_name": "maximize_servings",
+      "objective_value": 8,
+      "status": "optimal"
+    },
+    "what_if": {
+      "out_of_eggs": {
+        "additional_constraints": [
+          "eggs <= 2"
+        ],
+        "key_observations": {
+          "eggs_max": 2,
+          "flour_max": 3,
+          "note": "With eggs <= 2: eggs * 3 >= 2 * flour => 6 >= 2 * flour => flour <= 3. Butter constraint: butter >= 2*3 = 6 (satisfied, domain max 16). Sugar: 3/4 <= sugar <= 3/2, so sugar in [1, 1]."
+        },
+        "note": "Eggs capped at 2. This limits flour to 3 (from eggs*3 >= 2*flour). Significant reduction from base flour=8.",
+        "status": "optimal"
+      },
+      "party_size": {
+        "additional_constraints": [
+          "flour_cups >= 8"
+        ],
+        "key_observations": {
+          "flour_min": 8,
+          "note": "Base optimum already has flour=8 (domain max is 10 but butter caps it at 8). Adding flour >= 8 just confirms the existing optimum. Result should match base."
+        },
+        "note": "Adds flour >= 8. Since the base optimum is already flour=8 (limited by butter), this constraint is non-binding. Result matches base.",
+        "status": "optimal"
+      },
+      "vegan_mode": {
+        "additional_constraints": [
+          "eggs <= 0",
+          "butter_tbsp <= 0",
+          "milk_cups <= 0"
+        ],
+        "key_observations": {
+          "note": "With eggs=0: eggs*3 >= 2*flour => 0 >= 2*flour, which requires flour <= 0. But flour domain min is 1. This creates a conflict between the eggs-per-flour constraint and the flour domain minimum. The problem is UNSAT.",
+          "unsat_reason": "eggs=0 conflicts with eggs*3 >= 2*flour_cups when flour_cups >= 1 (domain min)"
+        },
+        "note": "Sets eggs=0, butter=0, milk=0. The egg constraint (eggs*3 >= 2*flour) with eggs=0 requires flour<=0, but flour domain min is 1. UNSAT.",
+        "status": "unsat"
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "conclusion_type": "classification",
+  "confidence_threshold": 0.7,
+  "evaluation_rules": "examples/rules/solver/classification-eval.clp",
+  "max_retries": 3,
+  "strategies": [
+    {
+      "adjustments": [
+        {
+          "action": "delta",
+          "knob": "temperature",
+          "max": 2.0,
+          "min": 0.0,
+          "value": 0.2
+        }
+      ],
+      "failure_type": "low_confidence"
+    },
+    {
+      "adjustments": [
+        {
+          "action": "delta",
+          "knob": "temperature",
+          "max": 2.0,
+          "min": 0.0,
+          "value": -0.2
+        }
+      ],
+      "failure_type": "invalid_category"
+    },
+    {
+      "adjustments": [
+        {
+          "action": "enable",
+          "knob": "thinking_enabled",
+          "max": 1.0,
+          "min": 0.0
+        }
+      ],
+      "failure_type": "missing_reasoning"
+    },
+    {
+      "adjustments": [
+        {
+          "action": "delta",
+          "knob": "temperature",
+          "max": 2.0,
+          "min": 0.0,
+          "value": -0.1
+        },
+        {
+          "action": "delta",
+          "knob": "max_tokens",
+          "max": 8000.0,
+          "min": 100.0,
+          "value": 500.0
+        }
+      ],
+      "failure_type": "incomplete_extraction"
+    },
+    {
+      "adjustments": [
+        {
+          "action": "enable",
+          "knob": "thinking_enabled",
+          "max": 1.0,
+          "min": 0.0
+        }
+      ],
+      "failure_type": "inconsistent_data"
+    },
+    {
+      "adjustments": [
+        {
+          "action": "set",
+          "knob": "temperature",
+          "max": 2.0,
+          "min": 0.0,
+          "value": 0.0
+        }
+      ],
+      "failure_type": "parse_error"
+    }
+  ],
+  "timeout_ms": 30000,
+  "valid_categories": [
+    "high",
+    "medium",
+    "low"
+  ]
+}

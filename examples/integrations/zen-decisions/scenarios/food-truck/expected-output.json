@@ -1,0 +1,18 @@
+{
+  "decision_table": {
+    "explanation": "time_of_day=lunch AND weather=sunny AND nearby_events=large matches r1.",
+    "hit_policy": "first",
+    "matched_rule": "r1"
+  },
+  "description": "Expected outputs for food-truck scenario with input: time_of_day=lunch, weather=sunny, nearby_events=large, inventory_level=medium",
+  "expected": {
+    "location": "Main Street Park",
+    "menu_adjustment": "full menu",
+    "price_multiplier": 1.3,
+    "restock_alert": false
+  },
+  "expression_node": {
+    "explanation": "Passes through location and base_price_multiplier, computes menu_adjustment and restock_alert based on inventory_level."
+  },
+  "pipeline": "inputNode -> decisionTableNode (first hit) -> expressionNode -> outputNode"
+}

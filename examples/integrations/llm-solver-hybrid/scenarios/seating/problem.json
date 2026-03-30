@@ -1,0 +1,202 @@
+{
+  "description": "Wedding dinner seating arrangement for 12 guests at 3 tables",
+  "mock_llm_response": {
+    "constraints": [
+      {
+        "constraint_type": "not_equal",
+        "label": "Aunt Martha and Uncle Bob at different tables",
+        "name": "martha_bob_apart",
+        "parameters": {},
+        "variables": [
+          "guest_martha_table",
+          "guest_bob_table"
+        ]
+      },
+      {
+        "constraint_type": "equal",
+        "label": "Bride's parents at same table",
+        "name": "bride_parents_together",
+        "parameters": {},
+        "variables": [
+          "guest_mom_bride_table",
+          "guest_dad_bride_table"
+        ]
+      },
+      {
+        "constraint_type": "not_equal",
+        "label": "Ex-partners at different tables",
+        "name": "exes_apart",
+        "parameters": {},
+        "variables": [
+          "guest_lisa_table",
+          "guest_mark_table"
+        ]
+      },
+      {
+        "constraint_type": "linear",
+        "label": "Table 1 max 4 guests",
+        "name": "table_1_capacity",
+        "parameters": {
+          "coefficients": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "operator": "<=",
+          "rhs": 4
+        },
+        "variables": [
+          "guest_martha_t1",
+          "guest_bob_t1",
+          "guest_mom_bride_t1",
+          "guest_dad_bride_t1",
+          "guest_lisa_t1",
+          "guest_mark_t1",
+          "guest_anna_t1",
+          "guest_james_t1",
+          "guest_chen_t1",
+          "guest_priya_t1",
+          "guest_omar_t1",
+          "guest_sofia_t1"
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Martha",
+        "name": "guest_martha_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Bob",
+        "name": "guest_bob_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Mom (bride)",
+        "name": "guest_mom_bride_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Dad (bride)",
+        "name": "guest_dad_bride_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Lisa",
+        "name": "guest_lisa_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Mark",
+        "name": "guest_mark_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Anna",
+        "name": "guest_anna_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for James",
+        "name": "guest_james_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Chen",
+        "name": "guest_chen_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Priya",
+        "name": "guest_priya_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Omar",
+        "name": "guest_omar_table",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 3,
+          "min": 1
+        },
+        "label": "Table assignment for Sofia",
+        "name": "guest_sofia_table",
+        "var_type": "integer"
+      }
+    ]
+  },
+  "natural_language_constraints": [
+    "Aunt Martha and Uncle Bob had a falling out - they cannot sit at the same table",
+    "The bride's parents (Mom and Dad) must sit together at the same table",
+    "Lisa and Mark are ex-partners and should be at different tables",
+    "Each table seats at most 4 guests",
+    "Anna and James are best friends and would love to sit together",
+    "Chen speaks only Mandarin - seat him with Priya who also speaks Mandarin"
+  ],
+  "objective": {
+    "direction": "maximize",
+    "expression": "happiness_score",
+    "label": "Maximize guest happiness based on social preferences",
+    "name": "maximize_happiness"
+  },
+  "solver_config": {
+    "timeout_ms": 10000
+  },
+  "system_prompt": "You are a constraint solver assistant. Convert natural language seating constraints into structured solver variables and constraints. Each guest needs a table assignment variable (integer 1-3). Return ONLY a JSON object (no markdown fences, no explanation) with 'variables' and 'constraints' arrays using this EXACT schema:\n\nVariable schema: {\"name\": \"var_name\", \"var_type\": \"integer\", \"label\": \"Human description\", \"domain\": {\"min\": 1, \"max\": 3}}\n\nConstraint schema: {\"name\": \"constraint_id\", \"constraint_type\": \"TYPE\", \"label\": \"Human description\", \"variables\": [\"var_name1\", \"var_name2\"], \"parameters\": {}}\n\nValid constraint_type values: equal, not_equal, linear. For 'linear' constraints (e.g. capacity limits), include \"parameters\": {\"coefficients\": [1,1,...], \"operator\": \"<=\", \"rhs\": 4}.\n\nIMPORTANT: Use \"var_type\" (not \"type\"), \"constraint_type\" (not \"type\"), \"variables\" (not \"guests\"), and \"domain\" must be an object {\"min\":N,\"max\":N} (not an array)."
+}

@@ -1,0 +1,9 @@
+# GitHub Linguist treats top-level examples/ as documentation by default.
+# Unmark actual example source so it contributes to repo language stats.
+
+examples/**/*.go        -linguist-documentation
+examples/**/*.rs        -linguist-documentation
+examples/**/*.py        -linguist-documentation
+examples/**/*.clp       -linguist-documentation
+examples/**/*.sh        -linguist-documentation
+examples/**/Makefile    -linguist-documentation

@@ -1,0 +1,86 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Theme Park Planning constraint solver scenario. Each step's expected values are derived from the hard constraints, objectives, and variable domains in problem.json. Variable assignments in the satisfaction step are non-deterministic; only status and constraint feasibility are validated.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Theme Park Planning",
+  "steps": {
+    "multi_objective": {
+      "note": "Weighted combination: minimize(-1.0 * ride_count + 0.5 * budget). Budget range [50000..500000] dominates ride_count [1..20], so solver strongly favors minimizing budget. With budget=50000, ride_count <= 2 (budget >= ride_count * 25000). The first AddObjective call migrates the single objective from Step 2, resulting in 3 objectives in the list (maximize_rides appears twice). Per-objective values reflect the variable values from the model.",
+      "objective_values": {
+        "maximize_rides": {
+          "expected_value": 2,
+          "note": "ride_count with budget minimized to 50000"
+        },
+        "minimize_budget": {
+          "expected_value": 50000,
+          "note": "Minimized budget dominates the weighted sum"
+        }
+      },
+      "status": "optimal"
+    },
+    "optimization": {
+      "key_assignments": {
+        "budget": {
+          "expected_value": 500000,
+          "note": "Minimum budget to support 20 rides: 20 * 25000 = 500000 (equals domain max)"
+        },
+        "has_roller_coaster": {
+          "expected_value": "solver-chosen (true or false)",
+          "note": "Not constrained by objective; solver may pick either"
+        },
+        "plot_size": {
+          "expected_min": 8000,
+          "note": "At least 20 * 400 = 8000 sq ft required"
+        },
+        "ride_count": {
+          "expected_value": 20,
+          "note": "Maximized to domain upper bound"
+        },
+        "staff": {
+          "expected_min": 100,
+          "note": "At least 20 * 5 = 100 staff required"
+        },
+        "ticket_price": {
+          "expected_min": 50.0,
+          "note": "ticket_price * 1000 >= 500000 * 0.1 = 50000, so ticket_price >= 50"
+        }
+      },
+      "note": "Single-objective: maximize ride_count. Maximum ride_count=20 requires budget=500000, staff>=100, plot_size>=8000, ticket_price>=50.",
+      "objective_name": "maximize_rides",
+      "objective_value": 20,
+      "status": "optimal"
+    },
+    "satisfaction": {
+      "constraint_invariants": [
+        "budget >= ride_count * 25000",
+        "staff >= ride_count * 5",
+        "plot_size >= ride_count * 400",
+        "ticket_price * 1000 >= budget * 0.1"
+      ],
+      "note": "Any feasible assignment satisfying all 4 hard constraints. Example: ride_count=1, budget=50000, staff=10, plot_size=400, ticket_price=20.0. Exact values are solver-dependent.",
+      "num_assignments": 6,
+      "status": "sat"
+    },
+    "soft_constraints": {
+      "note": "After multi-objective step, the session retains accumulated objectives. Soft constraint has_roller_coaster==true (weight=5.0) is trivially satisfiable since the boolean variable is unconstrained by hard constraints. Solver should satisfy it without violation.",
+      "status": "optimal",
+      "violated_soft_constraints": []
+    },
+    "what_if": {
+      "Add Roller Coaster": {
+        "additional_constraints": [
+          "has_roller_coaster == true",
+          "ride_count >= 5"
+        ],
+        "key_observations": {
+          "has_roller_coaster": true,
+          "ride_count_min": 5,
+          "ride_count_note": "ride_count >= 5 is less restrictive than the optimizer's maximum, so objective value should be similar to the unconstrained case"
+        },
+        "note": "Adds has_roller_coaster==true and ride_count>=5 via push/pop. Since ride_count>=5 is less restrictive than the optimizer's natural maximum, the result should be similar to the previous step. The accumulated multi-objective state carries through push/pop.",
+        "status": "optimal"
+      }
+    }
+  }
+}

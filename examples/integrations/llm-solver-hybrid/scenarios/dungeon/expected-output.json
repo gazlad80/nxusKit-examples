@@ -1,0 +1,36 @@
+{
+  "llm_mode": "mock",
+  "pipeline_stages": {
+    "step_1_load_problem": {
+      "constraint_count": 6,
+      "description": "Generate a 5-room dungeon layout with treasure rooms and boss placement"
+    },
+    "step_2_structured_constraints": {
+      "attempts": 1,
+      "constraints_parsed": 5,
+      "source": "mock_llm_response",
+      "variables_parsed": 9
+    },
+    "step_3_validation": {
+      "constraints_valid": 5,
+      "status": "pass",
+      "variables_valid": 9
+    },
+    "step_4_solver": {
+      "objective": "maximize_challenge",
+      "sample_assignments": {
+        "boss_room": 5,
+        "entry_room": 1,
+        "room_1_difficulty": 1,
+        "room_2_difficulty": 2,
+        "room_3_difficulty": 3,
+        "room_4_difficulty": 4,
+        "room_5_difficulty": 10,
+        "treasure_room_1": 3,
+        "treasure_room_2": 4
+      },
+      "status": "optimal"
+    }
+  },
+  "scenario": "dungeon"
+}

@@ -1,0 +1,3 @@
+# nxuskit - install from local package or PyPI when available
+# pip install -e ../../packages/nxuskit-py
+nxuskit-py

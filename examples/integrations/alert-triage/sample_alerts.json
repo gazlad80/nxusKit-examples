@@ -1,0 +1,50 @@
+[
+  {
+    "alertname": "HighMemoryUsage",
+    "description": "Memory usage above 85% for 5 minutes",
+    "instance": "web-server-01",
+    "severity": "warning"
+  },
+  {
+    "alertname": "PodCrashLooping",
+    "description": "Pod restarted 5 times in last 10 minutes",
+    "instance": "api-deployment-xyz",
+    "severity": "critical"
+  },
+  {
+    "alertname": "SSLCertExpiring",
+    "description": "SSL certificate expires in 7 days",
+    "instance": "loadbalancer-prod",
+    "severity": "warning"
+  },
+  {
+    "alertname": "HighCPUUsage",
+    "description": "CPU usage above 90% for 10 minutes",
+    "instance": "batch-processor-02",
+    "severity": "warning"
+  },
+  {
+    "alertname": "DiskSpaceLow",
+    "description": "Disk space below 5% on /var/lib/postgresql",
+    "instance": "database-primary",
+    "severity": "critical"
+  },
+  {
+    "alertname": "ServiceDown",
+    "description": "Payment service health check failed for 3 minutes",
+    "instance": "payment-service",
+    "severity": "critical"
+  },
+  {
+    "alertname": "HighLatency",
+    "description": "P99 latency above 2s for 5 minutes",
+    "instance": "api-gateway",
+    "severity": "warning"
+  },
+  {
+    "alertname": "DatabaseConnectionPoolExhausted",
+    "description": "No available database connections in pool",
+    "instance": "app-server-03",
+    "severity": "critical"
+  }
+]

@@ -1,0 +1,99 @@
+{
+  "context": {
+    "tempo": 100,
+    "ticks_per_quarter": 480,
+    "time_signature": "4/4"
+  },
+  "duration_ticks": 5280,
+  "dynamics_expression": {
+    "has_accents": true,
+    "rating": "good",
+    "velocity_range": [
+      70,
+      95
+    ]
+  },
+  "harmonic_coherence": {
+    "percentage": 100.0,
+    "rating": "excellent"
+  },
+  "intervals": {
+    "count": 12,
+    "notable_intervals": [
+      {
+        "from_note": "E4",
+        "name": "minor 3rd",
+        "semitones": 3,
+        "to_note": "G4"
+      },
+      {
+        "from_note": "B4",
+        "name": "minor 3rd",
+        "semitones": 3,
+        "to_note": "D5"
+      },
+      {
+        "from_note": "G5",
+        "name": "descending minor 3rd",
+        "semitones": -3,
+        "to_note": "E5"
+      }
+    ],
+    "summary": {
+      "ascending": 5,
+      "descending": 7,
+      "imperfect_consonances": 6,
+      "mild_dissonances": 2,
+      "perfect_consonances": 2,
+      "strong_dissonances": 2
+    }
+  },
+  "key_detection": {
+    "confidence_min": 0.3,
+    "expected_alternatives": [
+      "G Major",
+      "A Minor",
+      "D Major"
+    ],
+    "key": "E Minor",
+    "notes": "E minor and G major are relative keys, so both are valid detections"
+  },
+  "melodic_interest": {
+    "contour": "wave",
+    "direction_changes": 3,
+    "interval_variety": "high",
+    "notes": "Ascending first measure, ascending second, descending third"
+  },
+  "name": "E Minor Riff",
+  "notes_count": 13,
+  "rhythmic_variety": {
+    "duration_types": [
+      "eighth",
+      "quarter",
+      "half"
+    ],
+    "rating": "good"
+  },
+  "scale_membership": {
+    "in_scale_count": 13,
+    "notes": "All notes are in E minor pentatonic (E G A B D) which is a subset of E natural minor",
+    "out_of_scale_count": 0,
+    "scale": "E natural minor / E aeolian",
+    "scale_notes": [
+      "E",
+      "F#",
+      "G",
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "test_assertions": [
+    "Key should be detected as E Minor or G Major (relative keys)",
+    "All notes should be in E minor scale",
+    "Should have varied intervals including minor 3rds",
+    "Dynamics should show expression with velocity variation",
+    "Rhythmic variety with eighth, quarter, and half notes"
+  ]
+}

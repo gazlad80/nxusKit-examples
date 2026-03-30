@@ -1,0 +1,244 @@
+{
+  "facts": [
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "warm"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "yes"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "no"
+        },
+        "lives-in-water": {
+          "symbol": "no"
+        },
+        "name": "Buddy the Dog"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "cold"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "yes"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "yes"
+        },
+        "name": "Nemo the Clownfish"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "warm"
+        },
+        "can-fly": {
+          "symbol": "yes"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "yes"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "no"
+        },
+        "name": "Tweety the Canary"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "cold"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "partial"
+        },
+        "name": "Kermit the Frog"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "cold"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "yes"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "no"
+        },
+        "name": "Rex the Lizard"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "warm"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "yes"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "partial"
+        },
+        "name": "Perry the Platypus"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "warm"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "yes"
+        },
+        "has-feathers": {
+          "symbol": "yes"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "partial"
+        },
+        "name": "Pingu the Penguin"
+      }
+    },
+    {
+      "template": "animal",
+      "values": {
+        "body-temperature": {
+          "symbol": "cold"
+        },
+        "can-fly": {
+          "symbol": "no"
+        },
+        "has-backbone": {
+          "symbol": "no"
+        },
+        "has-feathers": {
+          "symbol": "no"
+        },
+        "has-fur": {
+          "symbol": "no"
+        },
+        "has-scales": {
+          "symbol": "no"
+        },
+        "lays-eggs": {
+          "symbol": "yes"
+        },
+        "lives-in-water": {
+          "symbol": "yes"
+        },
+        "name": "Inky the Octopus"
+      }
+    }
+  ]
+}

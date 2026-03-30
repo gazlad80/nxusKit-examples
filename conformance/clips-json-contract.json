@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Canonical ClipsInput / ClipsOutput JSON contract for nxusKit CLIPS provider chat. Source of truth: nxuskit-engine providers/clips/types.rs",
+  "version": "0.9.1",
+
+  "clips_input": {
+    "description": "User message JSON sent to the CLIPS provider. Unknown fields are rejected (deny_unknown_fields).",
+    "minimal_example": {},
+    "basic_example": {
+      "facts": [
+        {"template": "sensor", "values": {"name": "temp-1", "value": 150}}
+      ]
+    },
+    "full_example": {
+      "facts": [
+        {"template": "sensor", "values": {"name": "temp-1", "value": 150}},
+        {"template": "threshold-config", "values": {"value-min": 0.0, "value-max": 100.0}}
+      ],
+      "templates": [
+        {
+          "name": "alert",
+          "slots": [
+            {"name": "type", "type": "STRING"},
+            {"name": "severity", "type": "STRING"},
+            {"name": "entity-id", "type": "INTEGER"}
+          ]
+        }
+      ],
+      "rules": [
+        {
+          "name": "high-temp",
+          "source": "(defrule high-temp (sensor (name ?n) (value ?v&:(> ?v 100))) => (assert (alert (type \"over-threshold\") (severity \"high\") (entity-id 1))))"
+        }
+      ],
+      "config": {
+        "max_rules": 1000,
+        "include_trace": true,
+        "derived_only_new": true,
+        "output_templates": ["alert"]
+      },
+      "focus": ["MAIN"],
+      "globals": {"*threshold*": 100}
+    },
+    "fields": {
+      "facts":             {"type": "array",    "items": "FactAssertion",    "default": "[]",     "required": false},
+      "templates":         {"type": "array",    "items": "TemplateDefinition","default": "[]",    "required": false},
+      "rules":             {"type": "array",    "items": "RuleDefinition",   "default": "[]",     "required": false},
+      "modules":           {"type": "array",    "items": "ModuleDefinition", "default": "[]",     "required": false},
+      "config":            {"type": "object",   "shape": "RequestConfig",    "default": "null",   "required": false},
+      "focus":             {"type": "array",    "items": "string",           "default": "null",   "required": false},
+      "globals":           {"type": "object",   "items": "JsonValue",        "default": "{}",     "required": false},
+      "command":           {"type": "string",   "enum": ["reset","clear","retract"], "default": "null", "required": false},
+      "policy_id":         {"type": "string",   "default": "null",           "required": false},
+      "strict_policy_id":  {"type": "boolean",  "default": "false",          "required": false},
+      "retract_template":  {"type": "string",   "default": "null",           "required": false},
+      "retract_templates": {"type": "array",    "items": "string",           "default": "null",   "required": false}
+    }
+  },
+
+  "fact_assertion": {
+    "description": "A fact to assert before running inference.",
+    "example": {"template": "sensor", "values": {"name": "temp-1", "value": 150}},
+    "fields": {
+      "template": {"type": "string", "required": true,  "description": "CLIPS template name"},
+      "values":   {"type": "object", "required": true,  "description": "Slot name → value map"},
+      "id":       {"type": "string", "required": false, "description": "Client-side tracking ID"}
+    }
+  },
+
+  "clips_output": {
+    "description": "JSON returned in response.content from the CLIPS provider.",
+    "example": {
+      "conclusions": [
+        {"template": "alert", "values": {"type": "over-threshold", "severity": "high"}, "fact_index": 3, "derived": true}
+      ],
+      "stats": {"total_rules_fired": 1, "conclusions_count": 1, "execution_time_ms": 2},
+      "trace": {
+        "rules_fired": [
+          {"rule_name": "high-temp", "fire_count": 1}
+        ]
+      }
+    },
+    "fields": {
+      "conclusions":  {"type": "array",  "items": "FactOutput",     "description": "Derived facts (conclusions)"},
+      "input_facts":  {"type": "array",  "items": "FactOutput",     "description": "Input facts echoed back (if requested)"},
+      "stats":        {"type": "object", "shape": "ExecutionStats", "description": "Execution statistics"},
+      "trace":        {"type": "object", "shape": "ExecutionTrace", "description": "Rule firing trace (if include_trace)"},
+      "retract_result":{"type": "object","shape": "RetractResult",  "description": "Retraction result (if command=retract)"}
+    }
+  },
+
+  "fact_output": {
+    "description": "A fact in the output.",
+    "fields": {
+      "template":   {"type": "string",  "description": "Template name"},
+      "values":     {"type": "object",  "description": "Slot values"},
+      "fact_index": {"type": "integer", "description": "CLIPS fact index"},
+      "derived":    {"type": "boolean", "description": "true if derived (not an input fact)"},
+      "id":         {"type": "string",  "description": "Client-provided tracking ID (if set in input)"}
+    }
+  },
+
+  "cross_language_notes": {
+    "go":     "Use local structs with json tags (e.g., clips_wire.go) or map[string]any. The nxuskit-go SDK does not export ClipsInput/ClipsOutput types.",
+    "rust":   "Use serde_json::json!() or local #[derive(Serialize)] structs. The nxuskit crate does not re-export ClipsInput/ClipsOutput.",
+    "python": "Use dict + json.dumps(). The nxuskit-py package does not export ClipsInput/ClipsOutput types.",
+    "csharp": "Use anonymous objects or local record types with System.Text.Json. The wire contract is identical — JSON field names and types defined above.",
+    "c":      "Use string formatting or a JSON library (cJSON, jansson). The wire contract is the JSON schema above."
+  }
+}

@@ -1,0 +1,13 @@
+[package]
+name = "vision-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+nxuskit = { path = "../../../../packages/nxuskit" }
+base64 = "0.22"
+
+[profile.release]
+panic = "abort"

@@ -1,0 +1,128 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "input",
+      "targetId": "dt1",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "dt1",
+      "targetId": "output",
+      "type": "edge"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "input",
+      "name": "Input",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "type": "inputNode"
+    },
+    {
+      "id": "output",
+      "name": "Output",
+      "position": {
+        "x": 400,
+        "y": 0
+      },
+      "type": "outputNode"
+    },
+    {
+      "content": {
+        "hitPolicy": "first",
+        "inputs": [
+          {
+            "field": "scent_strength",
+            "id": "scent_strength",
+            "name": "Scent Strength"
+          },
+          {
+            "field": "dead_ends_nearby",
+            "id": "dead_ends_nearby",
+            "name": "Dead Ends Nearby"
+          },
+          {
+            "field": "hunger_level",
+            "id": "hunger_level",
+            "name": "Hunger Level"
+          }
+        ],
+        "outputs": [
+          {
+            "field": "action",
+            "id": "action",
+            "name": "Action"
+          },
+          {
+            "field": "confidence",
+            "id": "confidence",
+            "name": "Confidence"
+          }
+        ],
+        "rules": [
+          {
+            "_id": "r1",
+            "action": "\"backtrack\"",
+            "confidence": "0.9",
+            "dead_ends_nearby": ">= 3",
+            "hunger_level": "",
+            "scent_strength": "< 4"
+          },
+          {
+            "_id": "r2",
+            "action": "\"sniff_around\"",
+            "confidence": "0.7",
+            "dead_ends_nearby": ">= 1",
+            "hunger_level": ">= 7",
+            "scent_strength": ""
+          },
+          {
+            "_id": "r3",
+            "action": "\"go_right\"",
+            "confidence": "0.85",
+            "dead_ends_nearby": "< 2",
+            "hunger_level": "",
+            "scent_strength": ">= 7"
+          },
+          {
+            "_id": "r4",
+            "action": "\"sniff_around\"",
+            "confidence": "0.6",
+            "dead_ends_nearby": "",
+            "hunger_level": "",
+            "scent_strength": ">= 4"
+          },
+          {
+            "_id": "r5",
+            "action": "\"go_left\"",
+            "confidence": "0.5",
+            "dead_ends_nearby": "< 2",
+            "hunger_level": "",
+            "scent_strength": "< 4"
+          },
+          {
+            "_id": "r6",
+            "action": "\"rest\"",
+            "confidence": "0.3",
+            "dead_ends_nearby": "",
+            "hunger_level": "",
+            "scent_strength": ""
+          }
+        ]
+      },
+      "id": "dt1",
+      "name": "Cautious Maze Rat",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "type": "decisionTableNode"
+    }
+  ]
+}

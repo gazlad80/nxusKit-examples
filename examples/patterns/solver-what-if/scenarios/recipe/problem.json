@@ -1,0 +1,326 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "mul",
+      "description": "Compute minimum flour needed: sugar_cups * 2 (flour-to-sugar ratio at least 2:1)",
+      "expression": "sugar_cups * 2 = min_flour",
+      "label": "Min flour computation",
+      "name": "compute_min_flour",
+      "parameters": {
+        "left": "sugar_cups",
+        "result": "min_flour",
+        "right": 2
+      },
+      "variables": [
+        "sugar_cups",
+        "min_flour"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Flour to sugar ratio must be at least 2:1",
+      "expression": "flour_cups >= min_flour",
+      "label": "Min flour-to-sugar ratio",
+      "name": "flour_sugar_min_ratio",
+      "variables": [
+        "flour_cups",
+        "min_flour"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute maximum flour allowed: sugar_cups * 4 (flour-to-sugar ratio at most 4:1)",
+      "expression": "sugar_cups * 4 = max_flour",
+      "label": "Max flour computation",
+      "name": "compute_max_flour",
+      "parameters": {
+        "left": "sugar_cups",
+        "result": "max_flour",
+        "right": 4
+      },
+      "variables": [
+        "sugar_cups",
+        "max_flour"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Flour to sugar ratio must be at most 4:1",
+      "expression": "flour_cups <= max_flour",
+      "label": "Max flour-to-sugar ratio",
+      "name": "flour_sugar_max_ratio",
+      "variables": [
+        "flour_cups",
+        "max_flour"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled egg capacity: eggs * 3",
+      "expression": "eggs * 3 = egg_capacity",
+      "label": "Egg capacity computation",
+      "name": "compute_egg_capacity",
+      "parameters": {
+        "left": "eggs",
+        "result": "egg_capacity",
+        "right": 3
+      },
+      "variables": [
+        "eggs",
+        "egg_capacity"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute scaled flour demand for eggs: flour_cups * 2",
+      "expression": "flour_cups * 2 = flour_demand_eggs",
+      "label": "Flour demand for eggs",
+      "name": "compute_flour_demand_eggs",
+      "parameters": {
+        "left": "flour_cups",
+        "result": "flour_demand_eggs",
+        "right": 2
+      },
+      "variables": [
+        "flour_cups",
+        "flour_demand_eggs"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Need at least 2 eggs per 3 cups of flour (eggs*3 >= flour_cups*2)",
+      "expression": "egg_capacity >= flour_demand_eggs",
+      "label": "Eggs per flour requirement",
+      "name": "eggs_per_flour",
+      "variables": [
+        "egg_capacity",
+        "flour_demand_eggs"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute minimum butter needed: flour_cups * 2",
+      "expression": "flour_cups * 2 = min_butter",
+      "label": "Min butter computation",
+      "name": "compute_min_butter",
+      "parameters": {
+        "left": "flour_cups",
+        "result": "min_butter",
+        "right": 2
+      },
+      "variables": [
+        "flour_cups",
+        "min_butter"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Need at least 2 tablespoons of butter per cup of flour",
+      "expression": "butter_tbsp >= min_butter",
+      "label": "Butter per flour requirement",
+      "name": "butter_per_flour",
+      "variables": [
+        "butter_tbsp",
+        "min_butter"
+      ]
+    }
+  ],
+  "description": "Scale a baking recipe by adjusting flour, sugar, eggs, butter, milk, and vanilla while maintaining proper ratios. Maximize the number of servings (proportional to flour) under ingredient constraints.",
+  "name": "Recipe Scaling",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "flour_cups",
+      "label": "Maximize servings by using as much flour as possible",
+      "name": "maximize_servings",
+      "variable": "flour_cups",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 16,
+        "min": 0
+      },
+      "label": "Tablespoons of butter",
+      "name": "butter_tbsp",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 36,
+        "min": 0
+      },
+      "label": "Scaled egg capacity (eggs * 3, auxiliary)",
+      "name": "egg_capacity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 12,
+        "min": 0
+      },
+      "label": "Number of eggs",
+      "name": "eggs",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Cups of flour",
+      "name": "flour_cups",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 2
+      },
+      "label": "Scaled flour demand for eggs (flour_cups * 2, auxiliary)",
+      "name": "flour_demand_eggs",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 0
+      },
+      "label": "Maximum flour allowed (sugar_cups * 4, auxiliary)",
+      "name": "max_flour",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 4,
+        "min": 0
+      },
+      "label": "Cups of milk",
+      "name": "milk_cups",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 2
+      },
+      "label": "Minimum butter needed (flour_cups * 2, auxiliary)",
+      "name": "min_butter",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 0
+      },
+      "label": "Minimum flour needed (sugar_cups * 2, auxiliary)",
+      "name": "min_flour",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5,
+        "min": 0
+      },
+      "label": "Cups of sugar",
+      "name": "sugar_cups",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 0
+      },
+      "label": "Teaspoons of vanilla extract",
+      "name": "vanilla_tsp",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "We only have 2 eggs available",
+          "expression": "eggs <= 2",
+          "label": "Limited eggs",
+          "name": "limited_eggs",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "eggs"
+          ]
+        }
+      ],
+      "description": "What if we only have 2 eggs?",
+      "name": "out_of_eggs"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "No eggs in vegan mode",
+          "expression": "eggs <= 0",
+          "label": "No eggs",
+          "name": "no_eggs",
+          "parameters": {
+            "right": 0
+          },
+          "variables": [
+            "eggs"
+          ]
+        },
+        {
+          "constraint_type": "le",
+          "description": "No butter in vegan mode",
+          "expression": "butter_tbsp <= 0",
+          "label": "No butter",
+          "name": "no_butter",
+          "parameters": {
+            "right": 0
+          },
+          "variables": [
+            "butter_tbsp"
+          ]
+        },
+        {
+          "constraint_type": "le",
+          "description": "No milk in vegan mode",
+          "expression": "milk_cups <= 0",
+          "label": "No milk",
+          "name": "no_milk",
+          "parameters": {
+            "right": 0
+          },
+          "variables": [
+            "milk_cups"
+          ]
+        }
+      ],
+      "description": "What if we make it vegan?",
+      "name": "vegan_mode"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "ge",
+          "description": "Need at least 8 cups of flour for a big party",
+          "expression": "flour_cups >= 8",
+          "label": "Party-size flour minimum",
+          "name": "party_flour_min",
+          "parameters": {
+            "right": 8
+          },
+          "variables": [
+            "flour_cups"
+          ]
+        }
+      ],
+      "description": "What if we're baking for a big party?",
+      "name": "party_size"
+    }
+  ]
+}

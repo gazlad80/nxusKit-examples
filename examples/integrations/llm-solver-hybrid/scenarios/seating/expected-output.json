@@ -1,0 +1,39 @@
+{
+  "llm_mode": "mock",
+  "pipeline_stages": {
+    "step_1_load_problem": {
+      "constraint_count": 6,
+      "description": "Wedding dinner seating arrangement for 12 guests at 3 tables"
+    },
+    "step_2_structured_constraints": {
+      "attempts": 1,
+      "constraints_parsed": 4,
+      "source": "mock_llm_response",
+      "variables_parsed": 12
+    },
+    "step_3_validation": {
+      "constraints_valid": 4,
+      "status": "pass",
+      "variables_valid": 12
+    },
+    "step_4_solver": {
+      "objective": "maximize_happiness",
+      "sample_assignments": {
+        "guest_anna_table": 2,
+        "guest_bob_table": 1,
+        "guest_chen_table": 3,
+        "guest_dad_bride_table": 2,
+        "guest_james_table": 2,
+        "guest_lisa_table": 3,
+        "guest_mark_table": 1,
+        "guest_martha_table": 3,
+        "guest_mom_bride_table": 2,
+        "guest_omar_table": 1,
+        "guest_priya_table": 3,
+        "guest_sofia_table": 1
+      },
+      "status": "satisfiable"
+    }
+  },
+  "scenario": "seating"
+}

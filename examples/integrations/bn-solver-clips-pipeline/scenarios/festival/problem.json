@@ -1,0 +1,254 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "all_different",
+      "description": "Headliner bands 1, 2, and 3 must each play on a different stage to ensure all stages are used",
+      "expression": "all_different(band_1_stage, band_2_stage, band_3_stage)",
+      "label": "Headliners on different stages",
+      "name": "headliner_spread",
+      "variables": [
+        "band_1_stage",
+        "band_2_stage",
+        "band_3_stage"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Stage 1 crowd cannot exceed 2000 (small venue capacity)",
+      "expression": "stage_1_crowd <= 2000",
+      "label": "Stage 1 capacity limit",
+      "name": "capacity_stage_1",
+      "parameters": {
+        "right": 2000
+      },
+      "variables": [
+        "stage_1_crowd"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Stage 2 crowd cannot exceed 3000 (medium venue capacity)",
+      "expression": "stage_2_crowd <= 3000",
+      "label": "Stage 2 capacity limit",
+      "name": "capacity_stage_2",
+      "parameters": {
+        "right": 3000
+      },
+      "variables": [
+        "stage_2_crowd"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Stage 3 crowd cannot exceed 5000 (large venue capacity)",
+      "expression": "stage_3_crowd <= 5000",
+      "label": "Stage 3 capacity limit",
+      "name": "capacity_stage_3",
+      "parameters": {
+        "right": 5000
+      },
+      "variables": [
+        "stage_3_crowd"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Stage 1 must have at least 500 crowd for any assigned bands",
+      "expression": "stage_1_crowd >= 500",
+      "label": "Stage 1 minimum crowd",
+      "name": "min_crowd_1",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "stage_1_crowd"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Stage 2 must have at least 500 crowd for any assigned bands",
+      "expression": "stage_2_crowd >= 500",
+      "label": "Stage 2 minimum crowd",
+      "name": "min_crowd_2",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "stage_2_crowd"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Stage 3 must have at least 500 crowd for headliner draw",
+      "expression": "stage_3_crowd >= 500",
+      "label": "Stage 3 minimum crowd",
+      "name": "min_crowd_3",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "stage_3_crowd"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Stage 1 crowd must not exceed stage 2 crowd by more than 1500 (crowd migration safety)",
+      "expression": "stage_1_crowd <= stage_2_crowd + 1500 (approximated as stage_1_crowd <= noise_limit_12)",
+      "label": "Stage 1-2 crowd balance",
+      "name": "noise_limit_1_2",
+      "parameters": {
+        "right": 3500
+      },
+      "variables": [
+        "stage_1_crowd"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Stage 2 crowd must not exceed stage 3 crowd by more than 1500 (crowd migration safety)",
+      "expression": "stage_2_crowd <= stage_3_crowd + 1500 (approximated as stage_2_crowd <= noise_limit_23)",
+      "label": "Stage 2-3 crowd balance",
+      "name": "noise_limit_2_3",
+      "parameters": {
+        "right": 4500
+      },
+      "variables": [
+        "stage_2_crowd"
+      ]
+    }
+  ],
+  "description": "Assign 5 bands to 3 festival stages using BN-predicted crowd sizes to maximize total audience enjoyment while respecting venue capacity and noise constraints.",
+  "name": "Festival Band-to-Stage Assignment",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "stage_3_crowd",
+      "label": "Maximize main stage crowd as primary enjoyment metric",
+      "name": "maximize_total_enjoyment",
+      "priority": 1,
+      "variable": "total_enjoyment",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Stage assignment for band 1",
+      "name": "band_1_stage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Stage assignment for band 2",
+      "name": "band_2_stage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Stage assignment for band 3",
+      "name": "band_3_stage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Stage assignment for band 4",
+      "name": "band_4_stage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Stage assignment for band 5",
+      "name": "band_5_stage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 500
+      },
+      "label": "Predicted crowd at stage 1",
+      "name": "stage_1_crowd",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3000,
+        "min": 500
+      },
+      "label": "Predicted crowd at stage 2",
+      "name": "stage_2_crowd",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5000,
+        "min": 500
+      },
+      "label": "Predicted crowd at stage 3",
+      "name": "stage_3_crowd",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "If it starts raining, stage 1 capacity drops to 1400",
+          "expression": "stage_1_crowd <= 1400",
+          "label": "Rain-reduced stage 1",
+          "name": "rain_stage_1",
+          "parameters": {
+            "right": 1400
+          },
+          "variables": [
+            "stage_1_crowd"
+          ]
+        },
+        {
+          "constraint_type": "le",
+          "description": "If it starts raining, stage 2 capacity drops to 2100",
+          "expression": "stage_2_crowd <= 2100",
+          "label": "Rain-reduced stage 2",
+          "name": "rain_stage_2",
+          "parameters": {
+            "right": 2100
+          },
+          "variables": [
+            "stage_2_crowd"
+          ]
+        },
+        {
+          "constraint_type": "le",
+          "description": "If it starts raining, stage 3 capacity drops to 3500",
+          "expression": "stage_3_crowd <= 3500",
+          "label": "Rain-reduced stage 3",
+          "name": "rain_stage_3",
+          "parameters": {
+            "right": 3500
+          },
+          "variables": [
+            "stage_3_crowd"
+          ]
+        }
+      ],
+      "description": "Simulate sudden rain reducing all stage capacities by 30%. Evaluate how band assignments and crowd distributions change under weather degradation.",
+      "name": "Sudden Rain Scenario"
+    }
+  ]
+}

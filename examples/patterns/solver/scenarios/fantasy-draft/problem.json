@@ -1,0 +1,307 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "mul",
+      "description": "Compute QB salary cost: qb_rating * 100",
+      "expression": "qb_rating * 100 = qb_cost",
+      "label": "QB cost computation",
+      "name": "compute_qb_cost",
+      "parameters": {
+        "left": "qb_rating",
+        "result": "qb_cost",
+        "right": 100
+      },
+      "variables": [
+        "qb_rating",
+        "qb_cost"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute RB salary cost: rb_yards * 10",
+      "expression": "rb_yards * 10 = rb_cost",
+      "label": "RB cost computation",
+      "name": "compute_rb_cost",
+      "parameters": {
+        "left": "rb_yards",
+        "result": "rb_cost",
+        "right": 10
+      },
+      "variables": [
+        "rb_yards",
+        "rb_cost"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute WR salary cost: wr_catches * 50",
+      "expression": "wr_catches * 50 = wr_cost",
+      "label": "WR cost computation",
+      "name": "compute_wr_cost",
+      "parameters": {
+        "left": "wr_catches",
+        "result": "wr_cost",
+        "right": 50
+      },
+      "variables": [
+        "wr_catches",
+        "wr_cost"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Sum QB and RB costs",
+      "expression": "qb_cost + rb_cost = cost_sum_1",
+      "label": "Partial cost sum",
+      "name": "compute_cost_sum_1",
+      "variables": [
+        "qb_cost",
+        "rb_cost",
+        "cost_sum_1"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add WR cost to get total player cost",
+      "expression": "cost_sum_1 + wr_cost = total_player_cost",
+      "label": "Total player cost",
+      "name": "compute_total_player_cost",
+      "variables": [
+        "cost_sum_1",
+        "wr_cost",
+        "total_player_cost"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Total salary must cover all player costs",
+      "expression": "total_salary >= total_player_cost",
+      "label": "Salary covers player costs",
+      "name": "salary_floor",
+      "variables": [
+        "total_salary",
+        "total_player_cost"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "League-imposed hard salary cap of $50,000",
+      "expression": "total_salary <= 50000",
+      "label": "Salary cap",
+      "name": "salary_cap",
+      "parameters": {
+        "right": 19000
+      },
+      "variables": [
+        "total_salary"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Minimum QB quality threshold to remain competitive",
+      "expression": "qb_rating >= 80",
+      "label": "Minimum QB quality",
+      "name": "min_qb_quality",
+      "parameters": {
+        "right": 80
+      },
+      "variables": [
+        "qb_rating"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Win probability must reflect minimum roster competitiveness (at least 40%)",
+      "expression": "win_probability >= 40",
+      "label": "Minimum competitiveness",
+      "name": "min_competitiveness",
+      "parameters": {
+        "right": 40
+      },
+      "variables": [
+        "win_probability"
+      ]
+    }
+  ],
+  "description": "Draft the best possible fantasy sports roster by selecting player stats across positions while staying under the salary cap. Balance quarterback rating, running back yards, wide receiver catches, tight end touchdowns, and defensive sacks to maximize total fantasy points.",
+  "name": "Fantasy Sports Draft",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "qb_rating",
+      "label": "Maximize quarterback rating as primary draft metric",
+      "name": "total_fantasy_points",
+      "priority": 1,
+      "weight": 1.0
+    }
+  ],
+  "soft_constraints": [
+    {
+      "constraint_type": "eq",
+      "description": "Having a marquee star player drives fan engagement and ticket sales",
+      "expression": "has_star_player == 1",
+      "label": "Fan favorite",
+      "name": "prefer_star_player",
+      "parameters": {
+        "right": 1
+      },
+      "variables": [
+        "has_star_player"
+      ],
+      "weight": 8.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 30000,
+        "min": 8000
+      },
+      "label": "Sum of QB + RB costs (auxiliary)",
+      "name": "cost_sum_1",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 60,
+        "min": 20
+      },
+      "label": "Total defensive sacks for the season",
+      "name": "def_sacks",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1,
+        "min": 0
+      },
+      "label": "Whether the roster includes a marquee star player (0=no, 1=yes)",
+      "name": "has_star_player",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 9900,
+        "min": 7000
+      },
+      "label": "QB salary cost (qb_rating * 100, auxiliary)",
+      "name": "qb_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 99,
+        "min": 70
+      },
+      "label": "Quarterback passer rating (composite score)",
+      "name": "qb_rating",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20000,
+        "min": 8000
+      },
+      "label": "RB salary cost (rb_yards * 10, auxiliary)",
+      "name": "rb_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 2000,
+        "min": 800
+      },
+      "label": "Running back rushing yards for the season",
+      "name": "rb_yards",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 15,
+        "min": 3
+      },
+      "label": "Tight end touchdowns for the season",
+      "name": "te_touchdowns",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 36000,
+        "min": 10500
+      },
+      "label": "Total player cost (qb + rb + wr costs, auxiliary)",
+      "name": "total_player_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 50000,
+        "min": 0
+      },
+      "label": "Total team salary expenditure in dollars",
+      "name": "total_salary",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Projected season win probability as percentage (0-100)",
+      "name": "win_probability",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 120,
+        "min": 50
+      },
+      "label": "Wide receiver receptions for the season",
+      "name": "wr_catches",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 6000,
+        "min": 2500
+      },
+      "label": "WR salary cost (wr_catches * 50, auxiliary)",
+      "name": "wr_cost",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "Star QB is injured; backup has a lower ceiling rating of 85",
+          "expression": "qb_rating <= 85",
+          "label": "QB injury cap",
+          "name": "qb_injury_cap",
+          "parameters": {
+            "right": 85
+          },
+          "variables": [
+            "qb_rating"
+          ]
+        },
+        {
+          "constraint_type": "le",
+          "description": "Lead RB is injured; backup limited to 1200 rushing yards",
+          "expression": "rb_yards <= 1200",
+          "label": "RB injury cap",
+          "name": "rb_injury_cap",
+          "parameters": {
+            "right": 1200
+          },
+          "variables": [
+            "rb_yards"
+          ]
+        }
+      ],
+      "description": "Simulate key player injuries that cap the quarterback rating at 85 and running back yards at 1200. Uses push/pop to temporarily add injury constraints and evaluate how the optimal roster changes under adversity.",
+      "name": "Injury Scenario"
+    }
+  ]
+}

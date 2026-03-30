@@ -1,0 +1,301 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "mul",
+      "description": "Compute total ride construction cost (ride_count * 25000)",
+      "expression": "ride_count * 25000 = ride_cost",
+      "label": "Ride cost computation",
+      "name": "compute_ride_cost",
+      "parameters": {
+        "left": "ride_count",
+        "result": "ride_cost",
+        "right": 25000
+      },
+      "variables": [
+        "ride_count",
+        "ride_cost"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Budget must cover total ride construction cost",
+      "expression": "budget >= ride_cost",
+      "label": "Cost constraint",
+      "name": "cost_constraint",
+      "variables": [
+        "budget",
+        "ride_cost"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute minimum staff needed (ride_count * 5)",
+      "expression": "ride_count * 5 = min_staff",
+      "label": "Staff requirement computation",
+      "name": "compute_min_staff",
+      "parameters": {
+        "left": "ride_count",
+        "result": "min_staff",
+        "right": 5
+      },
+      "variables": [
+        "ride_count",
+        "min_staff"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Each ride requires at least 5 staff members to operate",
+      "expression": "staff >= min_staff",
+      "label": "Staffing constraint",
+      "name": "staffing_constraint",
+      "variables": [
+        "staff",
+        "min_staff"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute minimum plot space needed (ride_count * 400)",
+      "expression": "ride_count * 400 = min_plot",
+      "label": "Space requirement computation",
+      "name": "compute_min_plot",
+      "parameters": {
+        "left": "ride_count",
+        "result": "min_plot",
+        "right": 400
+      },
+      "variables": [
+        "ride_count",
+        "min_plot"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Each ride needs at least 400 sq ft of plot space",
+      "expression": "plot_size >= min_plot",
+      "label": "Space constraint",
+      "name": "space_constraint",
+      "variables": [
+        "plot_size",
+        "min_plot"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute ticket revenue for 1000 visitors",
+      "expression": "ticket_price * 1000 = ticket_revenue",
+      "label": "Revenue computation",
+      "name": "compute_revenue",
+      "parameters": {
+        "left": "ticket_price",
+        "result": "ticket_revenue",
+        "right": 1000
+      },
+      "variables": [
+        "ticket_price",
+        "ticket_revenue"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Ticket revenue must cover at least 10% of budget (budget_tenth is budget/10)",
+      "expression": "ticket_revenue >= budget_tenth",
+      "label": "Revenue constraint",
+      "name": "revenue_constraint",
+      "variables": [
+        "ticket_revenue",
+        "budget_tenth"
+      ]
+    },
+    {
+      "constraint_type": "div",
+      "description": "Compute 10% of budget as budget / 10",
+      "expression": "budget / 10 = budget_tenth",
+      "label": "Budget tenth computation",
+      "name": "compute_budget_tenth",
+      "parameters": {
+        "left": "budget",
+        "result": "budget_tenth",
+        "right": 10
+      },
+      "variables": [
+        "budget",
+        "budget_tenth"
+      ]
+    }
+  ],
+  "description": "Plan an optimal theme park layout by deciding how many rides to build, how much land to use, how many staff to hire, and what to charge for tickets -- all while staying within budget and space constraints.",
+  "name": "Theme Park Planning",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "ride_count",
+      "label": "Maximize the number of rides to attract more visitors",
+      "name": "maximize_rides",
+      "priority": 1,
+      "variable": "ride_count",
+      "weight": 1.0
+    },
+    {
+      "direction": "minimize",
+      "expression": "budget",
+      "label": "Minimize total budget to reduce financial risk",
+      "name": "minimize_budget",
+      "priority": 2,
+      "variable": "budget",
+      "weight": 0.5
+    }
+  ],
+  "soft_constraints": [
+    {
+      "constraint_type": "eq",
+      "description": "Families prefer parks with a roller coaster; not strictly required",
+      "expression": "has_roller_coaster == 1",
+      "label": "Kid-friendly preference",
+      "name": "prefer_roller_coaster",
+      "parameters": {
+        "right": 1
+      },
+      "variables": [
+        "has_roller_coaster"
+      ],
+      "weight": 5.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 500000,
+        "min": 50000
+      },
+      "label": "Total construction and operating budget in dollars",
+      "name": "budget",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 50000,
+        "min": 5000
+      },
+      "label": "10% of budget (auxiliary variable for revenue constraint)",
+      "name": "budget_tenth",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1,
+        "min": 0
+      },
+      "label": "Whether the park includes a roller coaster (0=no, 1=yes)",
+      "name": "has_roller_coaster",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8000,
+        "min": 400
+      },
+      "label": "Minimum plot space required in sq ft (auxiliary: ride_count * 400)",
+      "name": "min_plot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 5
+      },
+      "label": "Minimum staff required (auxiliary: ride_count * 5)",
+      "name": "min_staff",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10000,
+        "min": 100
+      },
+      "label": "Total plot size in square feet",
+      "name": "plot_size",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 500000,
+        "min": 25000
+      },
+      "label": "Total ride construction cost in dollars (auxiliary: ride_count * 25000)",
+      "name": "ride_cost",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 1
+      },
+      "label": "Number of rides to build",
+      "name": "ride_count",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 200,
+        "min": 10
+      },
+      "label": "Number of staff members to hire",
+      "name": "staff",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 150,
+        "min": 20
+      },
+      "label": "Ticket price per visitor in dollars",
+      "name": "ticket_price",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 150000,
+        "min": 20000
+      },
+      "label": "Total ticket revenue for 1000 visitors (auxiliary: ticket_price * 1000)",
+      "name": "ticket_revenue",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "eq",
+          "description": "The park must include a roller coaster in this scenario",
+          "expression": "has_roller_coaster == 1",
+          "label": "Roller coaster required",
+          "name": "require_roller_coaster",
+          "parameters": {
+            "right": 1
+          },
+          "variables": [
+            "has_roller_coaster"
+          ]
+        },
+        {
+          "constraint_type": "ge",
+          "description": "A roller coaster needs a park with at least 5 rides for a viable experience",
+          "expression": "ride_count >= 5",
+          "label": "Minimum rides for roller coaster park",
+          "name": "min_rides_for_coaster",
+          "parameters": {
+            "right": 5
+          },
+          "variables": [
+            "ride_count"
+          ]
+        }
+      ],
+      "description": "Explore what happens when the park commits to having a roller coaster with a minimum ride count of 5. Uses push/pop to temporarily add constraints and compare results against the base scenario.",
+      "name": "Add Roller Coaster"
+    }
+  ]
+}

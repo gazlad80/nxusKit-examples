@@ -1,0 +1,107 @@
+{
+  "comparison": {
+    "notes": "Shared edges likely include skill->pump_timing and speed->lap_time. Jump_height->crash_risk may vary by algorithm."
+  },
+  "data": {
+    "columns": [
+      "jump_height",
+      "berm_angle",
+      "pump_timing",
+      "speed",
+      "skill",
+      "lap_time",
+      "crash_risk",
+      "style_score"
+    ],
+    "csv_file": "data.csv",
+    "row_count": 200
+  },
+  "fit_evaluation": {
+    "expected_range": [
+      -2800.0,
+      -900.0
+    ],
+    "metric": "log_likelihood",
+    "per_sample_range": [
+      -14.0,
+      -4.5
+    ]
+  },
+  "inference": {
+    "algorithm": "variable_elimination",
+    "evidence": {
+      "pump_timing": "perfect",
+      "skill": "pro"
+    },
+    "expected_states": [
+      "fast",
+      "medium",
+      "slow",
+      "very_slow"
+    ],
+    "notes": "With pro skill and perfect timing, expect higher probability for fast lap_time",
+    "query_variable": "lap_time"
+  },
+  "parameter_learning": {
+    "method": "MLE",
+    "pseudocount": 1.0,
+    "structure_source": "hill_climb",
+    "variables_with_cpts": 8
+  },
+  "scenario": "bmx",
+  "structure_learning": {
+    "hill_climb_bic": {
+      "algorithm": "hill_climb",
+      "expected_edge_count_range": [
+        4,
+        12
+      ],
+      "max_parents": 5,
+      "max_steps": 1000,
+      "sample_edges": [
+        {
+          "from": "skill",
+          "to": "pump_timing"
+        },
+        {
+          "from": "skill",
+          "to": "jump_height"
+        },
+        {
+          "from": "speed",
+          "to": "lap_time"
+        },
+        {
+          "from": "skill",
+          "to": "crash_risk"
+        },
+        {
+          "from": "jump_height",
+          "to": "crash_risk"
+        }
+      ],
+      "scoring": "bic"
+    },
+    "k2_bdeu": {
+      "algorithm": "k2",
+      "ess": 10.0,
+      "expected_edge_count_range": [
+        3,
+        10
+      ],
+      "max_parents": 3,
+      "ordering": [
+        "jump_height",
+        "berm_angle",
+        "pump_timing",
+        "speed",
+        "skill",
+        "lap_time",
+        "crash_risk",
+        "style_score"
+      ],
+      "scoring": "bdeu"
+    }
+  },
+  "title": "BMX Rider Performance"
+}

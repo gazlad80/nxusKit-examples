@@ -1,0 +1,265 @@
+network unknown {
+}
+
+variable crowd_size {
+  type discrete [ 4 ] { low, medium, high, packed };
+}
+
+variable food_proximity {
+  type discrete [ 2 ] { near, far };
+}
+
+variable headliner_popularity {
+  type discrete [ 3 ] { unknown, known, famous };
+}
+
+variable stage_capacity {
+  type discrete [ 3 ] { small, medium, large };
+}
+
+variable time_of_day {
+  type discrete [ 4 ] { morning, afternoon, evening, night };
+}
+
+variable weather {
+  type discrete [ 3 ] { sunny, cloudy, rainy };
+}
+
+probability ( crowd_size | food_proximity, headliner_popularity, stage_capacity, time_of_day, weather ) {
+  (near, unknown, small, morning, sunny) 0.50, 0.35, 0.12, 0.03;
+  (near, unknown, small, morning, cloudy) 0.55, 0.30, 0.12, 0.03;
+  (near, unknown, small, morning, rainy) 0.70, 0.20, 0.08, 0.02;
+  (near, unknown, small, afternoon, sunny) 0.35, 0.40, 0.20, 0.05;
+  (near, unknown, small, afternoon, cloudy) 0.40, 0.38, 0.17, 0.05;
+  (near, unknown, small, afternoon, rainy) 0.55, 0.30, 0.12, 0.03;
+  (near, unknown, small, evening, sunny) 0.30, 0.40, 0.22, 0.08;
+  (near, unknown, small, evening, cloudy) 0.35, 0.38, 0.20, 0.07;
+  (near, unknown, small, evening, rainy) 0.50, 0.32, 0.14, 0.04;
+  (near, unknown, small, night, sunny) 0.45, 0.35, 0.15, 0.05;
+  (near, unknown, small, night, cloudy) 0.50, 0.32, 0.14, 0.04;
+  (near, unknown, small, night, rainy) 0.65, 0.23, 0.09, 0.03;
+  (near, unknown, medium, morning, sunny) 0.45, 0.35, 0.15, 0.05;
+  (near, unknown, medium, morning, cloudy) 0.50, 0.32, 0.14, 0.04;
+  (near, unknown, medium, morning, rainy) 0.65, 0.22, 0.10, 0.03;
+  (near, unknown, medium, afternoon, sunny) 0.30, 0.40, 0.22, 0.08;
+  (near, unknown, medium, afternoon, cloudy) 0.35, 0.38, 0.20, 0.07;
+  (near, unknown, medium, afternoon, rainy) 0.50, 0.32, 0.14, 0.04;
+  (near, unknown, medium, evening, sunny) 0.25, 0.38, 0.27, 0.10;
+  (near, unknown, medium, evening, cloudy) 0.30, 0.37, 0.24, 0.09;
+  (near, unknown, medium, evening, rainy) 0.45, 0.33, 0.17, 0.05;
+  (near, unknown, medium, night, sunny) 0.40, 0.35, 0.18, 0.07;
+  (near, unknown, medium, night, cloudy) 0.45, 0.33, 0.16, 0.06;
+  (near, unknown, medium, night, rainy) 0.60, 0.25, 0.12, 0.03;
+  (near, unknown, large, morning, sunny) 0.40, 0.37, 0.17, 0.06;
+  (near, unknown, large, morning, cloudy) 0.45, 0.35, 0.15, 0.05;
+  (near, unknown, large, morning, rainy) 0.60, 0.25, 0.12, 0.03;
+  (near, unknown, large, afternoon, sunny) 0.25, 0.40, 0.25, 0.10;
+  (near, unknown, large, afternoon, cloudy) 0.30, 0.38, 0.22, 0.10;
+  (near, unknown, large, afternoon, rainy) 0.45, 0.33, 0.17, 0.05;
+  (near, unknown, large, evening, sunny) 0.20, 0.37, 0.30, 0.13;
+  (near, unknown, large, evening, cloudy) 0.25, 0.37, 0.27, 0.11;
+  (near, unknown, large, evening, rainy) 0.40, 0.33, 0.20, 0.07;
+  (near, unknown, large, night, sunny) 0.35, 0.37, 0.20, 0.08;
+  (near, unknown, large, night, cloudy) 0.40, 0.35, 0.18, 0.07;
+  (near, unknown, large, night, rainy) 0.55, 0.28, 0.13, 0.04;
+  (near, known, small, morning, sunny) 0.30, 0.40, 0.22, 0.08;
+  (near, known, small, morning, cloudy) 0.35, 0.38, 0.20, 0.07;
+  (near, known, small, morning, rainy) 0.50, 0.32, 0.14, 0.04;
+  (near, known, small, afternoon, sunny) 0.18, 0.37, 0.32, 0.13;
+  (near, known, small, afternoon, cloudy) 0.22, 0.37, 0.28, 0.13;
+  (near, known, small, afternoon, rainy) 0.35, 0.35, 0.22, 0.08;
+  (near, known, small, evening, sunny) 0.12, 0.30, 0.38, 0.20;
+  (near, known, small, evening, cloudy) 0.15, 0.32, 0.35, 0.18;
+  (near, known, small, evening, rainy) 0.28, 0.35, 0.27, 0.10;
+  (near, known, small, night, sunny) 0.22, 0.37, 0.28, 0.13;
+  (near, known, small, night, cloudy) 0.28, 0.37, 0.25, 0.10;
+  (near, known, small, night, rainy) 0.42, 0.33, 0.18, 0.07;
+  (near, known, medium, morning, sunny) 0.25, 0.38, 0.27, 0.10;
+  (near, known, medium, morning, cloudy) 0.30, 0.37, 0.24, 0.09;
+  (near, known, medium, morning, rainy) 0.45, 0.33, 0.17, 0.05;
+  (near, known, medium, afternoon, sunny) 0.13, 0.32, 0.35, 0.20;
+  (near, known, medium, afternoon, cloudy) 0.17, 0.33, 0.33, 0.17;
+  (near, known, medium, afternoon, rainy) 0.30, 0.35, 0.25, 0.10;
+  (near, known, medium, evening, sunny) 0.08, 0.25, 0.40, 0.27;
+  (near, known, medium, evening, cloudy) 0.10, 0.28, 0.38, 0.24;
+  (near, known, medium, evening, rainy) 0.22, 0.33, 0.30, 0.15;
+  (near, known, medium, night, sunny) 0.17, 0.33, 0.33, 0.17;
+  (near, known, medium, night, cloudy) 0.22, 0.35, 0.28, 0.15;
+  (near, known, medium, night, rainy) 0.38, 0.33, 0.20, 0.09;
+  (near, known, large, morning, sunny) 0.20, 0.37, 0.30, 0.13;
+  (near, known, large, morning, cloudy) 0.25, 0.37, 0.27, 0.11;
+  (near, known, large, morning, rainy) 0.40, 0.33, 0.20, 0.07;
+  (near, known, large, afternoon, sunny) 0.10, 0.28, 0.37, 0.25;
+  (near, known, large, afternoon, cloudy) 0.13, 0.30, 0.35, 0.22;
+  (near, known, large, afternoon, rainy) 0.25, 0.35, 0.27, 0.13;
+  (near, known, large, evening, sunny) 0.05, 0.20, 0.40, 0.35;
+  (near, known, large, evening, cloudy) 0.08, 0.23, 0.38, 0.31;
+  (near, known, large, evening, rainy) 0.18, 0.32, 0.33, 0.17;
+  (near, known, large, night, sunny) 0.13, 0.30, 0.35, 0.22;
+  (near, known, large, night, cloudy) 0.17, 0.33, 0.33, 0.17;
+  (near, known, large, night, rainy) 0.33, 0.33, 0.23, 0.11;
+  (near, famous, small, morning, sunny) 0.15, 0.30, 0.35, 0.20;
+  (near, famous, small, morning, cloudy) 0.18, 0.32, 0.33, 0.17;
+  (near, famous, small, morning, rainy) 0.30, 0.35, 0.25, 0.10;
+  (near, famous, small, afternoon, sunny) 0.08, 0.22, 0.40, 0.30;
+  (near, famous, small, afternoon, cloudy) 0.10, 0.25, 0.38, 0.27;
+  (near, famous, small, afternoon, rainy) 0.20, 0.33, 0.32, 0.15;
+  (near, famous, small, evening, sunny) 0.04, 0.16, 0.38, 0.42;
+  (near, famous, small, evening, cloudy) 0.06, 0.18, 0.38, 0.38;
+  (near, famous, small, evening, rainy) 0.15, 0.28, 0.35, 0.22;
+  (near, famous, small, night, sunny) 0.10, 0.25, 0.38, 0.27;
+  (near, famous, small, night, cloudy) 0.13, 0.28, 0.35, 0.24;
+  (near, famous, small, night, rainy) 0.25, 0.33, 0.28, 0.14;
+  (near, famous, medium, morning, sunny) 0.10, 0.28, 0.37, 0.25;
+  (near, famous, medium, morning, cloudy) 0.13, 0.30, 0.35, 0.22;
+  (near, famous, medium, morning, rainy) 0.25, 0.33, 0.27, 0.15;
+  (near, famous, medium, afternoon, sunny) 0.05, 0.18, 0.40, 0.37;
+  (near, famous, medium, afternoon, cloudy) 0.07, 0.20, 0.40, 0.33;
+  (near, famous, medium, afternoon, rainy) 0.15, 0.30, 0.35, 0.20;
+  (near, famous, medium, evening, sunny) 0.02, 0.10, 0.35, 0.53;
+  (near, famous, medium, evening, cloudy) 0.03, 0.13, 0.35, 0.49;
+  (near, famous, medium, evening, rainy) 0.10, 0.25, 0.37, 0.28;
+  (near, famous, medium, night, sunny) 0.07, 0.20, 0.40, 0.33;
+  (near, famous, medium, night, cloudy) 0.10, 0.23, 0.37, 0.30;
+  (near, famous, medium, night, rainy) 0.20, 0.30, 0.32, 0.18;
+  (near, famous, large, morning, sunny) 0.08, 0.25, 0.38, 0.29;
+  (near, famous, large, morning, cloudy) 0.10, 0.28, 0.37, 0.25;
+  (near, famous, large, morning, rainy) 0.22, 0.32, 0.30, 0.16;
+  (near, famous, large, afternoon, sunny) 0.03, 0.15, 0.40, 0.42;
+  (near, famous, large, afternoon, cloudy) 0.05, 0.17, 0.40, 0.38;
+  (near, famous, large, afternoon, rainy) 0.12, 0.28, 0.37, 0.23;
+  (near, famous, large, evening, sunny) 0.01, 0.07, 0.30, 0.62;
+  (near, famous, large, evening, cloudy) 0.02, 0.09, 0.32, 0.57;
+  (near, famous, large, evening, rainy) 0.07, 0.20, 0.38, 0.35;
+  (near, famous, large, night, sunny) 0.05, 0.17, 0.40, 0.38;
+  (near, famous, large, night, cloudy) 0.07, 0.20, 0.38, 0.35;
+  (near, famous, large, night, rainy) 0.17, 0.28, 0.33, 0.22;
+  (far, unknown, small, morning, sunny) 0.60, 0.28, 0.09, 0.03;
+  (far, unknown, small, morning, cloudy) 0.65, 0.25, 0.08, 0.02;
+  (far, unknown, small, morning, rainy) 0.78, 0.15, 0.05, 0.02;
+  (far, unknown, small, afternoon, sunny) 0.45, 0.35, 0.15, 0.05;
+  (far, unknown, small, afternoon, cloudy) 0.50, 0.33, 0.13, 0.04;
+  (far, unknown, small, afternoon, rainy) 0.65, 0.23, 0.09, 0.03;
+  (far, unknown, small, evening, sunny) 0.40, 0.35, 0.18, 0.07;
+  (far, unknown, small, evening, cloudy) 0.45, 0.33, 0.16, 0.06;
+  (far, unknown, small, evening, rainy) 0.60, 0.27, 0.10, 0.03;
+  (far, unknown, small, night, sunny) 0.55, 0.30, 0.12, 0.03;
+  (far, unknown, small, night, cloudy) 0.60, 0.27, 0.10, 0.03;
+  (far, unknown, small, night, rainy) 0.73, 0.18, 0.07, 0.02;
+  (far, unknown, medium, morning, sunny) 0.55, 0.30, 0.12, 0.03;
+  (far, unknown, medium, morning, cloudy) 0.60, 0.27, 0.10, 0.03;
+  (far, unknown, medium, morning, rainy) 0.73, 0.18, 0.07, 0.02;
+  (far, unknown, medium, afternoon, sunny) 0.40, 0.35, 0.18, 0.07;
+  (far, unknown, medium, afternoon, cloudy) 0.45, 0.33, 0.16, 0.06;
+  (far, unknown, medium, afternoon, rainy) 0.60, 0.27, 0.10, 0.03;
+  (far, unknown, medium, evening, sunny) 0.35, 0.35, 0.22, 0.08;
+  (far, unknown, medium, evening, cloudy) 0.40, 0.33, 0.20, 0.07;
+  (far, unknown, medium, evening, rainy) 0.55, 0.28, 0.13, 0.04;
+  (far, unknown, medium, night, sunny) 0.50, 0.32, 0.13, 0.05;
+  (far, unknown, medium, night, cloudy) 0.55, 0.28, 0.13, 0.04;
+  (far, unknown, medium, night, rainy) 0.68, 0.20, 0.09, 0.03;
+  (far, unknown, large, morning, sunny) 0.50, 0.32, 0.13, 0.05;
+  (far, unknown, large, morning, cloudy) 0.55, 0.30, 0.12, 0.03;
+  (far, unknown, large, morning, rainy) 0.68, 0.20, 0.09, 0.03;
+  (far, unknown, large, afternoon, sunny) 0.35, 0.37, 0.20, 0.08;
+  (far, unknown, large, afternoon, cloudy) 0.40, 0.35, 0.18, 0.07;
+  (far, unknown, large, afternoon, rainy) 0.55, 0.28, 0.13, 0.04;
+  (far, unknown, large, evening, sunny) 0.30, 0.35, 0.25, 0.10;
+  (far, unknown, large, evening, cloudy) 0.35, 0.33, 0.22, 0.10;
+  (far, unknown, large, evening, rainy) 0.50, 0.30, 0.15, 0.05;
+  (far, unknown, large, night, sunny) 0.45, 0.33, 0.16, 0.06;
+  (far, unknown, large, night, cloudy) 0.50, 0.30, 0.15, 0.05;
+  (far, unknown, large, night, rainy) 0.63, 0.23, 0.10, 0.04;
+  (far, known, small, morning, sunny) 0.40, 0.35, 0.18, 0.07;
+  (far, known, small, morning, cloudy) 0.45, 0.33, 0.16, 0.06;
+  (far, known, small, morning, rainy) 0.60, 0.27, 0.10, 0.03;
+  (far, known, small, afternoon, sunny) 0.25, 0.35, 0.28, 0.12;
+  (far, known, small, afternoon, cloudy) 0.30, 0.35, 0.25, 0.10;
+  (far, known, small, afternoon, rainy) 0.45, 0.33, 0.17, 0.05;
+  (far, known, small, evening, sunny) 0.20, 0.30, 0.33, 0.17;
+  (far, known, small, evening, cloudy) 0.23, 0.32, 0.30, 0.15;
+  (far, known, small, evening, rainy) 0.38, 0.32, 0.22, 0.08;
+  (far, known, small, night, sunny) 0.32, 0.35, 0.23, 0.10;
+  (far, known, small, night, cloudy) 0.37, 0.33, 0.21, 0.09;
+  (far, known, small, night, rainy) 0.52, 0.28, 0.15, 0.05;
+  (far, known, medium, morning, sunny) 0.35, 0.35, 0.22, 0.08;
+  (far, known, medium, morning, cloudy) 0.40, 0.33, 0.20, 0.07;
+  (far, known, medium, morning, rainy) 0.55, 0.28, 0.13, 0.04;
+  (far, known, medium, afternoon, sunny) 0.20, 0.32, 0.32, 0.16;
+  (far, known, medium, afternoon, cloudy) 0.25, 0.33, 0.28, 0.14;
+  (far, known, medium, afternoon, rainy) 0.40, 0.32, 0.20, 0.08;
+  (far, known, medium, evening, sunny) 0.15, 0.27, 0.35, 0.23;
+  (far, known, medium, evening, cloudy) 0.18, 0.30, 0.33, 0.19;
+  (far, known, medium, evening, rainy) 0.32, 0.32, 0.25, 0.11;
+  (far, known, medium, night, sunny) 0.25, 0.33, 0.28, 0.14;
+  (far, known, medium, night, cloudy) 0.30, 0.33, 0.25, 0.12;
+  (far, known, medium, night, rainy) 0.47, 0.28, 0.18, 0.07;
+  (far, known, large, morning, sunny) 0.30, 0.35, 0.25, 0.10;
+  (far, known, large, morning, cloudy) 0.35, 0.33, 0.22, 0.10;
+  (far, known, large, morning, rainy) 0.50, 0.30, 0.15, 0.05;
+  (far, known, large, afternoon, sunny) 0.17, 0.28, 0.33, 0.22;
+  (far, known, large, afternoon, cloudy) 0.20, 0.30, 0.30, 0.20;
+  (far, known, large, afternoon, rainy) 0.35, 0.32, 0.22, 0.11;
+  (far, known, large, evening, sunny) 0.10, 0.23, 0.37, 0.30;
+  (far, known, large, evening, cloudy) 0.13, 0.25, 0.35, 0.27;
+  (far, known, large, evening, rainy) 0.27, 0.30, 0.28, 0.15;
+  (far, known, large, night, sunny) 0.20, 0.30, 0.30, 0.20;
+  (far, known, large, night, cloudy) 0.25, 0.30, 0.28, 0.17;
+  (far, known, large, night, rainy) 0.42, 0.28, 0.20, 0.10;
+  (far, famous, small, morning, sunny) 0.22, 0.30, 0.30, 0.18;
+  (far, famous, small, morning, cloudy) 0.27, 0.30, 0.28, 0.15;
+  (far, famous, small, morning, rainy) 0.40, 0.30, 0.20, 0.10;
+  (far, famous, small, afternoon, sunny) 0.12, 0.23, 0.37, 0.28;
+  (far, famous, small, afternoon, cloudy) 0.15, 0.25, 0.35, 0.25;
+  (far, famous, small, afternoon, rainy) 0.28, 0.30, 0.27, 0.15;
+  (far, famous, small, evening, sunny) 0.07, 0.18, 0.35, 0.40;
+  (far, famous, small, evening, cloudy) 0.10, 0.20, 0.35, 0.35;
+  (far, famous, small, evening, rainy) 0.22, 0.28, 0.30, 0.20;
+  (far, famous, small, night, sunny) 0.15, 0.27, 0.33, 0.25;
+  (far, famous, small, night, cloudy) 0.18, 0.28, 0.32, 0.22;
+  (far, famous, small, night, rainy) 0.33, 0.28, 0.25, 0.14;
+  (far, famous, medium, morning, sunny) 0.17, 0.28, 0.33, 0.22;
+  (far, famous, medium, morning, cloudy) 0.20, 0.30, 0.30, 0.20;
+  (far, famous, medium, morning, rainy) 0.35, 0.30, 0.23, 0.12;
+  (far, famous, medium, afternoon, sunny) 0.08, 0.20, 0.38, 0.34;
+  (far, famous, medium, afternoon, cloudy) 0.10, 0.22, 0.37, 0.31;
+  (far, famous, medium, afternoon, rainy) 0.22, 0.28, 0.30, 0.20;
+  (far, famous, medium, evening, sunny) 0.04, 0.13, 0.33, 0.50;
+  (far, famous, medium, evening, cloudy) 0.06, 0.15, 0.34, 0.45;
+  (far, famous, medium, evening, rainy) 0.15, 0.25, 0.33, 0.27;
+  (far, famous, medium, night, sunny) 0.10, 0.23, 0.37, 0.30;
+  (far, famous, medium, night, cloudy) 0.13, 0.25, 0.35, 0.27;
+  (far, famous, medium, night, rainy) 0.27, 0.28, 0.28, 0.17;
+  (far, famous, large, morning, sunny) 0.13, 0.25, 0.35, 0.27;
+  (far, famous, large, morning, cloudy) 0.17, 0.28, 0.33, 0.22;
+  (far, famous, large, morning, rainy) 0.30, 0.30, 0.25, 0.15;
+  (far, famous, large, afternoon, sunny) 0.05, 0.17, 0.38, 0.40;
+  (far, famous, large, afternoon, cloudy) 0.07, 0.20, 0.38, 0.35;
+  (far, famous, large, afternoon, rainy) 0.18, 0.27, 0.32, 0.23;
+  (far, famous, large, evening, sunny) 0.02, 0.10, 0.30, 0.58;
+  (far, famous, large, evening, cloudy) 0.03, 0.12, 0.32, 0.53;
+  (far, famous, large, evening, rainy) 0.10, 0.22, 0.35, 0.33;
+  (far, famous, large, night, sunny) 0.07, 0.20, 0.38, 0.35;
+  (far, famous, large, night, cloudy) 0.10, 0.22, 0.35, 0.33;
+  (far, famous, large, night, rainy) 0.22, 0.27, 0.30, 0.21;
+}
+
+probability ( food_proximity ) {
+  table 0.6, 0.4;
+}
+
+probability ( headliner_popularity ) {
+  table 0.3, 0.5, 0.2;
+}
+
+probability ( stage_capacity ) {
+  table 0.3, 0.4, 0.3;
+}
+
+probability ( time_of_day ) {
+  table 0.15, 0.30, 0.35, 0.20;
+}
+
+probability ( weather ) {
+  table 0.50, 0.30, 0.20;
+}

@@ -1,0 +1,25 @@
+# Makefile template for Go examples
+# Copy this to your example's go/ directory as "Makefile"
+# Replace EXAMPLE_NAME with your binary name (e.g., alert-triage)
+
+EXAMPLE_NAME := REPLACE_ME
+
+.PHONY: build run test clean
+
+# Build binary to bin/ directory (keeps git clean)
+build:
+	@mkdir -p bin
+	go build -v -o bin/$(EXAMPLE_NAME) .
+
+# Run the example
+run: build
+	./bin/$(EXAMPLE_NAME)
+
+# Run tests
+test:
+	go test -v ./...
+
+# Clean build artifacts
+clean:
+	rm -rf bin/
+	go clean

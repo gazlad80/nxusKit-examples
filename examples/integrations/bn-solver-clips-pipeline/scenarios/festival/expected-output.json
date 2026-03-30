@@ -1,0 +1,48 @@
+{
+  "pipeline_stages": {
+    "stage_1_bn_prediction": {
+      "algorithm": "variable_elimination",
+      "evidence": {
+        "headliner_popularity": "famous",
+        "time_of_day": "evening",
+        "weather": "sunny"
+      },
+      "prediction": {
+        "most_likely": "packed",
+        "posterior": {
+          "high": 0.28,
+          "low": 0.04,
+          "medium": 0.12,
+          "packed": 0.56
+        },
+        "variable": "crowd_size"
+      }
+    },
+    "stage_2_solver_optimization": {
+      "objective": "maximize total_enjoyment",
+      "sample_assignments": {
+        "band_1_stage": 2,
+        "band_2_stage": 3,
+        "band_3_stage": 1,
+        "band_4_stage": 2,
+        "band_5_stage": 3
+      },
+      "status": "optimal"
+    },
+    "stage_3_clips_safety": {
+      "alerts": [
+        {
+          "alert_type": "noise_warning",
+          "severity": "warning"
+        },
+        {
+          "alert_type": "pyro_violation",
+          "severity": "critical"
+        }
+      ],
+      "rules_file": "rules.clp",
+      "total_alerts": 2
+    }
+  },
+  "scenario": "festival"
+}

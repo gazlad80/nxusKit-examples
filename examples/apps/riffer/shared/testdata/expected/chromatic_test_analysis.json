@@ -1,0 +1,115 @@
+{
+  "context": {
+    "tempo": 120,
+    "ticks_per_quarter": 480,
+    "time_signature": "4/4"
+  },
+  "dissonances": {
+    "leading_tone_resolution": {
+      "location": "B4 -> C5",
+      "present": true,
+      "resolved": true
+    },
+    "tritone": {
+      "location": "C4 to F#4 (across notes, not consecutive)",
+      "notes": "The tritone interval exists in the overall pitch content",
+      "present": true
+    }
+  },
+  "duration_ticks": 3360,
+  "harmonic_coherence": {
+    "notes": "5 of 7 notes are in C major scale",
+    "percentage_approx": 71.4,
+    "rating": "fair"
+  },
+  "intervals": {
+    "count": 6,
+    "imperfect_consonances": 2,
+    "mild_dissonances": 0,
+    "perfect_consonances": 0,
+    "strong_dissonances": 4,
+    "types": [
+      {
+        "from": "C4",
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1,
+        "to": "C#4"
+      },
+      {
+        "from": "C#4",
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1,
+        "to": "D4"
+      },
+      {
+        "from": "D4",
+        "name": "major 3rd",
+        "quality": "ImperfectConsonance",
+        "semitones": 4,
+        "to": "F#4"
+      },
+      {
+        "from": "F#4",
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1,
+        "to": "G4"
+      },
+      {
+        "from": "G4",
+        "name": "major 3rd",
+        "quality": "ImperfectConsonance",
+        "semitones": 4,
+        "to": "B4"
+      },
+      {
+        "from": "B4",
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1,
+        "to": "C5"
+      }
+    ]
+  },
+  "key_detection": {
+    "confidence_min": 0.2,
+    "key": "C Major",
+    "notes": "Lower confidence expected due to chromatic alterations"
+  },
+  "name": "Chromatic Test",
+  "notes_count": 7,
+  "scale_membership": {
+    "in_scale_count": 5,
+    "in_scale_notes": [
+      "C4",
+      "D4",
+      "G4",
+      "B4",
+      "C5"
+    ],
+    "out_of_scale_count": 2,
+    "out_of_scale_notes": [
+      "C#4",
+      "F#4"
+    ]
+  },
+  "suggestions_expected": [
+    {
+      "category": "resolution",
+      "message": "Consider resolving chromatic alterations more smoothly"
+    },
+    {
+      "category": "harmony",
+      "message": "High dissonance ratio - may want to balance with more consonant intervals"
+    }
+  ],
+  "test_assertions": [
+    "Key detection should still identify C Major despite chromatic notes",
+    "Should detect 2 out-of-scale notes (C# and F#)",
+    "Should have high dissonance count (4 strong dissonances)",
+    "Harmonic coherence should be around 70%",
+    "Leading tone (B -> C) resolution should be detected"
+  ]
+}

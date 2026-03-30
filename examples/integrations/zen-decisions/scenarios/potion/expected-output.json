@@ -1,0 +1,20 @@
+{
+  "description": "Expected outputs for potion scenario with input: ingredients=mushroom,moonstone, desired_effect=healing, caution_level=medium",
+  "expected_matches": [
+    {
+      "matched_rule": "r1",
+      "recipe_name": "Healing Tonic",
+      "recipe_steps": "Crush mushroom, dissolve in moonstone-infused water, simmer for 10 minutes",
+      "warnings": "Do not exceed 2 doses per day"
+    },
+    {
+      "matched_rule": "r5",
+      "recipe_name": "Unknown Brew",
+      "recipe_steps": "Mix ingredients at random and hope for the best",
+      "warnings": "Unpredictable results; use at your own risk"
+    }
+  ],
+  "explanation": "Collect policy returns ALL matching rules. Rule r1 matches (mushroom,moonstone + healing + any caution). Rule r5 also matches (default catch-all). Rules r2, r3, r4 do not match (wrong desired_effect or caution_level).",
+  "hit_policy": "collect",
+  "match_count": 2
+}

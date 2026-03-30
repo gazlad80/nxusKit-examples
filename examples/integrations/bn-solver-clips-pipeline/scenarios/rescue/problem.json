@@ -1,0 +1,160 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "all_different",
+      "description": "Each rescue team is assigned to a different zone (no two teams in the same zone)",
+      "expression": "all_different(team_1_zone, team_2_zone, team_3_zone, team_4_zone)",
+      "label": "Unique zone assignments",
+      "name": "team_limit",
+      "variables": [
+        "team_1_zone",
+        "team_2_zone",
+        "team_3_zone",
+        "team_4_zone"
+      ]
+    },
+    {
+      "constraint_type": "neq",
+      "description": "Helicopter team (team 3) cannot be assigned to zone 2 (storm weather conditions)",
+      "expression": "team_3_zone != 2",
+      "label": "Helicopter weather restriction",
+      "name": "helicopter_availability",
+      "parameters": {
+        "right": 2
+      },
+      "variables": [
+        "team_3_zone"
+      ]
+    }
+  ],
+  "description": "Assign 4 rescue teams to 5 disaster zones using BN-predicted survivor probabilities to maximize total survivors rescued while respecting team capabilities and weather constraints.",
+  "name": "Rescue Team-to-Zone Assignment",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "zone_1_priority",
+      "label": "Maximize zone 1 rescue priority as primary objective",
+      "name": "maximize_total_survivors_rescued",
+      "priority": 1,
+      "variable": "zone_1_priority",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 5,
+        "min": 1
+      },
+      "label": "Zone assignment for rescue team 1 (ground unit)",
+      "name": "team_1_zone",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5,
+        "min": 1
+      },
+      "label": "Zone assignment for rescue team 2 (ground unit)",
+      "name": "team_2_zone",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5,
+        "min": 1
+      },
+      "label": "Zone assignment for rescue team 3 (helicopter unit)",
+      "name": "team_3_zone",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 5,
+        "min": 1
+      },
+      "label": "Zone assignment for rescue team 4 (drone unit)",
+      "name": "team_4_zone",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Rescue priority for zone 1 (1=low, 10=critical)",
+      "name": "zone_1_priority",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Rescue priority for zone 2 (1=low, 10=critical)",
+      "name": "zone_2_priority",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Rescue priority for zone 3 (1=low, 10=critical)",
+      "name": "zone_3_priority",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Rescue priority for zone 4 (1=low, 10=critical)",
+      "name": "zone_4_priority",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 10,
+        "min": 1
+      },
+      "label": "Rescue priority for zone 5 (1=low, 10=critical)",
+      "name": "zone_5_priority",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "neq",
+          "description": "Ground team 1 cannot enter zone 3 (collapsed buildings from aftershock)",
+          "expression": "team_1_zone != 3",
+          "label": "Team 1 avoids collapse zone",
+          "name": "aftershock_team_1",
+          "parameters": {
+            "right": 3
+          },
+          "variables": [
+            "team_1_zone"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Ground team 2 cannot enter zone 3 (collapsed buildings from aftershock)",
+          "expression": "team_2_zone != 3",
+          "label": "Team 2 avoids collapse zone",
+          "name": "aftershock_team_2",
+          "parameters": {
+            "right": 3
+          },
+          "variables": [
+            "team_2_zone"
+          ]
+        }
+      ],
+      "description": "Simulate an aftershock that makes collapsed buildings in zone 3 too dangerous for ground teams. Only helicopter and drone teams can enter zone 3. Evaluate impact on rescue coverage.",
+      "name": "Aftershock Scenario"
+    }
+  ]
+}

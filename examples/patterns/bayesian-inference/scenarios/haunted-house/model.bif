@@ -1,0 +1,74 @@
+network unknown {
+}
+
+variable cold_draft {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable cold_spots {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable creaky_floors {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable flickering_lights {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable footprints {
+  type discrete [ 2 ] { muddy, clean };
+}
+
+variable ghost {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable raccoon {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable wiring_fault {
+  type discrete [ 2 ] { yes, no };
+}
+
+probability ( cold_draft ) {
+  table 0.3, 0.7;
+}
+
+probability ( cold_spots | ghost, cold_draft ) {
+  (yes, yes) 0.9, 0.1;
+  (yes, no) 0.8, 0.2;
+  (no, yes) 0.6, 0.4;
+  (no, no) 0.05, 0.95;
+}
+
+probability ( creaky_floors | raccoon ) {
+  (yes) 0.7, 0.3;
+  (no) 0.1, 0.9;
+}
+
+probability ( flickering_lights | ghost, wiring_fault ) {
+  (yes, yes) 0.9, 0.1;
+  (yes, no) 0.7, 0.3;
+  (no, yes) 0.8, 0.2;
+  (no, no) 0.02, 0.98;
+}
+
+probability ( footprints | raccoon ) {
+  (yes) 0.85, 0.15;
+  (no) 0.05, 0.95;
+}
+
+probability ( ghost ) {
+  table 0.05, 0.95;
+}
+
+probability ( raccoon ) {
+  table 0.2, 0.8;
+}
+
+probability ( wiring_fault ) {
+  table 0.15, 0.85;
+}

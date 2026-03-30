@@ -1,0 +1,137 @@
+network unknown {
+}
+
+variable day_of_week {
+  type discrete [ 2 ] { weekday, weekend };
+}
+
+variable demand_level {
+  type discrete [ 5 ] { very_low, low, medium, high, very_high };
+}
+
+variable local_events {
+  type discrete [ 3 ] { none, small, large };
+}
+
+variable season {
+  type discrete [ 4 ] { spring, summer, fall, winter };
+}
+
+variable weather {
+  type discrete [ 4 ] { sunny, cloudy, rainy, snowy };
+}
+
+probability ( day_of_week ) {
+  table 0.71, 0.29;
+}
+
+probability ( demand_level | day_of_week, local_events, season, weather ) {
+  (weekday, none, spring, sunny) 0.05, 0.20, 0.45, 0.25, 0.05;
+  (weekday, none, spring, cloudy) 0.08, 0.25, 0.42, 0.20, 0.05;
+  (weekday, none, spring, rainy) 0.12, 0.30, 0.38, 0.15, 0.05;
+  (weekday, none, spring, snowy) 0.15, 0.35, 0.33, 0.12, 0.05;
+  (weekday, none, summer, sunny) 0.03, 0.15, 0.42, 0.30, 0.10;
+  (weekday, none, summer, cloudy) 0.05, 0.20, 0.42, 0.25, 0.08;
+  (weekday, none, summer, rainy) 0.10, 0.25, 0.40, 0.20, 0.05;
+  (weekday, none, summer, snowy) 0.12, 0.28, 0.38, 0.17, 0.05;
+  (weekday, none, fall, sunny) 0.05, 0.20, 0.42, 0.25, 0.08;
+  (weekday, none, fall, cloudy) 0.08, 0.25, 0.40, 0.22, 0.05;
+  (weekday, none, fall, rainy) 0.12, 0.28, 0.38, 0.17, 0.05;
+  (weekday, none, fall, snowy) 0.15, 0.30, 0.35, 0.15, 0.05;
+  (weekday, none, winter, sunny) 0.08, 0.22, 0.40, 0.23, 0.07;
+  (weekday, none, winter, cloudy) 0.10, 0.25, 0.40, 0.20, 0.05;
+  (weekday, none, winter, rainy) 0.15, 0.30, 0.35, 0.15, 0.05;
+  (weekday, none, winter, snowy) 0.20, 0.33, 0.30, 0.12, 0.05;
+  (weekday, small, spring, sunny) 0.03, 0.12, 0.38, 0.35, 0.12;
+  (weekday, small, spring, cloudy) 0.05, 0.15, 0.38, 0.30, 0.12;
+  (weekday, small, spring, rainy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekday, small, spring, snowy) 0.10, 0.25, 0.37, 0.22, 0.06;
+  (weekday, small, summer, sunny) 0.02, 0.10, 0.33, 0.38, 0.17;
+  (weekday, small, summer, cloudy) 0.03, 0.13, 0.35, 0.35, 0.14;
+  (weekday, small, summer, rainy) 0.07, 0.18, 0.38, 0.27, 0.10;
+  (weekday, small, summer, snowy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekday, small, fall, sunny) 0.03, 0.13, 0.35, 0.35, 0.14;
+  (weekday, small, fall, cloudy) 0.05, 0.17, 0.38, 0.30, 0.10;
+  (weekday, small, fall, rainy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekday, small, fall, snowy) 0.10, 0.25, 0.37, 0.22, 0.06;
+  (weekday, small, winter, sunny) 0.05, 0.15, 0.35, 0.32, 0.13;
+  (weekday, small, winter, cloudy) 0.07, 0.18, 0.38, 0.28, 0.09;
+  (weekday, small, winter, rainy) 0.10, 0.23, 0.37, 0.23, 0.07;
+  (weekday, small, winter, snowy) 0.13, 0.27, 0.35, 0.19, 0.06;
+  (weekday, large, spring, sunny) 0.01, 0.05, 0.25, 0.42, 0.27;
+  (weekday, large, spring, cloudy) 0.02, 0.08, 0.28, 0.40, 0.22;
+  (weekday, large, spring, rainy) 0.05, 0.13, 0.35, 0.32, 0.15;
+  (weekday, large, spring, snowy) 0.07, 0.17, 0.35, 0.28, 0.13;
+  (weekday, large, summer, sunny) 0.01, 0.03, 0.20, 0.43, 0.33;
+  (weekday, large, summer, cloudy) 0.01, 0.05, 0.25, 0.42, 0.27;
+  (weekday, large, summer, rainy) 0.03, 0.10, 0.30, 0.37, 0.20;
+  (weekday, large, summer, snowy) 0.05, 0.13, 0.33, 0.32, 0.17;
+  (weekday, large, fall, sunny) 0.01, 0.05, 0.25, 0.42, 0.27;
+  (weekday, large, fall, cloudy) 0.02, 0.08, 0.28, 0.40, 0.22;
+  (weekday, large, fall, rainy) 0.05, 0.13, 0.33, 0.33, 0.16;
+  (weekday, large, fall, snowy) 0.07, 0.17, 0.35, 0.28, 0.13;
+  (weekday, large, winter, sunny) 0.02, 0.07, 0.27, 0.40, 0.24;
+  (weekday, large, winter, cloudy) 0.03, 0.10, 0.30, 0.37, 0.20;
+  (weekday, large, winter, rainy) 0.05, 0.15, 0.33, 0.32, 0.15;
+  (weekday, large, winter, snowy) 0.08, 0.18, 0.35, 0.27, 0.12;
+  (weekend, none, spring, sunny) 0.02, 0.12, 0.38, 0.35, 0.13;
+  (weekend, none, spring, cloudy) 0.05, 0.15, 0.38, 0.30, 0.12;
+  (weekend, none, spring, rainy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekend, none, spring, snowy) 0.10, 0.25, 0.38, 0.20, 0.07;
+  (weekend, none, summer, sunny) 0.01, 0.08, 0.33, 0.40, 0.18;
+  (weekend, none, summer, cloudy) 0.03, 0.12, 0.35, 0.35, 0.15;
+  (weekend, none, summer, rainy) 0.07, 0.18, 0.38, 0.27, 0.10;
+  (weekend, none, summer, snowy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekend, none, fall, sunny) 0.03, 0.12, 0.35, 0.35, 0.15;
+  (weekend, none, fall, cloudy) 0.05, 0.17, 0.38, 0.30, 0.10;
+  (weekend, none, fall, rainy) 0.08, 0.22, 0.38, 0.25, 0.07;
+  (weekend, none, fall, snowy) 0.10, 0.25, 0.37, 0.22, 0.06;
+  (weekend, none, winter, sunny) 0.05, 0.15, 0.35, 0.32, 0.13;
+  (weekend, none, winter, cloudy) 0.07, 0.18, 0.37, 0.28, 0.10;
+  (weekend, none, winter, rainy) 0.10, 0.23, 0.37, 0.23, 0.07;
+  (weekend, none, winter, snowy) 0.13, 0.27, 0.35, 0.19, 0.06;
+  (weekend, small, spring, sunny) 0.01, 0.07, 0.30, 0.40, 0.22;
+  (weekend, small, spring, cloudy) 0.02, 0.10, 0.33, 0.37, 0.18;
+  (weekend, small, spring, rainy) 0.05, 0.15, 0.37, 0.30, 0.13;
+  (weekend, small, spring, snowy) 0.07, 0.18, 0.37, 0.27, 0.11;
+  (weekend, small, summer, sunny) 0.01, 0.05, 0.25, 0.42, 0.27;
+  (weekend, small, summer, cloudy) 0.02, 0.08, 0.28, 0.40, 0.22;
+  (weekend, small, summer, rainy) 0.05, 0.13, 0.35, 0.32, 0.15;
+  (weekend, small, summer, snowy) 0.07, 0.17, 0.37, 0.27, 0.12;
+  (weekend, small, fall, sunny) 0.02, 0.08, 0.28, 0.40, 0.22;
+  (weekend, small, fall, cloudy) 0.03, 0.12, 0.33, 0.35, 0.17;
+  (weekend, small, fall, rainy) 0.05, 0.17, 0.37, 0.28, 0.13;
+  (weekend, small, fall, snowy) 0.07, 0.20, 0.37, 0.25, 0.11;
+  (weekend, small, winter, sunny) 0.03, 0.10, 0.30, 0.38, 0.19;
+  (weekend, small, winter, cloudy) 0.05, 0.13, 0.33, 0.33, 0.16;
+  (weekend, small, winter, rainy) 0.07, 0.18, 0.37, 0.27, 0.11;
+  (weekend, small, winter, snowy) 0.10, 0.22, 0.37, 0.23, 0.08;
+  (weekend, large, spring, sunny) 0.01, 0.03, 0.18, 0.43, 0.35;
+  (weekend, large, spring, cloudy) 0.01, 0.05, 0.22, 0.42, 0.30;
+  (weekend, large, spring, rainy) 0.03, 0.10, 0.28, 0.37, 0.22;
+  (weekend, large, spring, snowy) 0.05, 0.13, 0.32, 0.33, 0.17;
+  (weekend, large, summer, sunny) 0.01, 0.02, 0.13, 0.40, 0.44;
+  (weekend, large, summer, cloudy) 0.01, 0.03, 0.18, 0.42, 0.36;
+  (weekend, large, summer, rainy) 0.02, 0.07, 0.25, 0.40, 0.26;
+  (weekend, large, summer, snowy) 0.03, 0.10, 0.28, 0.37, 0.22;
+  (weekend, large, fall, sunny) 0.01, 0.03, 0.18, 0.43, 0.35;
+  (weekend, large, fall, cloudy) 0.01, 0.05, 0.22, 0.42, 0.30;
+  (weekend, large, fall, rainy) 0.03, 0.10, 0.28, 0.38, 0.21;
+  (weekend, large, fall, snowy) 0.05, 0.13, 0.32, 0.33, 0.17;
+  (weekend, large, winter, sunny) 0.01, 0.05, 0.22, 0.42, 0.30;
+  (weekend, large, winter, cloudy) 0.02, 0.07, 0.25, 0.40, 0.26;
+  (weekend, large, winter, rainy) 0.03, 0.12, 0.30, 0.35, 0.20;
+  (weekend, large, winter, snowy) 0.05, 0.15, 0.33, 0.30, 0.17;
+}
+
+probability ( local_events ) {
+  table 0.60, 0.30, 0.10;
+}
+
+probability ( season ) {
+  table 0.25, 0.25, 0.25, 0.25;
+}
+
+probability ( weather ) {
+  table 0.35, 0.30, 0.25, 0.10;
+}

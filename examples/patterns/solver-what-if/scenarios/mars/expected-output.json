@@ -1,0 +1,70 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Mars Colony Resource Allocation what-if scenario. The base solve maximizes colonists subject to power, water, food, habitat, and cargo mass constraints. What-if scenarios explore minimum colonist requirements, degraded solar efficiency, and extra cargo capacity.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Mars Colony Resource Allocation",
+  "steps": {
+    "base": {
+      "key_assignments": {
+        "colonists": {
+          "note": "Maximized subject to infrastructure constraints and 500-ton mass limit. The binding constraint is cargo mass."
+        },
+        "food_greenhouses": {
+          "note": "food_greenhouses * 8 >= colonists; minimum needed for the colonist count"
+        },
+        "habitat_modules": {
+          "note": "habitat_modules * 4 >= colonists; minimum needed for housing"
+        },
+        "power_storage": {
+          "expected_value": 1,
+          "note": "Minimized to domain min (1) since it only consumes mass without supporting more colonists"
+        },
+        "solar_panels": {
+          "note": "solar_panels * 2 >= colonists; minimum needed for power"
+        },
+        "water_recyclers": {
+          "note": "water_recyclers * 5 >= colonists; minimum needed for water"
+        }
+      },
+      "note": "Maximize colonists under mass constraint of 500 tons. Power storage is dead weight (no benefit to colonists), so minimized to domain min. The solver finds the optimal balance of infrastructure to support maximum population.",
+      "objective_name": "maximize_colonists",
+      "status": "optimal"
+    },
+    "what_if": {
+      "add_colonists": {
+        "additional_constraints": [
+          "colonists >= 50"
+        ],
+        "key_observations": {
+          "colonists_min": 50,
+          "note": "If the base optimum already supports >= 50 colonists, this constraint is non-binding and the result matches the base. If base optimum is < 50, the solver must find a feasible allocation for exactly 50+ colonists under the mass budget."
+        },
+        "note": "Adds colonists >= 50. Effect depends on whether base optimum already exceeds 50.",
+        "status": "optimal"
+      },
+      "extra_cargo": {
+        "additional_constraints": [
+          "total_mass <= 750"
+        ],
+        "key_observations": {
+          "note": "Extra mass budget allows more infrastructure, which supports more colonists. The original mass constraint (500) is still present; the new 750-ton constraint is less restrictive, so the original still binds unless the solver recognizes the push/pop scope. With both constraints active, the tighter one (500) dominates."
+        },
+        "note": "Adds mass <= 750 via push. Original mass_constraint (<=500) remains active in the base scope. Both constraints apply; the tighter (500) still binds.",
+        "status": "optimal"
+      },
+      "solar_drop": {
+        "additional_constraints": [
+          "solar_panels * 1 >= colonists"
+        ],
+        "key_observations": {
+          "colonists_reduced": "Fewer colonists supported since each panel only provides 1 unit instead of 2",
+          "note": "Dust storm halves solar efficiency. The new constraint (solar_panels * 1 >= colonists) is MORE restrictive than the base (solar_panels * 2 >= colonists), so it is binding. More panels needed per colonist means more mass spent on solar, leaving less for other infrastructure.",
+          "solar_panels_increased": "More panels needed to support same population"
+        },
+        "note": "Adds solar_panels * 1 >= colonists (stricter than base solar_panels * 2 >= colonists). This forces more solar panels per colonist, consuming more mass budget and reducing maximum colonists.",
+        "status": "optimal"
+      }
+    }
+  }
+}

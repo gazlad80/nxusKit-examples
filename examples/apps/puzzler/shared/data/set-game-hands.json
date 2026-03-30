@@ -1,0 +1,436 @@
+{
+  "hands": [
+    {
+      "cards": [
+        {
+          "color": "red",
+          "count": 1,
+          "id": 0,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 1,
+          "shading": "striped",
+          "shape": "oval"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 2,
+          "shading": "empty",
+          "shape": "squiggle"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 3,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 2,
+          "id": 4,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "red",
+          "count": 3,
+          "id": 5,
+          "shading": "empty",
+          "shape": "squiggle"
+        },
+        {
+          "color": "purple",
+          "count": 1,
+          "id": 6,
+          "shading": "empty",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 7,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "green",
+          "count": 3,
+          "id": 8,
+          "shading": "striped",
+          "shape": "squiggle"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 9,
+          "shading": "empty",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 3,
+          "id": 10,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "purple",
+          "count": 1,
+          "id": 11,
+          "shading": "striped",
+          "shape": "squiggle"
+        }
+      ],
+      "description": "Standard hand with 6 valid sets",
+      "id": "set-hand-001",
+      "known_sets": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          6,
+          7,
+          8
+        ],
+        [
+          0,
+          3,
+          6
+        ],
+        [
+          1,
+          4,
+          7
+        ],
+        [
+          2,
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "cards": [
+        {
+          "color": "red",
+          "count": 1,
+          "id": 0,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 1,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 3,
+          "id": 2,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 3,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 4,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 3,
+          "id": 5,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 1,
+          "id": 6,
+          "shading": "empty",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 2,
+          "id": 7,
+          "shading": "empty",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 8,
+          "shading": "empty",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 1,
+          "id": 9,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 10,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 11,
+          "shading": "solid",
+          "shape": "diamond"
+        }
+      ],
+      "description": "All same shape - tests pattern variation",
+      "id": "set-hand-002",
+      "known_sets": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          6,
+          7,
+          8
+        ],
+        [
+          0,
+          3,
+          6
+        ],
+        [
+          1,
+          4,
+          7
+        ],
+        [
+          2,
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "cards": [
+        {
+          "color": "red",
+          "count": 1,
+          "id": 0,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 1,
+          "shading": "striped",
+          "shape": "oval"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 2,
+          "shading": "empty",
+          "shape": "squiggle"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 3,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 3,
+          "id": 4,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 5,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "green",
+          "count": 3,
+          "id": 6,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "purple",
+          "count": 1,
+          "id": 7,
+          "shading": "solid",
+          "shape": "squiggle"
+        },
+        {
+          "color": "purple",
+          "count": 2,
+          "id": 8,
+          "shading": "solid",
+          "shape": "squiggle"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 9,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "purple",
+          "count": 1,
+          "id": 10,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "red",
+          "count": 1,
+          "id": 11,
+          "shading": "solid",
+          "shape": "squiggle"
+        }
+      ],
+      "description": "Edge case - hand with exactly one valid set",
+      "id": "set-hand-003",
+      "known_sets": [
+        [
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "cards": [
+        {
+          "color": "red",
+          "count": 1,
+          "id": 0,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 1,
+          "id": 1,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 2,
+          "shading": "solid",
+          "shape": "diamond"
+        },
+        {
+          "color": "green",
+          "count": 1,
+          "id": 3,
+          "shading": "striped",
+          "shape": "diamond"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 4,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "red",
+          "count": 2,
+          "id": 5,
+          "shading": "striped",
+          "shape": "oval"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 6,
+          "shading": "solid",
+          "shape": "oval"
+        },
+        {
+          "color": "green",
+          "count": 2,
+          "id": 7,
+          "shading": "striped",
+          "shape": "oval"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 8,
+          "shading": "empty",
+          "shape": "squiggle"
+        },
+        {
+          "color": "purple",
+          "count": 3,
+          "id": 9,
+          "shading": "solid",
+          "shape": "squiggle"
+        },
+        {
+          "color": "red",
+          "count": 3,
+          "id": 10,
+          "shading": "empty",
+          "shape": "squiggle"
+        },
+        {
+          "color": "red",
+          "count": 3,
+          "id": 11,
+          "shading": "solid",
+          "shape": "squiggle"
+        }
+      ],
+      "description": "Edge case - hand with NO valid sets (rare but possible)",
+      "id": "set-hand-004",
+      "known_sets": []
+    }
+  ]
+}

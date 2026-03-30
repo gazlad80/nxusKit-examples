@@ -1,0 +1,249 @@
+{
+  "cases": {
+    "critical-cardiac": {
+      "description": "Elderly patient with severe chest pain and cardiac history",
+      "facts": [
+        {
+          "template": "patient",
+          "values": {
+            "age": 68,
+            "gender": {
+              "symbol": "male"
+            },
+            "id": "P001",
+            "name": "John Smith"
+          }
+        },
+        {
+          "template": "vital-signs",
+          "values": {
+            "consciousness": {
+              "symbol": "verbal"
+            },
+            "diastolic-bp": 55,
+            "heart-rate": 45,
+            "oxygen-saturation": 88,
+            "patient-id": "P001",
+            "respiratory-rate": 22,
+            "systolic-bp": 85,
+            "temperature": 37.2
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 2,
+            "patient-id": "P001",
+            "severity": {
+              "symbol": "severe"
+            },
+            "type": {
+              "symbol": "chest-pain"
+            }
+          }
+        },
+        {
+          "template": "medical-history",
+          "values": {
+            "condition": {
+              "symbol": "cardiac-disease"
+            },
+            "current": {
+              "symbol": "yes"
+            },
+            "patient-id": "P001"
+          }
+        }
+      ]
+    },
+    "elderly-fall": {
+      "description": "Elderly patient after a fall",
+      "facts": [
+        {
+          "template": "patient",
+          "values": {
+            "age": 78,
+            "gender": {
+              "symbol": "male"
+            },
+            "id": "P005",
+            "name": "Robert Johnson"
+          }
+        },
+        {
+          "template": "vital-signs",
+          "values": {
+            "consciousness": {
+              "symbol": "alert"
+            },
+            "diastolic-bp": 90,
+            "heart-rate": 88,
+            "oxygen-saturation": 96,
+            "patient-id": "P005",
+            "respiratory-rate": 16,
+            "systolic-bp": 145,
+            "temperature": 36.8
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 0,
+            "patient-id": "P005",
+            "severity": {
+              "symbol": "moderate"
+            },
+            "type": {
+              "symbol": "fall"
+            }
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 0,
+            "patient-id": "P005",
+            "severity": {
+              "symbol": "moderate"
+            },
+            "type": {
+              "symbol": "pain"
+            }
+          }
+        }
+      ]
+    },
+    "pediatric-fever": {
+      "description": "Young child with high fever",
+      "facts": [
+        {
+          "template": "patient",
+          "values": {
+            "age": 3,
+            "gender": {
+              "symbol": "male"
+            },
+            "id": "P003",
+            "name": "Tommy Wilson"
+          }
+        },
+        {
+          "template": "vital-signs",
+          "values": {
+            "consciousness": {
+              "symbol": "alert"
+            },
+            "diastolic-bp": 60,
+            "heart-rate": 130,
+            "oxygen-saturation": 97,
+            "patient-id": "P003",
+            "respiratory-rate": 28,
+            "systolic-bp": 95,
+            "temperature": 39.5
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 4,
+            "patient-id": "P003",
+            "severity": {
+              "symbol": "moderate"
+            },
+            "type": {
+              "symbol": "fever"
+            }
+          }
+        }
+      ]
+    },
+    "stable-chronic": {
+      "description": "Stable patient with minor complaint",
+      "facts": [
+        {
+          "template": "patient",
+          "values": {
+            "age": 35,
+            "gender": {
+              "symbol": "female"
+            },
+            "id": "P004",
+            "name": "Alice Brown"
+          }
+        },
+        {
+          "template": "vital-signs",
+          "values": {
+            "consciousness": {
+              "symbol": "alert"
+            },
+            "diastolic-bp": 76,
+            "heart-rate": 72,
+            "oxygen-saturation": 99,
+            "patient-id": "P004",
+            "respiratory-rate": 14,
+            "systolic-bp": 118,
+            "temperature": 37.0
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 2,
+            "patient-id": "P004",
+            "severity": {
+              "symbol": "mild"
+            },
+            "type": {
+              "symbol": "headache"
+            }
+          }
+        }
+      ]
+    },
+    "urgent-abdominal": {
+      "description": "Adult with abdominal pain and fever",
+      "facts": [
+        {
+          "template": "patient",
+          "values": {
+            "age": 45,
+            "gender": {
+              "symbol": "female"
+            },
+            "id": "P002",
+            "name": "Jane Doe"
+          }
+        },
+        {
+          "template": "vital-signs",
+          "values": {
+            "consciousness": {
+              "symbol": "alert"
+            },
+            "diastolic-bp": 80,
+            "heart-rate": 95,
+            "oxygen-saturation": 93,
+            "patient-id": "P002",
+            "respiratory-rate": 18,
+            "systolic-bp": 120,
+            "temperature": 38.8
+          }
+        },
+        {
+          "template": "symptom",
+          "values": {
+            "duration-hours": 6,
+            "patient-id": "P002",
+            "severity": {
+              "symbol": "moderate"
+            },
+            "type": {
+              "symbol": "abdominal-pain"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

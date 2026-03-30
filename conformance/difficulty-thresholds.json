@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "thresholds": {
+    "starter_max": 0.65,
+    "intermediate_max": 1.35
+  },
+  "weights": {
+    "concept_count": 0.30,
+    "code_volume": 0.20,
+    "cognitive_complexity": 0.20,
+    "prerequisite_depth": 0.15,
+    "file_count": 0.15
+  },
+  "scoring": {
+    "concept_count": {
+      "0": "1 tech_tag",
+      "1": "2 tech_tags",
+      "2": "3+ tech_tags"
+    },
+    "code_volume": {
+      "0": "<100 SLOC avg",
+      "1": "100-500 SLOC avg",
+      "2": ">500 SLOC avg"
+    },
+    "cognitive_complexity": {
+      "0": "avg CC <5 per function",
+      "1": "avg CC 5-10",
+      "2": "avg CC >10"
+    },
+    "prerequisite_depth": {
+      "0": "SDK only (LLM, Streaming tags only)",
+      "1": "SDK + 1 external (CLIPS, Solver, BN, MCP, Vision, ZEN)",
+      "2": "SDK + 2+ external systems"
+    },
+    "file_count": {
+      "0": "1-2 files avg per lang",
+      "1": "3-5 files avg",
+      "2": "6+ files avg"
+    }
+  }
+}

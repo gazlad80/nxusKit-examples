@@ -1,0 +1,82 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Space Colony Planning constraint solver scenario. Each step's expected values are derived from the hard constraints, objectives, and variable domains in problem.json. Only one objective is defined, so Step 3 (multi-objective) is skipped.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Space Colony Planning",
+  "steps": {
+    "multi_objective": {
+      "note": "Skipped: only one objective defined (maximize_colonists). The Go example prints 'Only one objective defined; skipping multi-objective step.'",
+      "skipped": true
+    },
+    "optimization": {
+      "binding_constraint": "power_requirement (solar_panels >= colonists * 0.3)",
+      "key_assignments": {
+        "colonists": {
+          "expected_value": 666,
+          "note": "Binding constraint: solar_panels >= colonists * 0.3 with max solar_panels=200. 200 >= 666 * 0.3 = 199.8 (satisfied). 200 >= 667 * 0.3 = 200.1 (violated). So max colonists = 666."
+        },
+        "food_domes": {
+          "expected_min": 7,
+          "note": "food_domes >= 666 * 0.01 = 6.66, so food_domes >= 7 (integer)"
+        },
+        "habitat_modules": {
+          "expected_min": 34,
+          "note": "colonists <= habitat_modules * 20, so habitat_modules >= ceil(666/20) = 34"
+        },
+        "has_landing_pad": {
+          "expected_value": "solver-chosen (true or false)",
+          "note": "Not constrained by objective or hard constraints"
+        },
+        "oxygen_ratio": {
+          "expected_min": 0.5,
+          "note": "oxygen_ratio * 666 >= 100, so oxygen_ratio >= 0.15; domain min 0.5 is binding"
+        },
+        "solar_panels": {
+          "expected_value": 200,
+          "note": "Maximized to domain upper bound to support max colonists"
+        },
+        "water_recyclers": {
+          "expected_min": 14,
+          "note": "water_recyclers >= 666 * 0.02 = 13.32, so water_recyclers >= 14 (integer)"
+        }
+      },
+      "note": "Single-objective: maximize colonists. The binding constraint is power_requirement: solar_panels >= colonists * 0.3. With max solar_panels=200, max colonists = floor(200/0.3) = 666.",
+      "objective_name": "maximize_colonists",
+      "objective_value": 666,
+      "status": "optimal"
+    },
+    "satisfaction": {
+      "constraint_invariants": [
+        "colonists <= habitat_modules * 20",
+        "solar_panels >= colonists * 0.3",
+        "water_recyclers >= colonists * 0.02",
+        "food_domes >= colonists * 0.01",
+        "oxygen_ratio * colonists >= 100"
+      ],
+      "note": "Any feasible assignment satisfying all 5 hard constraints. Example: colonists=50, habitat_modules=5, solar_panels=20, water_recyclers=2, food_domes=1, oxygen_ratio=2.0, has_landing_pad=false. Exact values are solver-dependent.",
+      "num_assignments": 7,
+      "status": "sat"
+    },
+    "soft_constraints": {
+      "note": "Soft constraint has_landing_pad==true (weight=3.0) is trivially satisfiable since the boolean variable is unconstrained by hard constraints. Single objective (maximize_colonists) persists from Step 2. Solver should satisfy the soft constraint without violation.",
+      "status": "optimal",
+      "violated_soft_constraints": []
+    },
+    "what_if": {
+      "Solar Storm Scenario": {
+        "additional_constraints": [
+          "solar_panels * 0.7 >= colonists * 0.3"
+        ],
+        "key_observations": {
+          "colonists_expected": 466,
+          "colonists_note": "solar_panels * 0.7 >= colonists * 0.3 tightens power constraint. With max solar_panels=200: 200*0.7=140 >= colonists*0.3, so colonists <= 140/0.3 = 466.67, max colonists = 466.",
+          "colonists_reduction": "From 666 to 466 (30% reduction, matching 30% panel efficiency loss)"
+        },
+        "note": "Solar storm reduces panel efficiency by 30%. The tighter power constraint (solar_panels*0.7 >= colonists*0.3) reduces max colonists from 666 to 466. This is pushed/popped so the base model is restored afterward.",
+        "objective_value": 466,
+        "status": "optimal"
+      }
+    }
+  }
+}

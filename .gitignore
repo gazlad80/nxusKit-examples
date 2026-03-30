@@ -1,0 +1,41 @@
+# Extracted SDK bundles (scripts/setup-sdk.sh, test-examples.sh)
+_sdk/
+.test-examples-results.jsonl
+
+# SDK setup (created by setup-sdk.sh)
+packages/
+go.work
+go.work.sum
+
+# Build artifacts
+target/
+bin/
+*.bin
+*.exe
+*.dylib
+*.so
+*.dll
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+# .cursor: ignore by default, but track agent continuity paths (see repo memory convention)
+.cursor/*
+!.cursor/memory/
+!.cursor/memory/**
+!.cursor/rules/
+!.cursor/rules/persistent-memory.mdc
+
+# Secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

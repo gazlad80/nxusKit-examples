@@ -1,0 +1,515 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "mul",
+      "description": "Compute total power output: solar_panels * 2",
+      "expression": "solar_panels * 2 = power_output",
+      "label": "Power output computation",
+      "name": "compute_power",
+      "parameters": {
+        "left": "solar_panels",
+        "result": "power_output",
+        "right": 2
+      },
+      "variables": [
+        "solar_panels",
+        "power_output"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Power output must cover all colonists (1 unit per colonist)",
+      "expression": "power_output >= colonists",
+      "label": "Power supply",
+      "name": "power_constraint",
+      "variables": [
+        "power_output",
+        "colonists"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute total water capacity: water_recyclers * 5",
+      "expression": "water_recyclers * 5 = water_capacity",
+      "label": "Water capacity computation",
+      "name": "compute_water",
+      "parameters": {
+        "left": "water_recyclers",
+        "result": "water_capacity",
+        "right": 5
+      },
+      "variables": [
+        "water_recyclers",
+        "water_capacity"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Water capacity must support all colonists",
+      "expression": "water_capacity >= colonists",
+      "label": "Water supply",
+      "name": "water_constraint",
+      "variables": [
+        "water_capacity",
+        "colonists"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute total food capacity: food_greenhouses * 8",
+      "expression": "food_greenhouses * 8 = food_capacity",
+      "label": "Food capacity computation",
+      "name": "compute_food",
+      "parameters": {
+        "left": "food_greenhouses",
+        "result": "food_capacity",
+        "right": 8
+      },
+      "variables": [
+        "food_greenhouses",
+        "food_capacity"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Food capacity must feed all colonists",
+      "expression": "food_capacity >= colonists",
+      "label": "Food supply",
+      "name": "food_constraint",
+      "variables": [
+        "food_capacity",
+        "colonists"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute total housing capacity: habitat_modules * 4",
+      "expression": "habitat_modules * 4 = housing_capacity",
+      "label": "Housing capacity computation",
+      "name": "compute_housing",
+      "parameters": {
+        "left": "habitat_modules",
+        "result": "housing_capacity",
+        "right": 4
+      },
+      "variables": [
+        "habitat_modules",
+        "housing_capacity"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Housing capacity must shelter all colonists",
+      "expression": "housing_capacity >= colonists",
+      "label": "Housing capacity",
+      "name": "habitat_constraint",
+      "variables": [
+        "housing_capacity",
+        "colonists"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute solar panel mass: solar_panels * 3",
+      "expression": "solar_panels * 3 = solar_mass",
+      "label": "Solar mass computation",
+      "name": "compute_solar_mass",
+      "parameters": {
+        "left": "solar_panels",
+        "result": "solar_mass",
+        "right": 3
+      },
+      "variables": [
+        "solar_panels",
+        "solar_mass"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute water recycler mass: water_recyclers * 10",
+      "expression": "water_recyclers * 10 = water_mass",
+      "label": "Water mass computation",
+      "name": "compute_water_mass",
+      "parameters": {
+        "left": "water_recyclers",
+        "result": "water_mass",
+        "right": 10
+      },
+      "variables": [
+        "water_recyclers",
+        "water_mass"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute food greenhouse mass: food_greenhouses * 20",
+      "expression": "food_greenhouses * 20 = food_mass",
+      "label": "Food mass computation",
+      "name": "compute_food_mass",
+      "parameters": {
+        "left": "food_greenhouses",
+        "result": "food_mass",
+        "right": 20
+      },
+      "variables": [
+        "food_greenhouses",
+        "food_mass"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute habitat module mass: habitat_modules * 15",
+      "expression": "habitat_modules * 15 = habitat_mass",
+      "label": "Habitat mass computation",
+      "name": "compute_habitat_mass",
+      "parameters": {
+        "left": "habitat_modules",
+        "result": "habitat_mass",
+        "right": 15
+      },
+      "variables": [
+        "habitat_modules",
+        "habitat_mass"
+      ]
+    },
+    {
+      "constraint_type": "mul",
+      "description": "Compute power storage mass: power_storage * 5",
+      "expression": "power_storage * 5 = storage_mass",
+      "label": "Storage mass computation",
+      "name": "compute_storage_mass",
+      "parameters": {
+        "left": "power_storage",
+        "result": "storage_mass",
+        "right": 5
+      },
+      "variables": [
+        "power_storage",
+        "storage_mass"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Sum solar and water mass",
+      "expression": "solar_mass + water_mass = mass_sum_1",
+      "label": "Mass sum 1",
+      "name": "compute_mass_sum_1",
+      "variables": [
+        "solar_mass",
+        "water_mass",
+        "mass_sum_1"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add food mass to running total",
+      "expression": "mass_sum_1 + food_mass = mass_sum_2",
+      "label": "Mass sum 2",
+      "name": "compute_mass_sum_2",
+      "variables": [
+        "mass_sum_1",
+        "food_mass",
+        "mass_sum_2"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Add habitat mass to running total",
+      "expression": "mass_sum_2 + habitat_mass = mass_sum_3",
+      "label": "Mass sum 3",
+      "name": "compute_mass_sum_3",
+      "variables": [
+        "mass_sum_2",
+        "habitat_mass",
+        "mass_sum_3"
+      ]
+    },
+    {
+      "constraint_type": "add",
+      "description": "Compute total mass of all equipment",
+      "expression": "mass_sum_3 + storage_mass = total_mass",
+      "label": "Total mass",
+      "name": "compute_total_mass",
+      "variables": [
+        "mass_sum_3",
+        "storage_mass",
+        "total_mass"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Total equipment mass must fit within 500 ton cargo limit",
+      "expression": "total_mass <= 500",
+      "label": "Cargo mass limit",
+      "name": "mass_constraint",
+      "parameters": {
+        "right": 500
+      },
+      "variables": [
+        "total_mass"
+      ]
+    }
+  ],
+  "description": "Design a Mars colony by allocating resources across solar panels, water recyclers, food greenhouses, habitat modules, and power storage -- all within a strict cargo mass budget. Maximize the number of colonists the base can support.",
+  "name": "Mars Colony Resource Allocation",
+  "objectives": [
+    {
+      "direction": "maximize",
+      "expression": "colonists",
+      "label": "Maximize the number of colonists the colony can sustain",
+      "name": "maximize_colonists",
+      "variable": "colonists",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 100,
+        "min": 10
+      },
+      "label": "Number of colonists to support",
+      "name": "colonists",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 120,
+        "min": 8
+      },
+      "label": "Food capacity (food_greenhouses * 8, auxiliary)",
+      "name": "food_capacity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 15,
+        "min": 1
+      },
+      "label": "Number of food greenhouses",
+      "name": "food_greenhouses",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 300,
+        "min": 20
+      },
+      "label": "Food greenhouse mass (food_greenhouses * 20, auxiliary)",
+      "name": "food_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 450,
+        "min": 60
+      },
+      "label": "Habitat module mass (habitat_modules * 15, auxiliary)",
+      "name": "habitat_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 30,
+        "min": 2
+      },
+      "label": "Number of habitat modules",
+      "name": "habitat_modules",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 120,
+        "min": 8
+      },
+      "label": "Housing capacity (habitat_modules * 4, auxiliary)",
+      "name": "housing_capacity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 500,
+        "min": 30
+      },
+      "label": "Sum of solar + water mass (auxiliary)",
+      "name": "mass_sum_1",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 800,
+        "min": 50
+      },
+      "label": "Sum of solar + water + food mass (auxiliary)",
+      "name": "mass_sum_2",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1250,
+        "min": 110
+      },
+      "label": "Sum of solar + water + food + habitat mass (auxiliary)",
+      "name": "mass_sum_3",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 10
+      },
+      "label": "Power output (solar_panels * 2, auxiliary)",
+      "name": "power_output",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 50,
+        "min": 5
+      },
+      "label": "Reduced power output during storm (auxiliary for what-if)",
+      "name": "power_output_storm",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 25,
+        "min": 1
+      },
+      "label": "Number of power storage units",
+      "name": "power_storage",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 150,
+        "min": 15
+      },
+      "label": "Solar panel mass (solar_panels * 3, auxiliary)",
+      "name": "solar_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 50,
+        "min": 5
+      },
+      "label": "Number of solar panels",
+      "name": "solar_panels",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 125,
+        "min": 5
+      },
+      "label": "Power storage mass (power_storage * 5, auxiliary)",
+      "name": "storage_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 1375,
+        "min": 115
+      },
+      "label": "Total equipment mass (auxiliary)",
+      "name": "total_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 10
+      },
+      "label": "Water capacity (water_recyclers * 5, auxiliary)",
+      "name": "water_capacity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 200,
+        "min": 20
+      },
+      "label": "Water recycler mass (water_recyclers * 10, auxiliary)",
+      "name": "water_mass",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 20,
+        "min": 2
+      },
+      "label": "Number of water recyclers",
+      "name": "water_recyclers",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "ge",
+          "description": "Mission requires at least 50 colonists for viability",
+          "expression": "colonists >= 50",
+          "label": "Minimum colonist count",
+          "name": "min_colonists",
+          "parameters": {
+            "right": 50
+          },
+          "variables": [
+            "colonists"
+          ]
+        }
+      ],
+      "description": "What if we need at least 50 colonists?",
+      "name": "add_colonists"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "Dust storm halves solar efficiency: power output now equals solar panels (instead of solar_panels * 2)",
+          "expression": "power_output_storm <= solar_panels",
+          "label": "Reduced solar efficiency",
+          "name": "solar_storm_efficiency",
+          "variables": [
+            "power_output_storm",
+            "solar_panels"
+          ]
+        },
+        {
+          "constraint_type": "ge",
+          "description": "Even reduced power must cover all colonists",
+          "expression": "power_output_storm >= colonists",
+          "label": "Storm power supply",
+          "name": "storm_power_supply",
+          "variables": [
+            "power_output_storm",
+            "colonists"
+          ]
+        }
+      ],
+      "description": "What if a dust storm halves solar output?",
+      "name": "solar_drop"
+    },
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "le",
+          "description": "Extra cargo mission increases mass budget to 750 tons",
+          "expression": "total_mass <= 750",
+          "label": "Expanded cargo mass limit",
+          "name": "extra_cargo_mass",
+          "parameters": {
+            "right": 750
+          },
+          "variables": [
+            "total_mass"
+          ]
+        }
+      ],
+      "description": "What if we get an extra cargo mission?",
+      "name": "extra_cargo"
+    }
+  ]
+}

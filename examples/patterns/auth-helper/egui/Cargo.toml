@@ -1,0 +1,12 @@
+[package]
+name = "auth-helper-egui"
+version = "0.1.0"
+edition = "2024"
+description = "egui auth helper example — credential management GUI"
+publish = false
+
+[dependencies]
+auth-helper-core = { path = "../core" }
+eframe = "0.31"
+egui = "0.31"
+egui-notify = "0.19"

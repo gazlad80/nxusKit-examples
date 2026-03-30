@@ -1,0 +1,134 @@
+{
+  "evidence": {
+    "cold_spots": "yes",
+    "flickering_lights": "yes",
+    "footprints": "muddy"
+  },
+  "expected_observations": {
+    "cold_draft_increases": "Cold draft posterior rises from prior 0.30 to ~0.57 given cold_spots=yes, sharing explanatory weight with ghost",
+    "creaky_floors_increases": "Creaky floors posterior rises from unconditional 0.22 to ~0.59, driven by the high raccoon posterior",
+    "ghost_posterior_increases": "Ghost posterior rises from prior 0.05 to ~0.52 given cold_spots=yes and flickering_lights=yes, a 10x increase reflecting strong evidence for a supernatural explanation",
+    "raccoon_posterior_high": "Raccoon posterior rises from prior 0.20 to ~0.81 given muddy footprints (P(muddy|raccoon)=0.85 vs P(muddy|no raccoon)=0.05)",
+    "wiring_fault_increases": "Wiring fault posterior rises from prior 0.15 to ~0.52 given flickering lights, but less than ghost because ghost also explains cold_spots"
+  },
+  "notes": {
+    "description": "Golden expected output for the Haunted House Bayesian inference scenario. Posteriors are computed via exact variable elimination over the 8-variable BIF model given evidence cold_spots=yes, flickering_lights=yes, footprints=muddy. VE and JT posteriors must match exactly. LBP and Gibbs are approximate and may differ within tolerance.",
+    "inference_backend": "nxusKit Bayesian Network provider"
+  },
+  "scenario": "Haunted House",
+  "steps": {
+    "gibbs_sampling": {
+      "algorithm": "gibbs",
+      "burn_in": 1000,
+      "note": "Stochastic MCMC sampling. Results vary between runs without a fixed seed. With 10000 samples and burn-in of 1000, posteriors should be within 0.05 of exact values.",
+      "num_samples": 10000,
+      "posteriors": {
+        "cold_draft": {
+          "no": "~0.43 +/- 0.05",
+          "yes": "~0.57 +/- 0.05"
+        },
+        "creaky_floors": {
+          "no": "~0.41 +/- 0.05",
+          "yes": "~0.59 +/- 0.05"
+        },
+        "ghost": {
+          "no": "~0.48 +/- 0.05",
+          "yes": "~0.52 +/- 0.05"
+        },
+        "raccoon": {
+          "no": "~0.19 +/- 0.05",
+          "yes": "~0.81 +/- 0.05"
+        },
+        "wiring_fault": {
+          "no": "~0.48 +/- 0.05",
+          "yes": "~0.52 +/- 0.05"
+        }
+      },
+      "seed": 42,
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "junction_tree": {
+      "algorithm": "jt",
+      "note": "Should match VE posteriors exactly (both are exact inference methods)",
+      "posteriors": {
+        "cold_draft": {
+          "no": 0.4289,
+          "yes": 0.5711
+        },
+        "creaky_floors": {
+          "no": 0.4143,
+          "yes": 0.5857
+        },
+        "ghost": {
+          "no": 0.4802,
+          "yes": 0.5198
+        },
+        "raccoon": {
+          "no": 0.1905,
+          "yes": 0.8095
+        },
+        "wiring_fault": {
+          "no": 0.4833,
+          "yes": 0.5167
+        }
+      },
+      "type": "exact"
+    },
+    "loopy_bp": {
+      "algorithm": "lbp",
+      "note": "Approximate message-passing inference. On tree-structured subgraphs (raccoon -> footprints, raccoon -> creaky_floors) LBP converges to exact values. Small deviations possible on the ghost/cold_draft/wiring_fault subgraph due to loops.",
+      "posteriors": {
+        "cold_draft": {
+          "no": "~0.43 +/- 0.05",
+          "yes": "~0.57 +/- 0.05"
+        },
+        "creaky_floors": {
+          "no": "~0.41 +/- 0.05",
+          "yes": "~0.59 +/- 0.05"
+        },
+        "ghost": {
+          "no": "~0.48 +/- 0.05",
+          "yes": "~0.52 +/- 0.05"
+        },
+        "raccoon": {
+          "no": "~0.19 +/- 0.05",
+          "yes": "~0.81 +/- 0.05"
+        },
+        "wiring_fault": {
+          "no": "~0.48 +/- 0.05",
+          "yes": "~0.52 +/- 0.05"
+        }
+      },
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "variable_elimination": {
+      "algorithm": "ve",
+      "note": "Exact posteriors for all unobserved variables given evidence. Ghost prior 0.05 increases dramatically to ~0.52 because both cold_spots=yes and flickering_lights=yes are strong indicators.",
+      "posteriors": {
+        "cold_draft": {
+          "no": 0.4289,
+          "yes": 0.5711
+        },
+        "creaky_floors": {
+          "no": 0.4143,
+          "yes": 0.5857
+        },
+        "ghost": {
+          "no": 0.4802,
+          "yes": 0.5198
+        },
+        "raccoon": {
+          "no": 0.1905,
+          "yes": 0.8095
+        },
+        "wiring_fault": {
+          "no": 0.4833,
+          "yes": 0.5167
+        }
+      },
+      "type": "exact"
+    }
+  }
+}

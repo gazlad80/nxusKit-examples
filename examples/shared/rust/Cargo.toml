@@ -1,0 +1,18 @@
+[package]
+name = "nxuskit-examples-interactive"
+version = "0.1.0"
+edition = "2024"
+description = "Interactive mode utilities for nxusKit examples"
+license = "MIT"
+
+[dependencies]
+crossterm = "0.28"
+regex-lite = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+# No additional dev dependencies needed - tests use standard cargo test
+
+[profile.release]
+panic = "abort"

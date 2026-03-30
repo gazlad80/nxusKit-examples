@@ -1,0 +1,149 @@
+{
+  "clips_rules_path": "examples/rules/racer/classification.clp",
+  "description": "Classify animals based on their characteristics (has_fur, lays_eggs, can_fly, has_feathers, is_warm_blooded, lives_in_water) into categories: mammal, bird, reptile, amphibian, fish.",
+  "difficulty": "easy",
+  "expected_solution": {
+    "classifications": [
+      {
+        "animal": "dog",
+        "class": "mammal"
+      },
+      {
+        "animal": "eagle",
+        "class": "bird"
+      },
+      {
+        "animal": "snake",
+        "class": "reptile"
+      },
+      {
+        "animal": "frog",
+        "class": "amphibian"
+      },
+      {
+        "animal": "salmon",
+        "class": "fish"
+      },
+      {
+        "animal": "whale",
+        "class": "mammal"
+      },
+      {
+        "animal": "penguin",
+        "class": "bird"
+      },
+      {
+        "animal": "platypus",
+        "class": "mammal"
+      }
+    ]
+  },
+  "id": "animal-classification",
+  "input_data": {
+    "animals": [
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": true,
+          "has_feathers": false,
+          "has_fur": true,
+          "is_warm_blooded": true,
+          "lays_eggs": false,
+          "lives_in_water": false
+        },
+        "name": "dog"
+      },
+      {
+        "characteristics": {
+          "can_fly": true,
+          "gives_milk": false,
+          "has_feathers": true,
+          "has_fur": false,
+          "is_warm_blooded": true,
+          "lays_eggs": true,
+          "lives_in_water": false
+        },
+        "name": "eagle"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": false,
+          "has_feathers": false,
+          "has_fur": false,
+          "has_scales": true,
+          "is_warm_blooded": false,
+          "lays_eggs": true,
+          "lives_in_water": false
+        },
+        "name": "snake"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": false,
+          "has_feathers": false,
+          "has_fur": false,
+          "has_moist_skin": true,
+          "is_warm_blooded": false,
+          "lays_eggs": true,
+          "lives_in_water": true,
+          "metamorphosis": true
+        },
+        "name": "frog"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": false,
+          "has_feathers": false,
+          "has_fins": true,
+          "has_fur": false,
+          "has_gills": true,
+          "is_warm_blooded": false,
+          "lays_eggs": true,
+          "lives_in_water": true
+        },
+        "name": "salmon"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": true,
+          "has_feathers": false,
+          "has_fur": false,
+          "is_warm_blooded": true,
+          "lays_eggs": false,
+          "lives_in_water": true
+        },
+        "name": "whale"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": false,
+          "has_feathers": true,
+          "has_fur": false,
+          "is_warm_blooded": true,
+          "lays_eggs": true,
+          "lives_in_water": false
+        },
+        "name": "penguin"
+      },
+      {
+        "characteristics": {
+          "can_fly": false,
+          "gives_milk": true,
+          "has_feathers": false,
+          "has_fur": true,
+          "is_warm_blooded": true,
+          "lays_eggs": true,
+          "lives_in_water": true
+        },
+        "name": "platypus"
+      }
+    ]
+  },
+  "name": "animal-classification",
+  "type": "classification"
+}

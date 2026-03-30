@@ -1,0 +1,105 @@
+{
+  "notes": {
+    "description": "Golden expected output for the Fantasy Sports Draft constraint solver scenario. Each step's expected values are derived from the hard constraints, objectives, and variable domains in problem.json. Only one objective is defined, so Step 3 (multi-objective) is skipped.",
+    "solver_backend": "Z3 via nxusKit C ABI"
+  },
+  "scenario": "Fantasy Sports Draft",
+  "steps": {
+    "multi_objective": {
+      "note": "Skipped: only one objective defined (total_fantasy_points). The Go example prints 'Only one objective defined; skipping multi-objective step.'",
+      "skipped": true
+    },
+    "optimization": {
+      "key_assignments": {
+        "def_sacks": {
+          "expected_value": 60,
+          "note": "Maximized to domain upper bound (not in salary formula)"
+        },
+        "has_star_player": {
+          "expected_value": "solver-chosen (true or false)",
+          "note": "Not constrained by objective or hard constraints"
+        },
+        "qb_rating": {
+          "expected_value": 99,
+          "note": "Maximized to domain upper bound; cost = 99*100 = 9900"
+        },
+        "rb_yards": {
+          "expected_value": 2000,
+          "note": "Maximized to domain upper bound; cost = 2000*10 = 20000"
+        },
+        "te_touchdowns": {
+          "expected_value": 15,
+          "note": "Maximized to domain upper bound (not in salary formula)"
+        },
+        "total_salary": {
+          "expected_max": 50000,
+          "expected_min": 35900,
+          "note": "Salary floor = 99*100 + 2000*10 + 120*50 = 9900+20000+6000 = 35900. Must be in [35900, 50000]. Exact value is solver-dependent."
+        },
+        "win_probability": {
+          "expected_min": 0.4,
+          "note": "Must satisfy win_probability >= 0.4; solver may pick any value in [0.4, 1.0]"
+        },
+        "wr_catches": {
+          "expected_value": 120,
+          "note": "Maximized to domain upper bound; cost = 120*50 = 6000"
+        }
+      },
+      "note": "Single-objective: maximize (qb_rating + rb_yards/20 + wr_catches + te_touchdowns*5 + def_sacks). All salary-independent variables (def_sacks, te_touchdowns) maximize freely. Salary-dependent variables (qb_rating, rb_yards, wr_catches) can all reach their domain maxima since total cost = 9900+20000+6000 = 35900 <= 50000 salary cap.",
+      "objective_breakdown": {
+        "def_sacks_points": 60,
+        "qb_rating_points": 99,
+        "rb_yards_points": 100,
+        "te_touchdowns_points": 75,
+        "wr_catches_points": 120
+      },
+      "objective_name": "total_fantasy_points",
+      "objective_value": 454,
+      "status": "optimal"
+    },
+    "satisfaction": {
+      "constraint_invariants": [
+        "total_salary >= qb_rating * 100 + rb_yards * 10 + wr_catches * 50",
+        "total_salary <= 50000",
+        "qb_rating >= 80",
+        "win_probability >= 0.4"
+      ],
+      "note": "Any feasible assignment satisfying all 4 hard constraints. Example: qb_rating=80, rb_yards=800, wr_catches=50, total_salary=18500, te_touchdowns=3, def_sacks=20, win_probability=0.4, has_star_player=false. Exact values are solver-dependent.",
+      "num_assignments": 8,
+      "status": "sat"
+    },
+    "soft_constraints": {
+      "note": "Soft constraint has_star_player==true (weight=8.0) is trivially satisfiable since the boolean variable is unconstrained by hard constraints. Single objective (total_fantasy_points) persists from Step 2. Solver should satisfy the soft constraint without violation.",
+      "status": "optimal",
+      "violated_soft_constraints": []
+    },
+    "what_if": {
+      "Injury Scenario": {
+        "additional_constraints": [
+          "qb_rating <= 85",
+          "rb_yards <= 1200"
+        ],
+        "key_observations": {
+          "def_sacks": 60,
+          "objective_breakdown": {
+            "def_sacks_points": 60,
+            "qb_rating_points": 85,
+            "rb_yards_points": 60,
+            "te_touchdowns_points": 75,
+            "wr_catches_points": 120
+          },
+          "points_lost": 54,
+          "points_lost_note": "Lost 14 from qb_rating (99->85) and 40 from rb_yards (2000->1200 = 100->60 pts)",
+          "qb_rating": 85,
+          "rb_yards": 1200,
+          "salary_note": "Reduced cost = 85*100+1200*10+120*50 = 8500+12000+6000 = 26500 (well within cap)",
+          "te_touchdowns": 15,
+          "wr_catches": 120
+        },
+        "note": "QB injury caps rating at 85, RB injury caps yards at 1200. All other variables still maximize freely. Fantasy points drop from 454 to 400 (a 54-point or ~12% reduction).",
+        "objective_value": 400,
+        "status": "optimal"
+      }
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "input",
+      "targetId": "dt1",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "dt1",
+      "targetId": "expr1",
+      "type": "edge"
+    },
+    {
+      "id": "e3",
+      "sourceId": "expr1",
+      "targetId": "output",
+      "type": "edge"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "input",
+      "name": "Input",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "type": "inputNode"
+    },
+    {
+      "id": "output",
+      "name": "Output",
+      "position": {
+        "x": 600,
+        "y": 0
+      },
+      "type": "outputNode"
+    },
+    {
+      "content": {
+        "hitPolicy": "first",
+        "inputs": [
+          {
+            "field": "time_of_day",
+            "id": "time_of_day",
+            "name": "Time of Day"
+          },
+          {
+            "field": "weather",
+            "id": "weather",
+            "name": "Weather"
+          },
+          {
+            "field": "nearby_events",
+            "id": "nearby_events",
+            "name": "Nearby Events"
+          },
+          {
+            "field": "inventory_level",
+            "id": "inventory_level",
+            "name": "Inventory Level"
+          }
+        ],
+        "outputs": [
+          {
+            "field": "location",
+            "id": "location",
+            "name": "Location"
+          },
+          {
+            "field": "base_price_multiplier",
+            "id": "base_price_multiplier",
+            "name": "Base Price Multiplier"
+          }
+        ],
+        "rules": [
+          {
+            "_id": "r1",
+            "base_price_multiplier": "1.3",
+            "inventory_level": "",
+            "location": "\"Main Street Park\"",
+            "nearby_events": "\"large\"",
+            "time_of_day": "\"lunch\"",
+            "weather": "\"sunny\""
+          },
+          {
+            "_id": "r2",
+            "base_price_multiplier": "1.1",
+            "inventory_level": "",
+            "location": "\"Business District\"",
+            "nearby_events": "",
+            "time_of_day": "\"lunch\"",
+            "weather": "\"sunny\""
+          },
+          {
+            "_id": "r3",
+            "base_price_multiplier": "1.0",
+            "inventory_level": "",
+            "location": "\"Covered Market\"",
+            "nearby_events": "",
+            "time_of_day": "\"lunch\"",
+            "weather": "\"rainy\""
+          },
+          {
+            "_id": "r4",
+            "base_price_multiplier": "0.9",
+            "inventory_level": "",
+            "location": "\"Train Station\"",
+            "nearby_events": "",
+            "time_of_day": "\"morning\"",
+            "weather": ""
+          },
+          {
+            "_id": "r5",
+            "base_price_multiplier": "0.85",
+            "inventory_level": "",
+            "location": "\"University Campus\"",
+            "nearby_events": "",
+            "time_of_day": "\"afternoon\"",
+            "weather": "\"sunny\""
+          },
+          {
+            "_id": "r6",
+            "base_price_multiplier": "1.4",
+            "inventory_level": "",
+            "location": "\"Concert Venue\"",
+            "nearby_events": "\"large\"",
+            "time_of_day": "\"evening\"",
+            "weather": ""
+          },
+          {
+            "_id": "r7",
+            "base_price_multiplier": "1.0",
+            "inventory_level": "",
+            "location": "\"Downtown Strip\"",
+            "nearby_events": "",
+            "time_of_day": "\"evening\"",
+            "weather": ""
+          },
+          {
+            "_id": "r8",
+            "base_price_multiplier": "1.0",
+            "inventory_level": "",
+            "location": "\"Default Spot\"",
+            "nearby_events": "",
+            "time_of_day": "",
+            "weather": ""
+          }
+        ]
+      },
+      "id": "dt1",
+      "name": "Location & Pricing",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "type": "decisionTableNode"
+    },
+    {
+      "content": {
+        "expressions": [
+          {
+            "key": "location",
+            "value": "location"
+          },
+          {
+            "key": "price_multiplier",
+            "value": "base_price_multiplier"
+          },
+          {
+            "key": "menu_adjustment",
+            "value": "if inventory_level == 'low' then 'limited menu' else 'full menu'"
+          },
+          {
+            "key": "restock_alert",
+            "value": "inventory_level == 'low'"
+          }
+        ]
+      },
+      "id": "expr1",
+      "name": "Menu Adjustments",
+      "position": {
+        "x": 400,
+        "y": 0
+      },
+      "type": "expressionNode"
+    }
+  ]
+}

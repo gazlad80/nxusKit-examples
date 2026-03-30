@@ -1,0 +1,148 @@
+network unknown {
+}
+
+variable building_damage {
+  type discrete [ 4 ] { none, minor, major, collapsed };
+}
+
+variable hours_since_event {
+  type discrete [ 4 ] { lt6, lt12, lt24, gt24 };
+}
+
+variable signal_detected {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable survivor_probability {
+  type discrete [ 4 ] { high, medium, low, unlikely };
+}
+
+variable terrain {
+  type discrete [ 3 ] { urban, rural, mountainous };
+}
+
+variable weather_condition {
+  type discrete [ 3 ] { clear, rain, storm };
+}
+
+probability ( building_damage ) {
+  table 0.10, 0.30, 0.40, 0.20;
+}
+
+probability ( hours_since_event ) {
+  table 0.25, 0.30, 0.25, 0.20;
+}
+
+probability ( signal_detected | building_damage ) {
+  (none) 0.95, 0.05;
+  (minor) 0.85, 0.15;
+  (major) 0.55, 0.45;
+  (collapsed) 0.20, 0.80;
+}
+
+probability ( survivor_probability | building_damage, hours_since_event, signal_detected, weather_condition ) {
+  (none, lt6, yes, clear) 0.90, 0.08, 0.01, 0.01;
+  (none, lt6, yes, rain) 0.85, 0.12, 0.02, 0.01;
+  (none, lt6, yes, storm) 0.75, 0.18, 0.05, 0.02;
+  (none, lt6, no, clear) 0.60, 0.25, 0.10, 0.05;
+  (none, lt6, no, rain) 0.55, 0.27, 0.12, 0.06;
+  (none, lt6, no, storm) 0.45, 0.30, 0.17, 0.08;
+  (none, lt12, yes, clear) 0.85, 0.10, 0.03, 0.02;
+  (none, lt12, yes, rain) 0.80, 0.14, 0.04, 0.02;
+  (none, lt12, yes, storm) 0.70, 0.20, 0.07, 0.03;
+  (none, lt12, no, clear) 0.55, 0.28, 0.12, 0.05;
+  (none, lt12, no, rain) 0.48, 0.30, 0.15, 0.07;
+  (none, lt12, no, storm) 0.40, 0.30, 0.20, 0.10;
+  (none, lt24, yes, clear) 0.75, 0.17, 0.05, 0.03;
+  (none, lt24, yes, rain) 0.68, 0.20, 0.08, 0.04;
+  (none, lt24, yes, storm) 0.58, 0.25, 0.12, 0.05;
+  (none, lt24, no, clear) 0.45, 0.30, 0.17, 0.08;
+  (none, lt24, no, rain) 0.38, 0.30, 0.20, 0.12;
+  (none, lt24, no, storm) 0.30, 0.30, 0.25, 0.15;
+  (none, gt24, yes, clear) 0.60, 0.25, 0.10, 0.05;
+  (none, gt24, yes, rain) 0.52, 0.27, 0.14, 0.07;
+  (none, gt24, yes, storm) 0.42, 0.30, 0.18, 0.10;
+  (none, gt24, no, clear) 0.30, 0.30, 0.25, 0.15;
+  (none, gt24, no, rain) 0.25, 0.28, 0.27, 0.20;
+  (none, gt24, no, storm) 0.18, 0.27, 0.30, 0.25;
+  (minor, lt6, yes, clear) 0.80, 0.14, 0.04, 0.02;
+  (minor, lt6, yes, rain) 0.73, 0.18, 0.06, 0.03;
+  (minor, lt6, yes, storm) 0.62, 0.23, 0.10, 0.05;
+  (minor, lt6, no, clear) 0.45, 0.30, 0.17, 0.08;
+  (minor, lt6, no, rain) 0.38, 0.30, 0.20, 0.12;
+  (minor, lt6, no, storm) 0.30, 0.30, 0.25, 0.15;
+  (minor, lt12, yes, clear) 0.70, 0.20, 0.07, 0.03;
+  (minor, lt12, yes, rain) 0.62, 0.23, 0.10, 0.05;
+  (minor, lt12, yes, storm) 0.50, 0.28, 0.15, 0.07;
+  (minor, lt12, no, clear) 0.38, 0.30, 0.20, 0.12;
+  (minor, lt12, no, rain) 0.30, 0.30, 0.25, 0.15;
+  (minor, lt12, no, storm) 0.22, 0.28, 0.30, 0.20;
+  (minor, lt24, yes, clear) 0.55, 0.27, 0.12, 0.06;
+  (minor, lt24, yes, rain) 0.47, 0.28, 0.17, 0.08;
+  (minor, lt24, yes, storm) 0.38, 0.28, 0.22, 0.12;
+  (minor, lt24, no, clear) 0.28, 0.28, 0.27, 0.17;
+  (minor, lt24, no, rain) 0.22, 0.27, 0.28, 0.23;
+  (minor, lt24, no, storm) 0.15, 0.25, 0.30, 0.30;
+  (minor, gt24, yes, clear) 0.40, 0.28, 0.20, 0.12;
+  (minor, gt24, yes, rain) 0.33, 0.28, 0.23, 0.16;
+  (minor, gt24, yes, storm) 0.25, 0.27, 0.27, 0.21;
+  (minor, gt24, no, clear) 0.18, 0.25, 0.30, 0.27;
+  (minor, gt24, no, rain) 0.12, 0.22, 0.30, 0.36;
+  (minor, gt24, no, storm) 0.08, 0.18, 0.30, 0.44;
+  (major, lt6, yes, clear) 0.60, 0.25, 0.10, 0.05;
+  (major, lt6, yes, rain) 0.52, 0.27, 0.14, 0.07;
+  (major, lt6, yes, storm) 0.40, 0.30, 0.20, 0.10;
+  (major, lt6, no, clear) 0.28, 0.30, 0.27, 0.15;
+  (major, lt6, no, rain) 0.22, 0.28, 0.30, 0.20;
+  (major, lt6, no, storm) 0.15, 0.25, 0.32, 0.28;
+  (major, lt12, yes, clear) 0.48, 0.28, 0.16, 0.08;
+  (major, lt12, yes, rain) 0.40, 0.28, 0.20, 0.12;
+  (major, lt12, yes, storm) 0.30, 0.28, 0.25, 0.17;
+  (major, lt12, no, clear) 0.20, 0.27, 0.30, 0.23;
+  (major, lt12, no, rain) 0.15, 0.25, 0.30, 0.30;
+  (major, lt12, no, storm) 0.10, 0.20, 0.32, 0.38;
+  (major, lt24, yes, clear) 0.33, 0.28, 0.24, 0.15;
+  (major, lt24, yes, rain) 0.27, 0.27, 0.27, 0.19;
+  (major, lt24, yes, storm) 0.18, 0.25, 0.30, 0.27;
+  (major, lt24, no, clear) 0.12, 0.22, 0.30, 0.36;
+  (major, lt24, no, rain) 0.08, 0.18, 0.30, 0.44;
+  (major, lt24, no, storm) 0.05, 0.13, 0.30, 0.52;
+  (major, gt24, yes, clear) 0.20, 0.25, 0.30, 0.25;
+  (major, gt24, yes, rain) 0.15, 0.22, 0.30, 0.33;
+  (major, gt24, yes, storm) 0.10, 0.18, 0.30, 0.42;
+  (major, gt24, no, clear) 0.07, 0.15, 0.28, 0.50;
+  (major, gt24, no, rain) 0.04, 0.11, 0.27, 0.58;
+  (major, gt24, no, storm) 0.02, 0.08, 0.25, 0.65;
+  (collapsed, lt6, yes, clear) 0.35, 0.30, 0.22, 0.13;
+  (collapsed, lt6, yes, rain) 0.28, 0.28, 0.27, 0.17;
+  (collapsed, lt6, yes, storm) 0.20, 0.25, 0.30, 0.25;
+  (collapsed, lt6, no, clear) 0.12, 0.20, 0.33, 0.35;
+  (collapsed, lt6, no, rain) 0.08, 0.17, 0.32, 0.43;
+  (collapsed, lt6, no, storm) 0.05, 0.12, 0.30, 0.53;
+  (collapsed, lt12, yes, clear) 0.22, 0.27, 0.28, 0.23;
+  (collapsed, lt12, yes, rain) 0.17, 0.23, 0.30, 0.30;
+  (collapsed, lt12, yes, storm) 0.10, 0.18, 0.30, 0.42;
+  (collapsed, lt12, no, clear) 0.07, 0.15, 0.30, 0.48;
+  (collapsed, lt12, no, rain) 0.04, 0.11, 0.28, 0.57;
+  (collapsed, lt12, no, storm) 0.02, 0.07, 0.25, 0.66;
+  (collapsed, lt24, yes, clear) 0.12, 0.20, 0.30, 0.38;
+  (collapsed, lt24, yes, rain) 0.08, 0.17, 0.30, 0.45;
+  (collapsed, lt24, yes, storm) 0.05, 0.12, 0.28, 0.55;
+  (collapsed, lt24, no, clear) 0.03, 0.08, 0.25, 0.64;
+  (collapsed, lt24, no, rain) 0.02, 0.05, 0.22, 0.71;
+  (collapsed, lt24, no, storm) 0.01, 0.04, 0.18, 0.77;
+  (collapsed, gt24, yes, clear) 0.07, 0.13, 0.28, 0.52;
+  (collapsed, gt24, yes, rain) 0.04, 0.10, 0.25, 0.61;
+  (collapsed, gt24, yes, storm) 0.02, 0.07, 0.22, 0.69;
+  (collapsed, gt24, no, clear) 0.01, 0.04, 0.17, 0.78;
+  (collapsed, gt24, no, rain) 0.01, 0.03, 0.13, 0.83;
+  (collapsed, gt24, no, storm) 0.01, 0.02, 0.09, 0.88;
+}
+
+probability ( terrain ) {
+  table 0.50, 0.30, 0.20;
+}
+
+probability ( weather_condition ) {
+  table 0.50, 0.30, 0.20;
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxuskit.dev/schemas/example-smoke-matrix.json",
+  "title": "nxusKit example smoke matrix",
+  "type": "object",
+  "required": ["version", "runs"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "description": { "type": "string" },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "example",
+          "tier",
+          "category",
+          "language",
+          "cwd_rel",
+          "command",
+          "entitlement_probe",
+          "requires_cloud_llm",
+          "requires_local_lmstudio",
+          "requires_local_ollama_go"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "example": { "type": "string" },
+          "tier": { "type": "string" },
+          "category": { "type": "string" },
+          "language": { "type": "string", "enum": ["rust", "go", "python"] },
+          "cwd_rel": { "type": "string" },
+          "command": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "entitlement_probe": { "type": "boolean" },
+          "requires_cloud_llm": { "type": "boolean" },
+          "requires_local_lmstudio": { "type": "boolean" },
+          "requires_local_ollama_go": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,37 @@
+{
+  "llm_mode": "mock",
+  "pipeline_stages": {
+    "step_1_load_problem": {
+      "constraint_count": 6,
+      "description": "Plan a 14-day road trip visiting 5 national parks"
+    },
+    "step_2_structured_constraints": {
+      "attempts": 1,
+      "constraints_parsed": 4,
+      "source": "mock_llm_response",
+      "variables_parsed": 10
+    },
+    "step_3_validation": {
+      "constraints_valid": 4,
+      "status": "pass",
+      "variables_valid": 10
+    },
+    "step_4_solver": {
+      "objective": "maximize_experience",
+      "sample_assignments": {
+        "days_at_glacier": 2,
+        "days_at_grand_canyon": 2,
+        "days_at_yellowstone": 4,
+        "days_at_yosemite": 3,
+        "days_at_zion": 3,
+        "visit_order_glacier": 3,
+        "visit_order_grand_canyon": 5,
+        "visit_order_yellowstone": 2,
+        "visit_order_yosemite": 1,
+        "visit_order_zion": 4
+      },
+      "status": "optimal"
+    }
+  },
+  "scenario": "road-trip"
+}

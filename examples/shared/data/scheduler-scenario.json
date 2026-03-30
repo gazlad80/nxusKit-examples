@@ -1,0 +1,218 @@
+{
+  "config": {
+    "include_trace": true
+  },
+  "facts": [
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "critical"
+        },
+        "deadline": "2025-02-01",
+        "estimated-hours": 4.0,
+        "id": "TASK-001",
+        "name": "Database Migration",
+        "priority": 9,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "documentation"
+        },
+        "deadline": "",
+        "estimated-hours": 2.0,
+        "id": "TASK-002",
+        "name": "Update API Documentation",
+        "priority": 5,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "testing"
+        },
+        "deadline": "",
+        "estimated-hours": 3.0,
+        "id": "TASK-003",
+        "name": "Write Unit Tests",
+        "priority": 7,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "review"
+        },
+        "deadline": "",
+        "estimated-hours": 1.5,
+        "id": "TASK-004",
+        "name": "Code Review",
+        "priority": 6,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "deployment"
+        },
+        "deadline": "2025-02-03",
+        "estimated-hours": 1.0,
+        "id": "TASK-005",
+        "name": "Deploy to Staging",
+        "priority": 8,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "maintenance"
+        },
+        "deadline": "",
+        "estimated-hours": 2.0,
+        "id": "TASK-006",
+        "name": "Update Dependencies",
+        "priority": 4,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "RES-001",
+        "category": {
+          "symbol": "optimization"
+        },
+        "deadline": "",
+        "estimated-hours": 5.0,
+        "id": "TASK-007",
+        "name": "Performance Optimization",
+        "priority": 6,
+        "status": {
+          "symbol": "completed"
+        }
+      }
+    },
+    {
+      "template": "task",
+      "values": {
+        "assigned-to": "",
+        "category": {
+          "symbol": "testing"
+        },
+        "deadline": "",
+        "estimated-hours": 4.0,
+        "id": "TASK-008",
+        "name": "Write Integration Tests",
+        "priority": 7,
+        "status": {
+          "symbol": "pending"
+        }
+      }
+    },
+    {
+      "template": "dependency",
+      "values": {
+        "depends-on": "TASK-001",
+        "task-id": "TASK-003"
+      }
+    },
+    {
+      "template": "dependency",
+      "values": {
+        "depends-on": "TASK-003",
+        "task-id": "TASK-004"
+      }
+    },
+    {
+      "template": "dependency",
+      "values": {
+        "depends-on": "TASK-003",
+        "task-id": "TASK-005"
+      }
+    },
+    {
+      "template": "dependency",
+      "values": {
+        "depends-on": "TASK-004",
+        "task-id": "TASK-005"
+      }
+    },
+    {
+      "template": "dependency",
+      "values": {
+        "depends-on": "TASK-007",
+        "task-id": "TASK-008"
+      }
+    },
+    {
+      "template": "resource",
+      "values": {
+        "available-hours": 6.0,
+        "current-load": 1,
+        "id": "RES-001",
+        "name": "Alice (Senior Dev)",
+        "skills": "backend,database,devops"
+      }
+    },
+    {
+      "template": "resource",
+      "values": {
+        "available-hours": 8.0,
+        "current-load": 0,
+        "id": "RES-002",
+        "name": "Bob (Full Stack)",
+        "skills": "frontend,backend,testing"
+      }
+    },
+    {
+      "template": "resource",
+      "values": {
+        "available-hours": 4.0,
+        "current-load": 2,
+        "id": "RES-003",
+        "name": "Carol (Tech Writer)",
+        "skills": "documentation,review"
+      }
+    },
+    {
+      "template": "resource",
+      "values": {
+        "available-hours": 8.0,
+        "current-load": 0,
+        "id": "RES-004",
+        "name": "Dave (QA Engineer)",
+        "skills": "testing,automation"
+      }
+    }
+  ]
+}

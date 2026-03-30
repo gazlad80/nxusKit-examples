@@ -1,0 +1,107 @@
+{
+  "comparison": {
+    "notes": "Shared edges likely include ambient_temp->rise_time and rise_time->bubble_density. Flour_type->flavor_profile is a strong expected link."
+  },
+  "data": {
+    "columns": [
+      "feeding_schedule",
+      "flour_type",
+      "ambient_temp",
+      "hydration",
+      "starter_age",
+      "rise_time",
+      "bubble_density",
+      "flavor_profile"
+    ],
+    "csv_file": "data.csv",
+    "row_count": 200
+  },
+  "fit_evaluation": {
+    "expected_range": [
+      -2500.0,
+      -800.0
+    ],
+    "metric": "log_likelihood",
+    "per_sample_range": [
+      -12.5,
+      -4.0
+    ]
+  },
+  "inference": {
+    "algorithm": "variable_elimination",
+    "evidence": {
+      "ambient_temp": "warm",
+      "flour_type": "rye"
+    },
+    "expected_states": [
+      "mild",
+      "tangy",
+      "sour",
+      "very_sour"
+    ],
+    "notes": "With rye flour and warm temperature, expect higher probability for sour/very_sour flavor",
+    "query_variable": "flavor_profile"
+  },
+  "parameter_learning": {
+    "method": "MLE",
+    "pseudocount": 1.0,
+    "structure_source": "hill_climb",
+    "variables_with_cpts": 8
+  },
+  "scenario": "sourdough",
+  "structure_learning": {
+    "hill_climb_bic": {
+      "algorithm": "hill_climb",
+      "expected_edge_count_range": [
+        4,
+        11
+      ],
+      "max_parents": 5,
+      "max_steps": 1000,
+      "sample_edges": [
+        {
+          "from": "ambient_temp",
+          "to": "rise_time"
+        },
+        {
+          "from": "starter_age",
+          "to": "rise_time"
+        },
+        {
+          "from": "rise_time",
+          "to": "bubble_density"
+        },
+        {
+          "from": "flour_type",
+          "to": "flavor_profile"
+        },
+        {
+          "from": "feeding_schedule",
+          "to": "starter_age"
+        }
+      ],
+      "scoring": "bic"
+    },
+    "k2_bdeu": {
+      "algorithm": "k2",
+      "ess": 10.0,
+      "expected_edge_count_range": [
+        3,
+        10
+      ],
+      "max_parents": 3,
+      "ordering": [
+        "feeding_schedule",
+        "flour_type",
+        "ambient_temp",
+        "hydration",
+        "starter_age",
+        "rise_time",
+        "bubble_density",
+        "flavor_profile"
+      ],
+      "scoring": "bdeu"
+    }
+  },
+  "title": "Sourdough Baking"
+}

@@ -1,0 +1,13 @@
+[package]
+name = "lmstudio-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+nxuskit = { path = "../../../../packages/nxuskit" }
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+serde_json = "1"
+
+[profile.release]
+panic = "abort"

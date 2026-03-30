@@ -1,0 +1,16 @@
+[package]
+name = "cli-assistant"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Exclude from parent workspace - this is a standalone example
+[workspace]
+
+[dependencies]
+nxuskit = { path = "../../../../packages/nxuskit" }
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+serde_json = "1"
+
+[profile.release]
+panic = "abort"

@@ -1,0 +1,84 @@
+network unknown {
+}
+
+variable bean_age {
+  type discrete [ 2 ] { fresh, stale };
+}
+
+variable bitter {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable extraction {
+  type discrete [ 3 ] { under, good, over };
+}
+
+variable freshness {
+  type discrete [ 2 ] { good, poor };
+}
+
+variable grind_size {
+  type discrete [ 3 ] { fine, medium, coarse };
+}
+
+variable sour {
+  type discrete [ 2 ] { yes, no };
+}
+
+variable water_temp {
+  type discrete [ 3 ] { low, optimal, high };
+}
+
+variable watery {
+  type discrete [ 2 ] { yes, no };
+}
+
+probability ( bean_age ) {
+  table 0.7, 0.3;
+}
+
+probability ( bitter | extraction ) {
+  (under) 0.02, 0.98;
+  (good) 0.05, 0.95;
+  (over) 0.85, 0.15;
+}
+
+probability ( extraction | grind_size, water_temp ) {
+  (fine, low) 0.15, 0.60, 0.25;
+  (fine, optimal) 0.05, 0.40, 0.55;
+  (fine, high) 0.02, 0.18, 0.80;
+  (medium, low) 0.50, 0.40, 0.10;
+  (medium, optimal) 0.05, 0.85, 0.10;
+  (medium, high) 0.05, 0.45, 0.50;
+  (coarse, low) 0.80, 0.15, 0.05;
+  (coarse, optimal) 0.40, 0.50, 0.10;
+  (coarse, high) 0.20, 0.55, 0.25;
+}
+
+probability ( freshness | bean_age ) {
+  (fresh) 0.95, 0.05;
+  (stale) 0.10, 0.90;
+}
+
+probability ( grind_size ) {
+  table 0.3, 0.5, 0.2;
+}
+
+probability ( sour | extraction ) {
+  (under) 0.80, 0.20;
+  (good) 0.05, 0.95;
+  (over) 0.10, 0.90;
+}
+
+probability ( water_temp ) {
+  table 0.15, 0.70, 0.15;
+}
+
+probability ( watery | extraction, freshness ) {
+  (under, good) 0.50, 0.50;
+  (under, poor) 0.90, 0.10;
+  (good, good) 0.03, 0.97;
+  (good, poor) 0.25, 0.75;
+  (over, good) 0.02, 0.98;
+  (over, poor) 0.15, 0.85;
+}

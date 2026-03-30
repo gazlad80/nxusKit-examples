@@ -1,0 +1,130 @@
+{
+  "contentType": "application/vnd.gorules.decision",
+  "edges": [
+    {
+      "id": "e1",
+      "sourceId": "input",
+      "targetId": "dt1",
+      "type": "edge"
+    },
+    {
+      "id": "e2",
+      "sourceId": "dt1",
+      "targetId": "output",
+      "type": "edge"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "input",
+      "name": "Input",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "type": "inputNode"
+    },
+    {
+      "id": "output",
+      "name": "Output",
+      "position": {
+        "x": 400,
+        "y": 0
+      },
+      "type": "outputNode"
+    },
+    {
+      "content": {
+        "hitPolicy": "collect",
+        "inputs": [
+          {
+            "field": "ingredients",
+            "id": "ingredients",
+            "name": "Ingredients"
+          },
+          {
+            "field": "desired_effect",
+            "id": "desired_effect",
+            "name": "Desired Effect"
+          },
+          {
+            "field": "caution_level",
+            "id": "caution_level",
+            "name": "Caution Level"
+          }
+        ],
+        "outputs": [
+          {
+            "field": "recipe_name",
+            "id": "recipe_name",
+            "name": "Recipe Name"
+          },
+          {
+            "field": "recipe_steps",
+            "id": "recipe_steps",
+            "name": "Recipe Steps"
+          },
+          {
+            "field": "warnings",
+            "id": "warnings",
+            "name": "Warnings"
+          }
+        ],
+        "rules": [
+          {
+            "_id": "r1",
+            "caution_level": "",
+            "desired_effect": "\"healing\"",
+            "ingredients": "\"mushroom,moonstone\"",
+            "recipe_name": "\"Healing Tonic\"",
+            "recipe_steps": "\"Crush mushroom, dissolve in moonstone-infused water, simmer for 10 minutes\"",
+            "warnings": "\"Do not exceed 2 doses per day\""
+          },
+          {
+            "_id": "r2",
+            "caution_level": "\"low\"",
+            "desired_effect": "\"invisibility\"",
+            "ingredients": "\"mushroom,moonstone\"",
+            "recipe_name": "\"Shadow Veil\"",
+            "recipe_steps": "\"Grind moonstone to powder, mix with mushroom extract under a new moon\"",
+            "warnings": "\"Effect lasts only 30 minutes; do not use near open flame\""
+          },
+          {
+            "_id": "r3",
+            "caution_level": "",
+            "desired_effect": "\"strength\"",
+            "ingredients": "\"mushroom,moonstone\"",
+            "recipe_name": "\"Titan's Brew\"",
+            "recipe_steps": "\"Boil mushroom and moonstone together, add iron filings, steep overnight\"",
+            "warnings": "\"May cause temporary tremors; avoid heavy machinery for 1 hour\""
+          },
+          {
+            "_id": "r4",
+            "caution_level": "",
+            "desired_effect": "\"speed\"",
+            "ingredients": "",
+            "recipe_name": "\"Swift Elixir\"",
+            "recipe_steps": "\"Combine any available herbs, add a pinch of wind salt, shake vigorously\"",
+            "warnings": "\"\""
+          },
+          {
+            "_id": "r5",
+            "caution_level": "",
+            "desired_effect": "",
+            "ingredients": "",
+            "recipe_name": "\"Unknown Brew\"",
+            "recipe_steps": "\"Mix ingredients at random and hope for the best\"",
+            "warnings": "\"Unpredictable results; use at your own risk\""
+          }
+        ]
+      },
+      "id": "dt1",
+      "name": "Potion Recipe Selector",
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "type": "decisionTableNode"
+    }
+  ]
+}

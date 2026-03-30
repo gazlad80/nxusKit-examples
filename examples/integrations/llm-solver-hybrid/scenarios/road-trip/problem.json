@@ -1,0 +1,246 @@
+{
+  "description": "Plan a 14-day road trip visiting 5 national parks",
+  "mock_llm_response": {
+    "constraints": [
+      {
+        "constraint_type": "add",
+        "description": "Sum yosemite and yellowstone days",
+        "label": "Days sum 1",
+        "name": "days_sum_1",
+        "parameters": {},
+        "variables": [
+          "days_at_yosemite",
+          "days_at_yellowstone",
+          "days_sum_12"
+        ]
+      },
+      {
+        "constraint_type": "add",
+        "description": "Add zion days",
+        "label": "Days sum 2",
+        "name": "days_sum_2",
+        "parameters": {},
+        "variables": [
+          "days_sum_12",
+          "days_at_zion",
+          "days_sum_123"
+        ]
+      },
+      {
+        "constraint_type": "add",
+        "description": "Add glacier days",
+        "label": "Days sum 3",
+        "name": "days_sum_3",
+        "parameters": {},
+        "variables": [
+          "days_sum_123",
+          "days_at_glacier",
+          "days_sum_1234"
+        ]
+      },
+      {
+        "constraint_type": "add",
+        "description": "Add grand canyon days to get total",
+        "label": "Total days computation",
+        "name": "days_sum_total",
+        "parameters": {},
+        "variables": [
+          "days_sum_1234",
+          "days_at_grand_canyon",
+          "total_days"
+        ]
+      },
+      {
+        "constraint_type": "le",
+        "label": "Trip must fit within 14 days",
+        "name": "max_trip_days",
+        "parameters": {
+          "right": 14
+        },
+        "variables": [
+          "total_days"
+        ]
+      },
+      {
+        "constraint_type": "ge",
+        "label": "At least 2 days at Yellowstone (it's huge)",
+        "name": "yellowstone_minimum",
+        "parameters": {
+          "right": 2
+        },
+        "variables": [
+          "days_at_yellowstone"
+        ]
+      },
+      {
+        "constraint_type": "lt",
+        "label": "Visit Yosemite before Yellowstone (it's on the way)",
+        "name": "yosemite_before_yellowstone",
+        "parameters": {},
+        "variables": [
+          "visit_order_yosemite",
+          "visit_order_yellowstone"
+        ]
+      },
+      {
+        "constraint_type": "all_different",
+        "label": "Each park visited in a unique order slot",
+        "name": "unique_visit_order",
+        "parameters": {},
+        "variables": [
+          "visit_order_yosemite",
+          "visit_order_yellowstone",
+          "visit_order_zion",
+          "visit_order_glacier",
+          "visit_order_grand_canyon"
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "domain": {
+          "max": 10,
+          "min": 3
+        },
+        "label": "Sum of yosemite + yellowstone days (auxiliary)",
+        "name": "days_sum_12",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 14,
+          "min": 4
+        },
+        "label": "Sum of first 3 parks days (auxiliary)",
+        "name": "days_sum_123",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 18,
+          "min": 5
+        },
+        "label": "Sum of first 4 parks days (auxiliary)",
+        "name": "days_sum_1234",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 22,
+          "min": 6
+        },
+        "label": "Total trip days (auxiliary)",
+        "name": "total_days",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Days at Yosemite",
+        "name": "days_at_yosemite",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 2
+        },
+        "label": "Days at Yellowstone",
+        "name": "days_at_yellowstone",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 4,
+          "min": 1
+        },
+        "label": "Days at Zion",
+        "name": "days_at_zion",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 4,
+          "min": 1
+        },
+        "label": "Days at Glacier",
+        "name": "days_at_glacier",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 4,
+          "min": 1
+        },
+        "label": "Days at Grand Canyon",
+        "name": "days_at_grand_canyon",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Visit order for Yosemite",
+        "name": "visit_order_yosemite",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Visit order for Yellowstone",
+        "name": "visit_order_yellowstone",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Visit order for Zion",
+        "name": "visit_order_zion",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Visit order for Glacier",
+        "name": "visit_order_glacier",
+        "var_type": "integer"
+      },
+      {
+        "domain": {
+          "max": 5,
+          "min": 1
+        },
+        "label": "Visit order for Grand Canyon",
+        "name": "visit_order_grand_canyon",
+        "var_type": "integer"
+      }
+    ]
+  },
+  "natural_language_constraints": [
+    "We have exactly 14 days for the entire trip",
+    "We want to visit 5 national parks: Yosemite, Yellowstone, Zion, Glacier, and Grand Canyon",
+    "Yellowstone is huge - spend at least 2 days there",
+    "Visit Yosemite before Yellowstone (it's on the way)",
+    "Zion and Grand Canyon are close together - visit them back to back",
+    "Spend at least 1 day at each park"
+  ],
+  "objective": {
+    "direction": "maximize",
+    "expression": "total_days",
+    "label": "Maximize total park days (use all 14 days for parks)",
+    "name": "maximize_experience"
+  },
+  "solver_config": {
+    "timeout_ms": 10000
+  },
+  "system_prompt": "You are a travel planning assistant. Convert natural language trip requirements into structured solver variables and constraints. Each park needs days-allocated and visit-order variables. Return ONLY a JSON object (no markdown fences, no explanation) with 'variables' and 'constraints' arrays using this EXACT schema:\n\nVariable schema: {\"name\": \"var_name\", \"var_type\": \"integer\", \"label\": \"Human description\", \"domain\": {\"min\": 0, \"max\": 14}}\n\nConstraint schema: {\"name\": \"constraint_id\", \"constraint_type\": \"TYPE\", \"label\": \"Human description\", \"variables\": [\"var_name1\", \"var_name2\"], \"parameters\": {}}\n\nValid constraint_type values: equal, not_equal, linear, all_different, at_most, at_least, exactly, in_range, add, le, ge. For 'linear' constraints use \"parameters\": {\"coefficients\": [...], \"operator\": \"<=\", \"rhs\": N}. For 'add' constraints (sum two vars into third), list [\"a\", \"b\", \"sum\"] in variables. For 'le'/'ge' ordering, list [\"first\", \"second\"] in variables.\n\nIMPORTANT: Use \"var_type\" (not \"type\"), \"constraint_type\" (not \"type\"), \"variables\" (not other names), and \"domain\" must be an object {\"min\":N,\"max\":N} (not an array)."
+}

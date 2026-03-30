@@ -1,0 +1,77 @@
+{
+  "context": {
+    "tempo": 120,
+    "ticks_per_quarter": 480,
+    "time_signature": "4/4"
+  },
+  "duration_ticks": 3840,
+  "harmonic_coherence": {
+    "percentage": 100.0,
+    "rating": "excellent"
+  },
+  "intervals": {
+    "count": 7,
+    "imperfect_consonances": 0,
+    "mild_dissonances": 5,
+    "perfect_consonances": 0,
+    "strong_dissonances": 2,
+    "types": [
+      {
+        "name": "major 2nd",
+        "quality": "MildDissonance",
+        "semitones": 2
+      },
+      {
+        "name": "major 2nd",
+        "quality": "MildDissonance",
+        "semitones": 2
+      },
+      {
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1
+      },
+      {
+        "name": "major 2nd",
+        "quality": "MildDissonance",
+        "semitones": 2
+      },
+      {
+        "name": "major 2nd",
+        "quality": "MildDissonance",
+        "semitones": 2
+      },
+      {
+        "name": "major 2nd",
+        "quality": "MildDissonance",
+        "semitones": 2
+      },
+      {
+        "name": "minor 2nd",
+        "quality": "StrongDissonance",
+        "semitones": 1
+      }
+    ]
+  },
+  "key_detection": {
+    "confidence_min": 0.5,
+    "expected_alternatives": [
+      "G Major",
+      "A Minor"
+    ],
+    "key": "C Major"
+  },
+  "name": "C Major Scale",
+  "notes_count": 8,
+  "scale_membership": {
+    "all_in_scale": true,
+    "in_scale_count": 8,
+    "out_of_scale_count": 0
+  },
+  "test_assertions": [
+    "Key should be detected as C Major with high confidence",
+    "All notes should be in the C major scale",
+    "Intervals are all stepwise (seconds)",
+    "Harmonic coherence should be 100%"
+  ]
+}

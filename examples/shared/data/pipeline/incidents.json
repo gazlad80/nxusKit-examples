@@ -1,0 +1,238 @@
+{
+  "scenarios": {
+    "access-anomaly": {
+      "description": "Security incident - unusual access pattern -> security response",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T03:15:00Z",
+            "item-id": "INC-006",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "file_access",
+            "dest-ip": "10.0.0.25",
+            "event-id": "INC-006",
+            "event-type": "unusual_access_pattern",
+            "raw-data": "Access from unusual location (foreign IP) at unusual time (3 AM)",
+            "resource": "financial-reports",
+            "severity-score": 65,
+            "source": {
+              "symbol": "user"
+            },
+            "source-ip": "203.0.113.50",
+            "timestamp": "2025-01-28T03:15:00Z",
+            "user-id": "cfo@company.com"
+          }
+        }
+      ]
+    },
+    "brute-force-attack": {
+      "description": "Security incident - brute force login attempts -> security response",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T10:15:00Z",
+            "item-id": "INC-001",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "login_attempt",
+            "dest-ip": "10.0.0.50",
+            "event-id": "INC-001",
+            "event-type": "auth_login_failed_multiple",
+            "raw-data": "50 failed login attempts in 5 minutes",
+            "resource": "auth-service",
+            "severity-score": 75,
+            "source": {
+              "symbol": "ids"
+            },
+            "source-ip": "192.168.1.100",
+            "timestamp": "2025-01-28T10:15:00Z",
+            "user-id": "admin"
+          }
+        }
+      ]
+    },
+    "data-exfiltration": {
+      "description": "Critical security incident - data breach -> escalation",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T09:45:00Z",
+            "item-id": "INC-004",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "data_transfer",
+            "dest-ip": "185.123.45.67",
+            "event-id": "INC-004",
+            "event-type": "large_data_transfer_external",
+            "raw-data": "500MB transfer to unknown external IP",
+            "resource": "database-server",
+            "severity-score": 85,
+            "source": {
+              "symbol": "network"
+            },
+            "source-ip": "10.0.0.100",
+            "timestamp": "2025-01-28T09:45:00Z",
+            "user-id": "dbadmin"
+          }
+        }
+      ]
+    },
+    "malware-detected": {
+      "description": "Critical security incident - malware -> escalation",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T11:30:00Z",
+            "item-id": "INC-002",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "file_execution_blocked",
+            "dest-ip": "",
+            "event-id": "INC-002",
+            "event-type": "malware_signature_detected",
+            "raw-data": "Trojan.GenericKD.12345 detected in downloads folder",
+            "resource": "workstation-045",
+            "severity-score": 95,
+            "source": {
+              "symbol": "endpoint"
+            },
+            "source-ip": "",
+            "timestamp": "2025-01-28T11:30:00Z",
+            "user-id": "jsmith"
+          }
+        }
+      ]
+    },
+    "performance-degradation": {
+      "description": "Operations incident - slow response -> ops response",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T16:20:00Z",
+            "item-id": "INC-005",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "performance_alert",
+            "dest-ip": "",
+            "event-id": "INC-005",
+            "event-type": "response_time_slow",
+            "raw-data": "P99 latency increased to 2.5s (threshold: 500ms)",
+            "resource": "api-gateway",
+            "severity-score": 55,
+            "source": {
+              "symbol": "application"
+            },
+            "source-ip": "",
+            "timestamp": "2025-01-28T16:20:00Z",
+            "user-id": ""
+          }
+        }
+      ]
+    },
+    "service-outage": {
+      "description": "Operations incident - service down -> ops response with escalation",
+      "facts": [
+        {
+          "template": "pipeline-item",
+          "values": {
+            "created-at": "2025-01-28T14:00:00Z",
+            "item-id": "INC-003",
+            "item-type": {
+              "symbol": "incident"
+            },
+            "stage": {
+              "symbol": "detection"
+            },
+            "status": {
+              "symbol": "pending"
+            }
+          }
+        },
+        {
+          "template": "raw-event",
+          "values": {
+            "action": "health_check",
+            "dest-ip": "",
+            "event-id": "INC-003",
+            "event-type": "health_check_failed_down",
+            "raw-data": "Payment service unresponsive for 5 minutes",
+            "resource": "payment-service",
+            "severity-score": 90,
+            "source": {
+              "symbol": "application"
+            },
+            "source-ip": "",
+            "timestamp": "2025-01-28T14:00:00Z",
+            "user-id": ""
+          }
+        }
+      ]
+    }
+  }
+}

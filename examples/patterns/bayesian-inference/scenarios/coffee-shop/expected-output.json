@@ -1,0 +1,146 @@
+{
+  "evidence": {
+    "bitter": "yes",
+    "sour": "no",
+    "watery": "no"
+  },
+  "expected_observations": {
+    "bean_age_nearly_unchanged": "Bean age posterior (fresh ~0.73) barely shifts from prior (0.70) because freshness only affects watery, which is already explained by extraction level",
+    "fine_grind_most_likely": "Fine grind rises from prior 0.30 to ~0.57 because fine grind + any temperature strongly favors over-extraction (0.25-0.80 probability of over across temperatures)",
+    "freshness_tracks_bean_age": "Freshness posterior closely tracks bean_age posterior because freshness is directly determined by bean_age in the model",
+    "high_temp_increases": "High temperature rises from prior 0.15 to ~0.28 because high temp drives over-extraction, but optimal temperature remains most likely at ~0.64 due to its high prior (0.70)",
+    "over_extraction_dominant": "Over-extraction posterior is ~0.89, explaining bitter=yes (P=0.85), sour=no (P=0.90), and watery=no simultaneously. Under-extraction is virtually ruled out (0.001) because it strongly predicts sour=yes and watery=yes."
+  },
+  "notes": {
+    "description": "Golden expected output for the Coffee Shop Espresso Diagnosis Bayesian inference scenario. Posteriors computed via exact variable elimination over the 8-variable BIF model given evidence bitter=yes, sour=no, watery=no. Over-extraction is overwhelmingly the most likely cause of bitter, not-sour, not-watery espresso.",
+    "inference_backend": "nxusKit Bayesian Network provider"
+  },
+  "scenario": "Coffee Shop",
+  "steps": {
+    "gibbs_sampling": {
+      "algorithm": "gibbs",
+      "burn_in": 1000,
+      "note": "Stochastic MCMC sampling. Over-extraction is so dominant that Gibbs should converge quickly. With 10000 samples, posteriors should be within 0.05 of exact values.",
+      "num_samples": 10000,
+      "posteriors": {
+        "bean_age": {
+          "fresh": "~0.73 +/- 0.05",
+          "stale": "~0.27 +/- 0.05"
+        },
+        "extraction": {
+          "good": "~0.11 +/- 0.05",
+          "over": "~0.89 +/- 0.05",
+          "under": "~0.00 +/- 0.02"
+        },
+        "freshness": {
+          "good": "~0.73 +/- 0.05",
+          "poor": "~0.27 +/- 0.05"
+        },
+        "grind_size": {
+          "coarse": "~0.10 +/- 0.05",
+          "fine": "~0.57 +/- 0.05",
+          "medium": "~0.34 +/- 0.05"
+        },
+        "water_temp": {
+          "high": "~0.28 +/- 0.05",
+          "low": "~0.08 +/- 0.05",
+          "optimal": "~0.64 +/- 0.05"
+        }
+      },
+      "seed": 42,
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "junction_tree": {
+      "algorithm": "jt",
+      "note": "Should match VE posteriors exactly (both are exact inference methods)",
+      "posteriors": {
+        "bean_age": {
+          "fresh": 0.727,
+          "stale": 0.273
+        },
+        "extraction": {
+          "good": 0.1135,
+          "over": 0.8854,
+          "under": 0.0011
+        },
+        "freshness": {
+          "good": 0.7271,
+          "poor": 0.2729
+        },
+        "grind_size": {
+          "coarse": 0.0953,
+          "fine": 0.566,
+          "medium": 0.3387
+        },
+        "water_temp": {
+          "high": 0.2815,
+          "low": 0.0802,
+          "optimal": 0.6383
+        }
+      },
+      "type": "exact"
+    },
+    "loopy_bp": {
+      "algorithm": "lbp",
+      "note": "Approximate message-passing. The extraction variable has a strong signal, so LBP should converge closely to exact values despite the loop through grind_size -> extraction -> bitter/sour/watery and freshness -> watery.",
+      "posteriors": {
+        "bean_age": {
+          "fresh": "~0.73 +/- 0.05",
+          "stale": "~0.27 +/- 0.05"
+        },
+        "extraction": {
+          "good": "~0.11 +/- 0.05",
+          "over": "~0.89 +/- 0.05",
+          "under": "~0.00 +/- 0.02"
+        },
+        "freshness": {
+          "good": "~0.73 +/- 0.05",
+          "poor": "~0.27 +/- 0.05"
+        },
+        "grind_size": {
+          "coarse": "~0.10 +/- 0.05",
+          "fine": "~0.57 +/- 0.05",
+          "medium": "~0.34 +/- 0.05"
+        },
+        "water_temp": {
+          "high": "~0.28 +/- 0.05",
+          "low": "~0.08 +/- 0.05",
+          "optimal": "~0.64 +/- 0.05"
+        }
+      },
+      "tolerance": 0.05,
+      "type": "approximate"
+    },
+    "variable_elimination": {
+      "algorithm": "ve",
+      "note": "Exact posteriors for all unobserved variables. Over-extraction dominates at ~0.89 because it strongly explains bitter=yes (0.85), sour=no (0.90), and watery=no. Fine grind rises to ~0.57 as the most likely grind setting causing over-extraction.",
+      "posteriors": {
+        "bean_age": {
+          "fresh": 0.727,
+          "stale": 0.273
+        },
+        "extraction": {
+          "good": 0.1135,
+          "over": 0.8854,
+          "under": 0.0011
+        },
+        "freshness": {
+          "good": 0.7271,
+          "poor": 0.2729
+        },
+        "grind_size": {
+          "coarse": 0.0953,
+          "fine": 0.566,
+          "medium": 0.3387
+        },
+        "water_temp": {
+          "high": 0.2815,
+          "low": 0.0802,
+          "optimal": 0.6383
+        }
+      },
+      "type": "exact"
+    }
+  }
+}

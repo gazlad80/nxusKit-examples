@@ -1,0 +1,308 @@
+{
+  "constraints": [
+    {
+      "constraint_type": "all_different",
+      "description": "All 6 items must be baked in different time slots to avoid oven conflicts",
+      "expression": "all_different(item_1_slot, item_2_slot, item_3_slot, item_4_slot, item_5_slot, item_6_slot)",
+      "label": "No time slot overlap",
+      "name": "no_overlap",
+      "variables": [
+        "item_1_slot",
+        "item_2_slot",
+        "item_3_slot",
+        "item_4_slot",
+        "item_5_slot",
+        "item_6_slot"
+      ]
+    },
+    {
+      "constraint_type": "le",
+      "description": "Item 1 quantity must not exceed oven capacity of 50",
+      "expression": "item_1_quantity <= 50",
+      "label": "Item 1 oven capacity",
+      "name": "capacity_item_1",
+      "parameters": {
+        "right": 50
+      },
+      "variables": [
+        "item_1_quantity"
+      ]
+    },
+    {
+      "constraint_type": "ge",
+      "description": "Must bake at least 5 units of each item to justify setup",
+      "expression": "item_1_quantity >= 5",
+      "label": "Item 1 minimum batch",
+      "name": "min_batch_1",
+      "parameters": {
+        "right": 5
+      },
+      "variables": [
+        "item_1_quantity"
+      ]
+    }
+  ],
+  "description": "Schedule 6 bakery items across 3 ovens with 8 time slots using BN-predicted demand levels to minimize waste while maximizing freshness, subject to oven overlap and temperature compatibility constraints.",
+  "name": "Bakery Oven Scheduling",
+  "objectives": [
+    {
+      "direction": "minimize",
+      "expression": "item_1_quantity",
+      "label": "Minimize item 1 quantity as waste proxy",
+      "name": "minimize_total_waste",
+      "priority": 1,
+      "variable": "item_1_quantity",
+      "weight": 1.0
+    }
+  ],
+  "variables": [
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 1",
+      "name": "item_1_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 1",
+      "name": "item_1_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 1",
+      "name": "item_1_slot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 2",
+      "name": "item_2_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 2",
+      "name": "item_2_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 2",
+      "name": "item_2_slot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 3",
+      "name": "item_3_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 3",
+      "name": "item_3_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 3",
+      "name": "item_3_slot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 4",
+      "name": "item_4_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 4",
+      "name": "item_4_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 4",
+      "name": "item_4_slot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 5",
+      "name": "item_5_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 5",
+      "name": "item_5_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 5",
+      "name": "item_5_slot",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 3,
+        "min": 1
+      },
+      "label": "Oven assignment for item 6",
+      "name": "item_6_oven",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 100,
+        "min": 0
+      },
+      "label": "Quantity to bake for item 6",
+      "name": "item_6_quantity",
+      "var_type": "integer"
+    },
+    {
+      "domain": {
+        "max": 8,
+        "min": 1
+      },
+      "label": "Time slot for item 6",
+      "name": "item_6_slot",
+      "var_type": "integer"
+    }
+  ],
+  "what_if_scenarios": [
+    {
+      "additional_constraints": [
+        {
+          "constraint_type": "neq",
+          "description": "Item 1 cannot use oven 2 (broken down)",
+          "expression": "item_1_oven != 2",
+          "label": "Item 1 no oven 2",
+          "name": "oven2_item1",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_1_oven"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Item 2 cannot use oven 2 (broken down)",
+          "expression": "item_2_oven != 2",
+          "label": "Item 2 no oven 2",
+          "name": "oven2_item2",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_2_oven"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Item 3 cannot use oven 2 (broken down)",
+          "expression": "item_3_oven != 2",
+          "label": "Item 3 no oven 2",
+          "name": "oven2_item3",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_3_oven"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Item 4 cannot use oven 2 (broken down)",
+          "expression": "item_4_oven != 2",
+          "label": "Item 4 no oven 2",
+          "name": "oven2_item4",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_4_oven"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Item 5 cannot use oven 2 (broken down)",
+          "expression": "item_5_oven != 2",
+          "label": "Item 5 no oven 2",
+          "name": "oven2_item5",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_5_oven"
+          ]
+        },
+        {
+          "constraint_type": "neq",
+          "description": "Item 6 cannot use oven 2 (broken down)",
+          "expression": "item_6_oven != 2",
+          "label": "Item 6 no oven 2",
+          "name": "oven2_item6",
+          "parameters": {
+            "right": 2
+          },
+          "variables": [
+            "item_6_oven"
+          ]
+        }
+      ],
+      "description": "Simulate oven 2 breaking down mid-day. Only ovens 1 and 3 remain available. Evaluate how the schedule adapts and whether demand can still be met.",
+      "name": "Oven Breakdown Scenario"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "comparison": {
+    "note": "Same input produces different actions: cautious sniffs around (hesitant), greedy and explorer both go right but for different reasons (scent vs exploration)"
+  },
+  "description": "Expected outputs for maze-rat scenario with input: scent_strength=7, dead_ends_nearby=2, hunger_level=4",
+  "personalities": {
+    "cautious": {
+      "expected": {
+        "action": "sniff_around",
+        "confidence": 0.6
+      },
+      "explanation": "scent_strength >= 7 AND dead_ends_nearby < 2 is false (dead_ends=2), so r3 does not match. scent_strength >= 4 matches r4.",
+      "hit_policy": "first",
+      "matched_rule": "r3"
+    },
+    "explorer": {
+      "expected": {
+        "action": "go_right",
+        "confidence": 0.8
+      },
+      "explanation": "dead_ends_nearby <= 2 matches r2 (explorer prefers going right when few dead ends).",
+      "hit_policy": "first",
+      "matched_rule": "r2"
+    },
+    "greedy": {
+      "expected": {
+        "action": "go_right",
+        "confidence": 0.95
+      },
+      "explanation": "scent_strength >= 7 matches r1 immediately (greedy always follows strong scent).",
+      "hit_policy": "first",
+      "matched_rule": "r1"
+    }
+  }
+}

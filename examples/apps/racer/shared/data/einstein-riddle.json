@@ -1,0 +1,105 @@
+{
+  "clips_rules_path": "examples/rules/racer/einstein-riddle.clp",
+  "description": "Einstein's famous riddle: Five houses in a row, each with a person of different nationality, pet, drink, cigarette brand, and house color. Given 15 clues, determine who owns the fish.",
+  "difficulty": "hard",
+  "expected_solution": {
+    "complete_solution": {
+      "house_1": {
+        "cigarette": "Dunhill",
+        "color": "yellow",
+        "drink": "water",
+        "nationality": "Norwegian",
+        "pet": "cat"
+      },
+      "house_2": {
+        "cigarette": "Blend",
+        "color": "blue",
+        "drink": "tea",
+        "nationality": "Dane",
+        "pet": "horse"
+      },
+      "house_3": {
+        "cigarette": "Pall Mall",
+        "color": "red",
+        "drink": "milk",
+        "nationality": "Brit",
+        "pet": "bird"
+      },
+      "house_4": {
+        "cigarette": "Prince",
+        "color": "green",
+        "drink": "coffee",
+        "nationality": "German",
+        "pet": "fish"
+      },
+      "house_5": {
+        "cigarette": "Blue Master",
+        "color": "white",
+        "drink": "beer",
+        "nationality": "Swede",
+        "pet": "dog"
+      }
+    },
+    "fish_owner": "German"
+  },
+  "id": "einstein-riddle",
+  "input_data": {
+    "attributes": {
+      "cigarette": [
+        "Pall Mall",
+        "Dunhill",
+        "Blend",
+        "Blue Master",
+        "Prince"
+      ],
+      "color": [
+        "red",
+        "green",
+        "white",
+        "yellow",
+        "blue"
+      ],
+      "drink": [
+        "tea",
+        "coffee",
+        "milk",
+        "beer",
+        "water"
+      ],
+      "nationality": [
+        "Brit",
+        "Swede",
+        "Dane",
+        "Norwegian",
+        "German"
+      ],
+      "pet": [
+        "dog",
+        "bird",
+        "cat",
+        "horse",
+        "fish"
+      ]
+    },
+    "clues": [
+      "The Brit lives in the red house.",
+      "The Swede keeps dogs as pets.",
+      "The Dane drinks tea.",
+      "The green house is on the immediate left of the white house.",
+      "The green house's owner drinks coffee.",
+      "The owner who smokes Pall Mall rears birds.",
+      "The owner of the yellow house smokes Dunhill.",
+      "The owner living in the center house drinks milk.",
+      "The Norwegian lives in the first house.",
+      "The owner who smokes Blends lives next to the one who keeps cats.",
+      "The owner who keeps the horse lives next to the one who smokes Dunhill.",
+      "The owner who smokes Blue Master drinks beer.",
+      "The German smokes Prince.",
+      "The Norwegian lives next to the blue house.",
+      "The owner who smokes Blends has a neighbor who drinks water."
+    ],
+    "houses": 5
+  },
+  "name": "einstein-riddle",
+  "type": "logic_puzzle"
+}

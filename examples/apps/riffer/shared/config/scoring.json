@@ -1,0 +1,64 @@
+{
+  "intervals": {
+    "imperfect_consonance": [
+      3,
+      4,
+      8,
+      9
+    ],
+    "mild_dissonance": [
+      2,
+      10
+    ],
+    "perfect_consonance": [
+      0,
+      7,
+      12
+    ],
+    "strong_dissonance": [
+      1,
+      6,
+      11
+    ]
+  },
+  "ratings": {
+    "excellent": {
+      "label": "Excellent",
+      "max": 100,
+      "min": 90
+    },
+    "fair": {
+      "label": "Fair",
+      "max": 74,
+      "min": 60
+    },
+    "good": {
+      "label": "Good",
+      "max": 89,
+      "min": 75
+    },
+    "poor": {
+      "label": "Poor",
+      "max": 39,
+      "min": 0
+    },
+    "weak": {
+      "label": "Weak",
+      "max": 59,
+      "min": 40
+    }
+  },
+  "thresholds": {
+    "dissonance_resolution_window": 2,
+    "key_confidence_low": 0.6,
+    "key_confidence_very_low": 0.45
+  },
+  "weights": {
+    "dynamics_expression": 10,
+    "harmonic_coherence": 25,
+    "melodic_interest": 20,
+    "resolution_quality": 15,
+    "rhythmic_variety": 20,
+    "structural_balance": 10
+  }
+}

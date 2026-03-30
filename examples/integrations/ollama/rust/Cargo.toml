@@ -1,0 +1,25 @@
+[package]
+name = "ollama-example"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+nxuskit = { path = "../../../../packages/nxuskit" }
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+tokio = { version = "1.49", features = ["full"] }
+futures = "0.3"
+reqwest = { version = "0.12", features = ["json", "stream"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[[bin]]
+name = "ollama-example"
+path = "src/main.rs"
+
+[[bin]]
+name = "ollama_debug_stream"
+path = "src/debug_stream.rs"
+
+[profile.release]
+panic = "abort"

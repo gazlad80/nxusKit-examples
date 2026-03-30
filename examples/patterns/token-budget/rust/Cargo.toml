@@ -1,0 +1,15 @@
+[package]
+name = "token-budget"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Exclude from parent workspace - this is a standalone example
+[workspace]
+
+[dependencies]
+nxuskit-examples-interactive = { path = "../../../shared/rust" }
+nxuskit = { path = "../../../../packages/nxuskit" }
+
+[profile.release]
+panic = "abort"

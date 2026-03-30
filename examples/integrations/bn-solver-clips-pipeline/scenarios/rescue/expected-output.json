@@ -1,0 +1,47 @@
+{
+  "pipeline_stages": {
+    "stage_1_bn_prediction": {
+      "algorithm": "variable_elimination",
+      "evidence": {
+        "building_damage": "major",
+        "hours_since_event": "lt12",
+        "weather_condition": "clear"
+      },
+      "prediction": {
+        "most_likely": "medium",
+        "posterior": {
+          "high": 0.22,
+          "low": 0.18,
+          "medium": 0.40,
+          "unlikely": 0.20
+        },
+        "variable": "survivor_probability"
+      }
+    },
+    "stage_2_solver_optimization": {
+      "objective": "maximize total_survivors_rescued",
+      "sample_assignments": {
+        "team_1_zone": 2,
+        "team_2_zone": 1,
+        "team_3_zone": 4,
+        "team_4_zone": 3
+      },
+      "status": "optimal"
+    },
+    "stage_3_clips_safety": {
+      "alerts": [
+        {
+          "alert_type": "team_advisory",
+          "severity": "warning"
+        },
+        {
+          "alert_type": "helicopter_grounded",
+          "severity": "critical"
+        }
+      ],
+      "rules_file": "rules.clp",
+      "total_alerts": 2
+    }
+  },
+  "scenario": "rescue"
+}

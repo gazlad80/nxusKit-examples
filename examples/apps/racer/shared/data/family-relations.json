@@ -1,0 +1,191 @@
+{
+  "clips_rules_path": "examples/rules/racer/family-relations.clp",
+  "description": "Determine family relationships (parent, grandparent, sibling, uncle/aunt, cousin) from a set of parent-child facts. The system must infer all transitive relationships.",
+  "difficulty": "medium",
+  "expected_solution": {
+    "query_results": [
+      {
+        "query": "grandparent(Alice, Eve)",
+        "result": true
+      },
+      {
+        "query": "sibling(Carol, David)",
+        "result": true
+      },
+      {
+        "query": "sibling(Eve, Frank)",
+        "result": true
+      },
+      {
+        "query": "cousin(Eve, Grace)",
+        "result": true
+      },
+      {
+        "query": "uncle_or_aunt(David, Eve)",
+        "result": true
+      }
+    ],
+    "relationships": {
+      "cousins": [
+        {
+          "person1": "Eve",
+          "person2": "Grace"
+        },
+        {
+          "person1": "Eve",
+          "person2": "Henry"
+        },
+        {
+          "person1": "Frank",
+          "person2": "Grace"
+        },
+        {
+          "person1": "Frank",
+          "person2": "Henry"
+        }
+      ],
+      "grandparents": [
+        {
+          "grandchild": "Eve",
+          "grandparent": "Alice"
+        },
+        {
+          "grandchild": "Frank",
+          "grandparent": "Alice"
+        },
+        {
+          "grandchild": "Grace",
+          "grandparent": "Alice"
+        },
+        {
+          "grandchild": "Henry",
+          "grandparent": "Alice"
+        },
+        {
+          "grandchild": "Eve",
+          "grandparent": "Bob"
+        },
+        {
+          "grandchild": "Frank",
+          "grandparent": "Bob"
+        },
+        {
+          "grandchild": "Grace",
+          "grandparent": "Bob"
+        },
+        {
+          "grandchild": "Henry",
+          "grandparent": "Bob"
+        }
+      ],
+      "siblings": [
+        {
+          "person1": "Carol",
+          "person2": "David"
+        },
+        {
+          "person1": "Eve",
+          "person2": "Frank"
+        },
+        {
+          "person1": "Grace",
+          "person2": "Henry"
+        }
+      ],
+      "uncles_aunts": [
+        {
+          "niece_nephew": "Eve",
+          "uncle_aunt": "David"
+        },
+        {
+          "niece_nephew": "Frank",
+          "uncle_aunt": "David"
+        },
+        {
+          "niece_nephew": "Grace",
+          "uncle_aunt": "Carol"
+        },
+        {
+          "niece_nephew": "Henry",
+          "uncle_aunt": "Carol"
+        }
+      ]
+    }
+  },
+  "id": "family-relations",
+  "input_data": {
+    "parent_child_facts": [
+      {
+        "child": "Carol",
+        "parent": "Alice"
+      },
+      {
+        "child": "David",
+        "parent": "Alice"
+      },
+      {
+        "child": "Carol",
+        "parent": "Bob"
+      },
+      {
+        "child": "David",
+        "parent": "Bob"
+      },
+      {
+        "child": "Eve",
+        "parent": "Carol"
+      },
+      {
+        "child": "Frank",
+        "parent": "Carol"
+      },
+      {
+        "child": "Grace",
+        "parent": "David"
+      },
+      {
+        "child": "Henry",
+        "parent": "David"
+      }
+    ],
+    "people": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "David",
+      "Eve",
+      "Frank",
+      "Grace",
+      "Henry"
+    ],
+    "queries": [
+      {
+        "person1": "Alice",
+        "person2": "Eve",
+        "relationship": "grandparent"
+      },
+      {
+        "person1": "Carol",
+        "person2": "David",
+        "relationship": "sibling"
+      },
+      {
+        "person1": "Eve",
+        "person2": "Frank",
+        "relationship": "sibling"
+      },
+      {
+        "person1": "Eve",
+        "person2": "Grace",
+        "relationship": "cousin"
+      },
+      {
+        "person1": "David",
+        "person2": "Eve",
+        "relationship": "uncle_or_aunt"
+      }
+    ]
+  },
+  "name": "family-relations",
+  "type": "constraint_satisfaction"
+}
