@@ -4,6 +4,8 @@ A command-line tool demonstrating the Solver pattern: using CLIPS rules to evalu
 
 > Stop accepting unreliable LLM output — validate every response against CLIPS rules and retry automatically until your standards are met.
 
+**Scenarios**: `classification` · `extraction` · `reasoning`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

@@ -4,6 +4,8 @@ A puzzle-solving framework that compares CLIPS-only, LLM-only, and Hybrid solvin
 
 > Compare CLIPS rule-based constraint solving against LLM reasoning side by side, then combine both in a hybrid approach for real puzzle problems.
 
+**Scenarios**: `sudoku` · `set-game` · `compare`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

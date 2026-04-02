@@ -4,6 +4,8 @@ A command-line tool for generating CLIPS rules from natural language description
 
 > Turn plain English into validated CLIPS rules — describe your business logic, get production-ready expert system code with automatic error correction.
 
+**Scenarios**: `generate` · `validate` · `save` · `load` · `examples`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

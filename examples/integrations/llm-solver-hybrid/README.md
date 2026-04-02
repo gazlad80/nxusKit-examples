@@ -4,6 +4,8 @@ Demonstrates using an LLM to translate natural language constraints into structu
 
 > Bridge natural language and constraint solvers — let an LLM parse human intent, let Z3 find the optimal answer.
 
+**Scenarios**: `seating` · `dungeon` · `road-trip`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

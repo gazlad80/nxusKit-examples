@@ -4,6 +4,8 @@ Demonstrates push/pop scoping, assumption-based solving, and what-if analysis us
 
 > Explore alternative outcomes without rebuilding your model — push constraints, solve, compare, and pop back to baseline in one clean pattern.
 
+**Scenarios**: `wedding` · `mars` · `recipe`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

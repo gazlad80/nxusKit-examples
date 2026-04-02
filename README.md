@@ -20,38 +20,100 @@ python examples/patterns/basic-chat/python/main.py                        # Pyth
 
 ## Examples
 
+<!-- EXAMPLES-TABLE:START -->
+
 ### Patterns — Reusable SDK integration patterns
 
 | Example | Description | Languages |
 |---------|-------------|-----------|
-| [basic-chat](examples/patterns/basic-chat/) | Simple chat with any LLM provider | Rust, Go, Python |
-| [streaming](examples/patterns/streaming/) | Streaming responses | Rust, Go, Python |
-| [multi-provider](examples/patterns/multi-provider/) | Switch between providers | Rust, Go, Python |
-| [auth-helper](examples/patterns/auth-helper/) | OAuth and credential management | Rust (CLI + GUI), Go |
-| [vision](examples/patterns/vision/) | Image/vision capabilities | Rust, Go, Python |
-| [solver](examples/patterns/solver/) | Z3 constraint solving | Rust, Go, Python |
-| [cost-routing](examples/patterns/cost-routing/) | Route requests by cost/capability | Rust, Go |
-| [retry-fallback](examples/patterns/retry-fallback/) | Retry with provider fallback | Rust, Go |
+| [basic-chat](examples/patterns/basic-chat/) | Basic chat completion with a simple prompt | Rust, Go, Python |
+| [streaming](examples/patterns/streaming/) | Streaming chat completion with real-time output | Rust, Go, Python |
+| [multi-provider](examples/patterns/multi-provider/) | Using multiple providers in one application | Rust, Go, Python |
+| [convenience-api](examples/patterns/convenience-api/) | LiteLLM-style convenience API usage | Rust, Go |
+| [blocking-api](examples/patterns/blocking-api/) | Synchronous blocking API for simpler use cases | Rust, Go |
+| [capability-detection](examples/patterns/capability-detection/) | Detecting provider capabilities at runtime | Rust, Go |
+| [cost-routing](examples/patterns/cost-routing/) | Cost-aware provider routing and selection | Go, Python, Rust |
+| [polymorphic](examples/patterns/polymorphic/) | Polymorphic provider patterns with trait objects | Rust, Go |
+| [retry-fallback](examples/patterns/retry-fallback/) | Retry and fallback strategies across providers | Go, Python, Rust |
+| [structured-output](examples/patterns/structured-output/) | JSON mode and structured output generation | Go, Python, Rust |
+| [timeout-config](examples/patterns/timeout-config/) | Timeout configuration and connection management | Go, Python, Rust |
+| [token-budget](examples/patterns/token-budget/) | Token budget management and cost estimation | Go, Python, Rust |
+| [vision](examples/patterns/vision/) | Vision and multimodal capabilities with images | Rust, Go, Python |
+| [auth-helper](examples/patterns/auth-helper/) | OAuth login flow and credential management helper | Go, Rust |
+| &nbsp;&nbsp;↳ `status` | List provider authentication status and stored credentials | |
+| &nbsp;&nbsp;↳ `set` | Store an API key for a specific provider | |
+| &nbsp;&nbsp;↳ `remove` | Remove a stored API key for a provider | |
+| &nbsp;&nbsp;↳ `dashboard` | Open provider credential dashboard in browser | |
+| [solver](examples/patterns/solver/) | Z3 constraint solver integration via nxusKit SDK | Rust, Go, Python |
+| &nbsp;&nbsp;↳ `theme-park` | Budget and space planning for a theme park with rides, food courts, and entertainment zones | |
+| &nbsp;&nbsp;↳ `space-colony` | Resource allocation for a space colony dealing with solar storm what-if scenarios | |
+| &nbsp;&nbsp;↳ `fantasy-draft` | Fantasy sports draft optimization under salary cap with injury what-if analysis | |
+| [bayesian-inference](examples/patterns/bayesian-inference/) | Bayesian network inference via nxusKit SDK | Rust, Go, Python |
+| &nbsp;&nbsp;↳ `haunted-house` | Investigate a haunted house — is it a ghost or a raccoon? | |
+| &nbsp;&nbsp;↳ `coffee-shop` | Diagnose bad espresso from grind size, temperature, and bean age | |
+| &nbsp;&nbsp;↳ `plant-doctor` | Diagnose a sick plant from overwatering, nutrient, and disease evidence | |
+| [solver-what-if](examples/patterns/solver-what-if/) | What-if scenario analysis with solver scoping | Rust, Go, Python |
+| &nbsp;&nbsp;↳ `wedding` | Wedding budget planning with $25k constraint and vendor what-if scenarios | |
+| &nbsp;&nbsp;↳ `mars` | Mars colony resource allocation with dust storm what-if disruptions | |
+| &nbsp;&nbsp;↳ `recipe` | Recipe scaling with vegan substitution — may be UNSAT | |
 
 ### Integrations — Combining SDK features
 
 | Example | Description | Languages |
 |---------|-------------|-----------|
-| [clips-basics](examples/integrations/clips-basics/) | CLIPS expert system fundamentals | Rust, Go |
-| [clips-llm-hybrid](examples/integrations/clips-llm-hybrid/) | CLIPS rules + LLM reasoning | Rust, Go |
-| [zen-decisions](examples/integrations/zen-decisions/) | ZEN decision table evaluation | Rust, Go |
-| [bn-solver-clips-pipeline](examples/integrations/bn-solver-clips-pipeline/) | Bayesian → Solver → CLIPS pipeline | Rust, Go |
-| [ollama](examples/integrations/ollama/) | Local LLM via Ollama | Rust, Go |
+| [ollama](examples/integrations/ollama/) | Using Ollama for local inference | Go, Python, Rust |
+| [lmstudio](examples/integrations/lmstudio/) | Using LM Studio for local inference | Rust, Go |
+| [alert-triage](examples/integrations/alert-triage/) | Alert triage with LLM-powered analysis | Rust, Go |
+| [cli-assistant](examples/integrations/cli-assistant/) | Interactive CLI assistant with LLM backend | Rust, Go |
+| [clips-basics](examples/integrations/clips-basics/) | CLIPS rule engine basics via nxusKit SDK | Rust, Go |
+| [clips-llm-hybrid](examples/integrations/clips-llm-hybrid/) | Hybrid CLIPS rules + LLM reasoning | Go, Python, Rust |
+| [bn-solver-clips-pipeline](examples/integrations/bn-solver-clips-pipeline/) | Three-stage BN prediction → Solver optimization → CLIPS safety pipeline | Rust, Go |
+| &nbsp;&nbsp;↳ `festival` | Music festival staging — crowd predictions drive band scheduling and safety | |
+| &nbsp;&nbsp;↳ `rescue` | Search and rescue — survivor probability drives team assignment and safety checks | |
+| &nbsp;&nbsp;↳ `bakery` | Bakery scheduling — demand forecasts drive oven allocation and allergen separation | |
+| [llm-solver-hybrid](examples/integrations/llm-solver-hybrid/) | Hybrid LLM + Z3 solver problem solving | Rust, Go, Python |
+| &nbsp;&nbsp;↳ `seating` | Wedding dinner seating — 12 guests across 3 tables with constraints | |
+| &nbsp;&nbsp;↳ `dungeon` | Dungeon layout — 5 rooms with boss and treasure placement rules | |
+| &nbsp;&nbsp;↳ `road-trip` | Road trip planning — 14 days across 5 national parks with preferences | |
+| [bn-structure-learning](examples/integrations/bn-structure-learning/) | Bayesian network structure learning from data | Go, Python, Rust |
+| &nbsp;&nbsp;↳ `golf` | Golf course conditions — weather, soil, and maintenance factor learning | |
+| &nbsp;&nbsp;↳ `bmx` | BMX performance — skill level, technique, and jump factor learning | |
+| &nbsp;&nbsp;↳ `sourdough` | Sourdough baking — feeding schedule, flour type, and temperature factor learning | |
+| [zen-decisions](examples/integrations/zen-decisions/) | ZEN decision table evaluation via nxusKit SDK | Go, Python, Rust |
+| &nbsp;&nbsp;↳ `maze-rat` | First Hit Policy — route a maze runner through personality-driven decisions | |
+| &nbsp;&nbsp;↳ `potion` | Collect Hit Policy — match ingredient lists against brewing recipes | |
+| &nbsp;&nbsp;↳ `food-truck` | Expression Nodes — compute dynamic pricing with conditional logic | |
 
 ### Apps — Complete applications
 
 | Example | Description | Languages |
 |---------|-------------|-----------|
-| [racer](examples/apps/racer/) | CLIPS vs LLM head-to-head race | Rust, Go |
-| [arbiter](examples/apps/arbiter/) | Auto-retry LLM with CLIPS validation | Rust, Go |
-| [puzzler](examples/apps/puzzler/) | Sudoku and Set Game solving via CLIPS | Rust, Go |
-| [ruler](examples/apps/ruler/) | LLM-generated CLIPS rules | Rust, Go |
-| [riffer](examples/apps/riffer/) | Music analysis with CLIPS + LLM | Rust, Go |
+| [puzzler](examples/apps/puzzler/) | Multi-approach puzzle solver comparing CLIPS, LLM, and hybrid strategies | Rust, Go |
+| &nbsp;&nbsp;↳ `sudoku` | Solve Sudoku puzzles using CLIPS constraint propagation | |
+| &nbsp;&nbsp;↳ `set-game` | Find valid SET card combinations using CLIPS pattern matching | |
+| &nbsp;&nbsp;↳ `compare` | Side-by-side comparison of CLIPS, LLM, and hybrid solvers | |
+| [racer](examples/apps/racer/) | CLIPS vs LLM head-to-head benchmarking tool | Rust, Go |
+| &nbsp;&nbsp;↳ `race` | Head-to-head CLIPS vs LLM race on a single problem | |
+| &nbsp;&nbsp;↳ `benchmark` | Statistical benchmarking with multiple runs and timing | |
+| &nbsp;&nbsp;↳ `list` | List all available problems with difficulty ratings | |
+| &nbsp;&nbsp;↳ `describe` | Show detailed description of a specific problem | |
+| [riffer](examples/apps/riffer/) | Music sequence analysis and transformation tool (still learning to shred) | Rust, Go |
+| &nbsp;&nbsp;↳ `analyze` | Analyze a music sequence for key, intervals, and rhythm patterns | |
+| &nbsp;&nbsp;↳ `score` | Score a sequence on six musical dimensions | |
+| &nbsp;&nbsp;↳ `transform` | Transform a sequence — transpose, invert, or retrograde | |
+| &nbsp;&nbsp;↳ `convert` | Convert between MIDI and MusicXML formats | |
+| [ruler](examples/apps/ruler/) | LLM-powered CLIPS rule generator with automatic validation | Rust, Go |
+| &nbsp;&nbsp;↳ `generate` | Generate CLIPS rules from natural language descriptions | |
+| &nbsp;&nbsp;↳ `validate` | Validate CLIPS rule syntax and semantic correctness | |
+| &nbsp;&nbsp;↳ `save` | Save generated rules to a file for later use | |
+| &nbsp;&nbsp;↳ `load` | Load previously saved rules from a file | |
+| &nbsp;&nbsp;↳ `examples` | Run progressive complexity examples demonstrating rule generation | |
+| [arbiter](examples/apps/arbiter/) | CLIPS-validated LLM retry app with rule-based answer verification | Rust, Go |
+| &nbsp;&nbsp;↳ `classification` | Categorize input text into specified categories | |
+| &nbsp;&nbsp;↳ `extraction` | Extract structured information from unstructured text | |
+| &nbsp;&nbsp;↳ `reasoning` | Perform logical inference and multi-step reasoning | |
+
+<!-- EXAMPLES-TABLE:END -->
 
 ## SDK Editions
 
@@ -102,6 +164,10 @@ go run -tags nxuskit ./examples/<category>/<name>/go/cmd
 ```bash
 python examples/<category>/<name>/python/main.py
 ```
+
+## Acknowledgements
+
+These examples build on outstanding open-source projects. See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for the full list, and [NOTICE](NOTICE) for third-party license details.
 
 ## License
 

@@ -35,32 +35,76 @@ A curated collection of **32 production-ready examples** demonstrating LLM integ
 | [Convenience API](patterns/convenience-api/) | Community | Pattern | Use simplified one-liner API for quick LLM calls | Rapid prototyping, scripting with LLM capabilities | LLM | rust, go |
 | [Blocking API](patterns/blocking-api/) | Community | Pattern | Make synchronous LLM calls without async runtime | CLI tools, batch processing scripts | LLM | rust, go |
 | [Capability Detection](patterns/capability-detection/) | Community | Pattern | Query provider capabilities before dispatching requests | Adaptive AI middleware, feature-gated UX | LLM | rust, go |
-| [Cost Routing](patterns/cost-routing/) | Community | Pattern | Route requests to cost-appropriate models based on task complexity | Cost-optimized inference, budget-aware model selection, prompt complexity tiering | LLM | rust, go |
+| [Cost Routing](patterns/cost-routing/) | Community | Pattern | Route requests to cost-appropriate models based on task complexity | Cost-optimized inference, budget-aware model selection, prompt complexity tiering | LLM | go, python, rust |
 | [Polymorphic](patterns/polymorphic/) | Community | Pattern | Use trait objects and interfaces to abstract over providers | Plugin architecture, provider-agnostic application layer | LLM | rust, go |
-| [Retry Fallback](patterns/retry-fallback/) | Community | Pattern | Automatically retry failed requests and fall back to alternate providers | High-availability AI service, resilient inference pipeline | LLM | rust, go |
-| [Structured Output](patterns/structured-output/) | Community | Pattern | Request and parse structured JSON responses from an LLM | Data extraction, form auto-fill, API response generation | LLM | rust, go |
-| [Timeout Config](patterns/timeout-config/) | Community | Pattern | Configure request timeouts and connection pool settings | Latency-sensitive services, SLA-bound AI endpoints | LLM | rust, go |
-| [Token Budget](patterns/token-budget/) | Community | Pattern | Track and limit token usage across requests | Usage metering, per-user quota enforcement | LLM | rust, go |
+| [Retry Fallback](patterns/retry-fallback/) | Community | Pattern | Automatically retry failed requests and fall back to alternate providers | High-availability AI service, resilient inference pipeline | LLM | go, python, rust |
+| [Structured Output](patterns/structured-output/) | Community | Pattern | Request and parse structured JSON responses from an LLM | Data extraction, form auto-fill, API response generation | LLM | go, python, rust |
+| [Timeout Config](patterns/timeout-config/) | Community | Pattern | Configure request timeouts and connection pool settings | Latency-sensitive services, SLA-bound AI endpoints | LLM | go, python, rust |
+| [Token Budget](patterns/token-budget/) | Community | Pattern | Track and limit token usage across requests | Usage metering, per-user quota enforcement | LLM | go, python, rust |
 | [Vision](patterns/vision/) | Community | Pattern | Send images alongside text prompts for multimodal analysis | Image captioning, visual QA, document understanding | LLM, Vision | rust, go, python |
-| [Auth Helper](patterns/auth-helper/) | Community | Pattern | List providers, check auth status, set credentials, initiate OAuth flows | Developer tooling, credential management, multi-provider auth setup | Auth, OAuth | go |
+| [Auth Helper](patterns/auth-helper/) | Community | Pattern | List providers, check auth status, set credentials, initiate OAuth flows | Developer tooling, credential management, multi-provider auth setup | Auth, OAuth | go, rust |
+| &nbsp;&nbsp;↳ `status` | | | List provider authentication status and stored credentials | | | |
+| &nbsp;&nbsp;↳ `set` | | | Store an API key for a specific provider | | | |
+| &nbsp;&nbsp;↳ `remove` | | | Remove a stored API key for a provider | | | |
+| &nbsp;&nbsp;↳ `dashboard` | | | Open provider credential dashboard in browser | | | |
 | [Solver](patterns/solver/) | Pro | Pattern | Define and solve constraint satisfaction problems with Z3 | Scheduling optimization, resource allocation, configuration validation | Solver | rust, go, python |
+| &nbsp;&nbsp;↳ `theme-park` | | | Budget and space planning for a theme park with rides, food courts, and entertainment zones | | | |
+| &nbsp;&nbsp;↳ `space-colony` | | | Resource allocation for a space colony dealing with solar storm what-if scenarios | | | |
+| &nbsp;&nbsp;↳ `fantasy-draft` | | | Fantasy sports draft optimization under salary cap with injury what-if analysis | | | |
 | [Bayesian Inference](patterns/bayesian-inference/) | Community | Pattern | Build a Bayesian network and perform probabilistic inference | Risk assessment, medical diagnosis support, fault detection | BN | rust, go, python |
-| [Solver What If](patterns/solver-what-if/) | Pro | Pattern | Explore what-if scenarios with solver push/pop constraint scoping | Financial planning, capacity modeling, sensitivity analysis | Solver | rust, go |
-| [Ollama](integrations/ollama/) | Community | Integration | Connect to a local Ollama instance for private LLM inference | On-premise AI deployment, air-gapped inference | LLM | rust, go |
+| &nbsp;&nbsp;↳ `haunted-house` | | | Investigate a haunted house — is it a ghost or a raccoon? | | | |
+| &nbsp;&nbsp;↳ `coffee-shop` | | | Diagnose bad espresso from grind size, temperature, and bean age | | | |
+| &nbsp;&nbsp;↳ `plant-doctor` | | | Diagnose a sick plant from overwatering, nutrient, and disease evidence | | | |
+| [Solver What If](patterns/solver-what-if/) | Pro | Pattern | Explore what-if scenarios with solver push/pop constraint scoping | Financial planning, capacity modeling, sensitivity analysis | Solver | rust, go, python |
+| &nbsp;&nbsp;↳ `wedding` | | | Wedding budget planning with $25k constraint and vendor what-if scenarios | | | |
+| &nbsp;&nbsp;↳ `mars` | | | Mars colony resource allocation with dust storm what-if disruptions | | | |
+| &nbsp;&nbsp;↳ `recipe` | | | Recipe scaling with vegan substitution — may be UNSAT | | | |
+| [Ollama](integrations/ollama/) | Community | Integration | Connect to a local Ollama instance for private LLM inference | On-premise AI deployment, air-gapped inference | LLM | go, python, rust |
 | [LM Studio](integrations/lmstudio/) | Community | Integration | Connect to a local LM Studio server for desktop LLM inference | Developer local testing, offline prototyping | LLM | rust, go |
 | [Alert Triage](integrations/alert-triage/) | Community | Integration | Classify and prioritize alerts using LLM reasoning | SOC alert triage, IT incident management | LLM | rust, go |
 | [CLI Assistant](integrations/cli-assistant/) | Community | Integration | Build an interactive terminal assistant powered by an LLM | Developer productivity tool, command-line copilot | LLM | rust, go |
 | [CLIPS Basics](integrations/clips-basics/) | Community | Integration | Load rules, assert facts, and run the CLIPS inference engine | Business rules engine, compliance checking | CLIPS | rust, go |
-| [CLIPS LLM Hybrid](integrations/clips-llm-hybrid/) | Community | Integration | Combine deterministic CLIPS rules with LLM-based reasoning | Explainable AI decisions, regulated industry automation | CLIPS, LLM | rust, go |
+| [CLIPS LLM Hybrid](integrations/clips-llm-hybrid/) | Community | Integration | Combine deterministic CLIPS rules with LLM-based reasoning | Explainable AI decisions, regulated industry automation | CLIPS, LLM | go, python, rust |
 | [BN Solver CLIPS Pipeline](integrations/bn-solver-clips-pipeline/) | Pro | Integration | Chain Bayesian Network prediction into Solver optimization with CLIPS safety enforcement | Multi-stage decision support, risk-aware optimization with safety validation | BN, Solver, CLIPS | rust, go |
-| [LLM Solver Hybrid](integrations/llm-solver-hybrid/) | Pro | Integration | Use an LLM to formulate constraints and Z3 to solve them | Natural language optimization, conversational planning | LLM, Solver | rust, go |
-| [BN Structure Learning](integrations/bn-structure-learning/) | Community | Integration | Learn Bayesian network structure from observational data | Causal discovery, epidemiological modeling, root cause analysis | BN | rust, go |
-| [ZEN Decisions](integrations/zen-decisions/) | Pro | Integration | Evaluate business decision tables using the ZEN engine | Pricing rules, eligibility determination, policy evaluation | ZEN | rust, go |
+| &nbsp;&nbsp;↳ `festival` | | | Music festival staging — crowd predictions drive band scheduling and safety | | | |
+| &nbsp;&nbsp;↳ `rescue` | | | Search and rescue — survivor probability drives team assignment and safety checks | | | |
+| &nbsp;&nbsp;↳ `bakery` | | | Bakery scheduling — demand forecasts drive oven allocation and allergen separation | | | |
+| [LLM Solver Hybrid](integrations/llm-solver-hybrid/) | Pro | Integration | Use an LLM to formulate constraints and Z3 to solve them | Natural language optimization, conversational planning | LLM, Solver | rust, go, python |
+| &nbsp;&nbsp;↳ `seating` | | | Wedding dinner seating — 12 guests across 3 tables with constraints | | | |
+| &nbsp;&nbsp;↳ `dungeon` | | | Dungeon layout — 5 rooms with boss and treasure placement rules | | | |
+| &nbsp;&nbsp;↳ `road-trip` | | | Road trip planning — 14 days across 5 national parks with preferences | | | |
+| [BN Structure Learning](integrations/bn-structure-learning/) | Community | Integration | Learn Bayesian network structure from observational data | Causal discovery, epidemiological modeling, root cause analysis | BN | go, python, rust |
+| &nbsp;&nbsp;↳ `golf` | | | Golf course conditions — weather, soil, and maintenance factor learning | | | |
+| &nbsp;&nbsp;↳ `bmx` | | | BMX performance — skill level, technique, and jump factor learning | | | |
+| &nbsp;&nbsp;↳ `sourdough` | | | Sourdough baking — feeding schedule, flour type, and temperature factor learning | | | |
+| [ZEN Decisions](integrations/zen-decisions/) | Pro | Integration | Evaluate business decision tables using the ZEN engine | Pricing rules, eligibility determination, policy evaluation | ZEN | go, python, rust |
+| &nbsp;&nbsp;↳ `maze-rat` | | | First Hit Policy — route a maze runner through personality-driven decisions | | | |
+| &nbsp;&nbsp;↳ `potion` | | | Collect Hit Policy — match ingredient lists against brewing recipes | | | |
+| &nbsp;&nbsp;↳ `food-truck` | | | Expression Nodes — compute dynamic pricing with conditional logic | | | |
 | [Puzzler](apps/puzzler/) | Pro | App | Compare CLIPS rule-based, LLM reasoning, and hybrid approaches for solving logic puzzles | AI strategy comparison, constraint vs neural solving benchmarks, educational puzzle platforms | CLIPS, LLM, Solver | rust, go |
+| &nbsp;&nbsp;↳ `sudoku` | | | Solve Sudoku puzzles using CLIPS constraint propagation | | | |
+| &nbsp;&nbsp;↳ `set-game` | | | Find valid SET card combinations using CLIPS pattern matching | | | |
+| &nbsp;&nbsp;↳ `compare` | | | Side-by-side comparison of CLIPS, LLM, and hybrid solvers | | | |
 | [Racer](apps/racer/) | Pro | App | Race CLIPS rule-based solving against LLM reasoning on logic puzzles | AI approach comparison, rule engine vs LLM benchmarking, hybrid strategy selection | CLIPS, LLM | rust, go |
+| &nbsp;&nbsp;↳ `race` | | | Head-to-head CLIPS vs LLM race on a single problem | | | |
+| &nbsp;&nbsp;↳ `benchmark` | | | Statistical benchmarking with multiple runs and timing | | | |
+| &nbsp;&nbsp;↳ `list` | | | List all available problems with difficulty ratings | | | |
+| &nbsp;&nbsp;↳ `describe` | | | Show detailed description of a specific problem | | | |
 | [Riffer](apps/riffer/) | Pro | App | Analyze, score, and transform music sequences with optional CLIPS and LLM enhancements | Music theory analysis, algorithmic composition assistance, MIDI/MusicXML processing | CLIPS, LLM | rust, go |
+| &nbsp;&nbsp;↳ `analyze` | | | Analyze a music sequence for key, intervals, and rhythm patterns | | | |
+| &nbsp;&nbsp;↳ `score` | | | Score a sequence on six musical dimensions | | | |
+| &nbsp;&nbsp;↳ `transform` | | | Transform a sequence — transpose, invert, or retrograde | | | |
+| &nbsp;&nbsp;↳ `convert` | | | Convert between MIDI and MusicXML formats | | | |
 | [Ruler](apps/ruler/) | Pro | App | Describe business rules in natural language and generate validated CLIPS code using LLM | Low-code rule authoring, natural language business logic, automated CLIPS code generation | CLIPS, LLM | rust, go |
+| &nbsp;&nbsp;↳ `generate` | | | Generate CLIPS rules from natural language descriptions | | | |
+| &nbsp;&nbsp;↳ `validate` | | | Validate CLIPS rule syntax and semantic correctness | | | |
+| &nbsp;&nbsp;↳ `save` | | | Save generated rules to a file for later use | | | |
+| &nbsp;&nbsp;↳ `load` | | | Load previously saved rules from a file | | | |
+| &nbsp;&nbsp;↳ `examples` | | | Run progressive complexity examples demonstrating rule generation | | | |
 | [Arbiter](apps/arbiter/) | Pro | App | Submit questions to an LLM and validate answers against CLIPS rules, retrying on validation failure | Reliable AI answers with deterministic validation, LLM output verification, hybrid rule+LLM pipelines | CLIPS, LLM | rust, go |
+| &nbsp;&nbsp;↳ `classification` | | | Categorize input text into specified categories | | | |
+| &nbsp;&nbsp;↳ `extraction` | | | Extract structured information from unstructured text | | | |
+| &nbsp;&nbsp;↳ `reasoning` | | | Perform logical inference and multi-step reasoning | | | |
 
 ---
 
@@ -242,27 +286,27 @@ A curated collection of **32 production-ready examples** demonstrating LLM integ
 | [Convenience API](patterns/convenience-api/) | patterns | Yes | Yes | - |
 | [Blocking API](patterns/blocking-api/) | patterns | Yes | Yes | - |
 | [Capability Detection](patterns/capability-detection/) | patterns | Yes | Yes | - |
-| [Cost Routing](patterns/cost-routing/) | patterns | Yes | Yes | - |
+| [Cost Routing](patterns/cost-routing/) | patterns | Yes | Yes | Yes |
 | [Polymorphic](patterns/polymorphic/) | patterns | Yes | Yes | - |
-| [Retry Fallback](patterns/retry-fallback/) | patterns | Yes | Yes | - |
-| [Structured Output](patterns/structured-output/) | patterns | Yes | Yes | - |
-| [Timeout Config](patterns/timeout-config/) | patterns | Yes | Yes | - |
-| [Token Budget](patterns/token-budget/) | patterns | Yes | Yes | - |
+| [Retry Fallback](patterns/retry-fallback/) | patterns | Yes | Yes | Yes |
+| [Structured Output](patterns/structured-output/) | patterns | Yes | Yes | Yes |
+| [Timeout Config](patterns/timeout-config/) | patterns | Yes | Yes | Yes |
+| [Token Budget](patterns/token-budget/) | patterns | Yes | Yes | Yes |
 | [Vision](patterns/vision/) | patterns | Yes | Yes | Yes |
-| [Auth Helper](patterns/auth-helper/) | patterns | - | Yes | - |
+| [Auth Helper](patterns/auth-helper/) | patterns | Yes | Yes | - |
 | [Solver](patterns/solver/) | patterns | Yes | Yes | Yes |
 | [Bayesian Inference](patterns/bayesian-inference/) | patterns | Yes | Yes | Yes |
-| [Solver What If](patterns/solver-what-if/) | patterns | Yes | Yes | - |
-| [Ollama](integrations/ollama/) | integrations | Yes | Yes | - |
+| [Solver What If](patterns/solver-what-if/) | patterns | Yes | Yes | Yes |
+| [Ollama](integrations/ollama/) | integrations | Yes | Yes | Yes |
 | [LM Studio](integrations/lmstudio/) | integrations | Yes | Yes | - |
 | [Alert Triage](integrations/alert-triage/) | integrations | Yes | Yes | - |
 | [CLI Assistant](integrations/cli-assistant/) | integrations | Yes | Yes | - |
 | [CLIPS Basics](integrations/clips-basics/) | integrations | Yes | Yes | - |
-| [CLIPS LLM Hybrid](integrations/clips-llm-hybrid/) | integrations | Yes | Yes | - |
+| [CLIPS LLM Hybrid](integrations/clips-llm-hybrid/) | integrations | Yes | Yes | Yes |
 | [BN Solver CLIPS Pipeline](integrations/bn-solver-clips-pipeline/) | integrations | Yes | Yes | - |
-| [LLM Solver Hybrid](integrations/llm-solver-hybrid/) | integrations | Yes | Yes | - |
-| [BN Structure Learning](integrations/bn-structure-learning/) | integrations | Yes | Yes | - |
-| [ZEN Decisions](integrations/zen-decisions/) | integrations | Yes | Yes | - |
+| [LLM Solver Hybrid](integrations/llm-solver-hybrid/) | integrations | Yes | Yes | Yes |
+| [BN Structure Learning](integrations/bn-structure-learning/) | integrations | Yes | Yes | Yes |
+| [ZEN Decisions](integrations/zen-decisions/) | integrations | Yes | Yes | Yes |
 | [Puzzler](apps/puzzler/) | apps | Yes | Yes | - |
 | [Racer](apps/racer/) | apps | Yes | Yes | - |
 | [Riffer](apps/riffer/) | apps | Yes | Yes | - |

@@ -1,0 +1,571 @@
+{
+  "examples": [
+    {
+      "name": "alert-triage",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "arbiter",
+      "category": "apps",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "auth-helper",
+      "category": "patterns",
+      "classification": "has-direct-deps",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "eframe",
+          "egui",
+          "egui-notify",
+          "libc",
+          "open",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "basic-chat",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "bayesian-inference",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "blocking-api",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "bn-solver-clips-pipeline",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "bn-structure-learning",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "capability-detection",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "cli-assistant",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "clips-basics",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "clips-llm-hybrid",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "convenience-api",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "cost-routing",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "llm-solver-hybrid",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "lmstudio",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "multi-provider",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "ollama",
+      "category": "integrations",
+      "classification": "has-direct-deps",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "futures",
+          "reqwest",
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "polymorphic",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "puzzler",
+      "category": "apps",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "racer",
+      "category": "apps",
+      "classification": "has-direct-deps",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [
+          "github.com/google/uuid",
+          "golang.org/x/sync"
+        ],
+        "python": []
+      }
+    },
+    {
+      "name": "retry-fallback",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "futures",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "riffer",
+      "category": "apps",
+      "classification": "has-direct-deps",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "midly",
+          "quick-xml",
+          "roxmltree",
+          "serde",
+          "serde_json",
+          "thiserror",
+          "tokio",
+          "uuid"
+        ],
+        "go": [
+          "gitlab.com/gomidi/midi/v2"
+        ],
+        "python": []
+      }
+    },
+    {
+      "name": "ruler",
+      "category": "apps",
+      "classification": "has-direct-deps",
+      "languages": [
+        "go",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [
+          "github.com/google/uuid"
+        ],
+        "python": []
+      }
+    },
+    {
+      "name": "solver",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "solver-what-if",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "streaming",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "structured-output",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "serde",
+          "serde_json",
+          "tokio"
+        ],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "timeout-config",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "token-budget",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "vision",
+      "category": "patterns",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [],
+        "go": [],
+        "python": []
+      }
+    },
+    {
+      "name": "zen-decisions",
+      "category": "integrations",
+      "classification": "sdk-only",
+      "languages": [
+        "go",
+        "python",
+        "rust"
+      ],
+      "direct_deps": {
+        "rust": [
+          "clap",
+          "serde",
+          "serde_json"
+        ],
+        "go": [],
+        "python": []
+      }
+    }
+  ]
+}

@@ -4,6 +4,8 @@ Demonstrates OAuth login flow and credential management using the nxuskit SDK.
 
 > Wire up OAuth flows and API key credentials across every provider your app supports, with a single unified auth interface.
 
+**Scenarios**: `status` · `set` · `remove` · `dashboard`
+
 ## Edition
 
 **Community** — runs on the OSS / Community SDK edition.

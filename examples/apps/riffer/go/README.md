@@ -4,6 +4,8 @@ A command-line tool for analyzing and transforming music sequences, implemented 
 
 > Analyze, score, and transform MIDI and MusicXML sequences using CLIPS rule-based music theory and LLM-powered narrative and transformation.
 
+**Scenarios**: `analyze` · `score` · `transform` · `convert`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

@@ -14,7 +14,7 @@ name = "riffer"
 path = "main.rs"
 
 [dependencies]
-nxuskit = { path = "../../../../packages/nxuskit" }
+nxuskit = { path = "../../../../sdk/nxuskit-rust" }
 nxuskit-examples-clips-wire = { path = "../../../shared/clips-wire-rust" }
 nxuskit-examples-interactive = { path = "../../../shared/rust" }
 tokio = { version = "1.49", features = ["full"] }

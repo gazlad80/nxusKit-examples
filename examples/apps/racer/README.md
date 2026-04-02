@@ -4,6 +4,8 @@ A benchmarking tool for running concurrent races between CLIPS rule-based solvin
 
 > Race CLIPS rule engines against LLMs on logic puzzles and let the data choose your AI strategy.
 
+**Scenarios**: `race` · `benchmark` · `list` · `describe`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

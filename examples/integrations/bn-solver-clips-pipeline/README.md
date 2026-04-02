@@ -4,6 +4,8 @@ Demonstrates the flagship nxusKit integration pattern: chaining Bayesian Network
 
 > Chain probabilistic prediction, constraint optimization, and rule-based safety enforcement into a single production-ready pipeline using one unified SDK.
 
+**Scenarios**: `festival` · `rescue` · `bakery`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

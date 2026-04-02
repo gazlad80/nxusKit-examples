@@ -4,6 +4,8 @@ Demonstrates ZEN JSON Decision Model (JDM) evaluation through three scenarios: a
 
 > Evaluate business decision tables in Go, Rust, and Python using the ZEN engine — from pricing rules to eligibility checks, with first-hit and collect hit policies.
 
+**Scenarios**: `maze-rat` · `potion` · `food-truck`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement for ZEN evaluation APIs.

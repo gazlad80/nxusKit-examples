@@ -4,6 +4,8 @@ A validation framework that uses CLIPS rules to validate LLM outputs and auto-re
 
 > Stop accepting unreliable LLM output — validate every response against CLIPS rules and retry automatically until your standards are met.
 
+**Scenarios**: `classification` · `extraction` · `reasoning`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

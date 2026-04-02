@@ -148,6 +148,8 @@ TAGKEY
             *) tier_label="Community" ;;
         esac
         echo "| [${display_name}](${category}/${name}/) | ${tier_label} | ${cat_label} | ${scenario} | ${app} | ${tags} | ${langs} |"
+        # Emit scenario sub-rows
+        jq -r --arg n "$name" '.examples[] | select(.name == $n) | .scenarios // [] | .[] | "| \u0026nbsp;\u0026nbsp;↳ `\(.name)` | | | \(.description) | | | |"' "$manifest"
     done
 
     echo ""
@@ -290,6 +292,80 @@ do_generate() {
     fi
 
     check_untracked_examples
+
+    # Also update root README.md (if it has EXAMPLES-TABLE markers)
+    update_root_readme
+}
+
+# --- Root README table generation --------------------------------------------
+update_root_readme() {
+    local root_readme="$REPO_ROOT/README.md"
+    local root_begin="<!-- EXAMPLES-TABLE:START -->"
+    local root_end="<!-- EXAMPLES-TABLE:END -->"
+
+    if [[ ! -f "$root_readme" ]]; then
+        return
+    fi
+    if ! grep -qF "$root_begin" "$root_readme"; then
+        return
+    fi
+
+    local manifest="$MANIFEST"
+
+    # Generate category tables with scenario sub-rows
+    {
+        echo "### Patterns — Reusable SDK integration patterns"
+        echo ""
+        echo "| Example | Description | Languages |"
+        echo "|---------|-------------|-----------|"
+        generate_root_table_rows "$manifest" "patterns"
+        echo ""
+
+        echo "### Integrations — Combining SDK features"
+        echo ""
+        echo "| Example | Description | Languages |"
+        echo "|---------|-------------|-----------|"
+        generate_root_table_rows "$manifest" "integrations"
+        echo ""
+
+        echo "### Apps — Complete applications"
+        echo ""
+        echo "| Example | Description | Languages |"
+        echo "|---------|-------------|-----------|"
+        generate_root_table_rows "$manifest" "apps"
+    } > "$TMPDIR/root_tables.md"
+
+    # Replace content between markers
+    local begin_line end_line
+    begin_line=$(grep -nF "$root_begin" "$root_readme" | head -1 | cut -d: -f1)
+    end_line=$(grep -nF "$root_end" "$root_readme" | head -1 | cut -d: -f1)
+
+    if [[ -z "$begin_line" || -z "$end_line" ]]; then
+        echo "Warning: could not find both EXAMPLES-TABLE markers in root README.md" >&2
+        return
+    fi
+
+    {
+        head -n "$begin_line" "$root_readme"
+        echo ""
+        cat "$TMPDIR/root_tables.md"
+        echo ""
+        tail -n +"$end_line" "$root_readme"
+    } > "$TMPDIR/new_root_readme.md"
+    cp "$TMPDIR/new_root_readme.md" "$root_readme"
+    echo "Regenerated: $root_readme (EXAMPLES-TABLE content replaced)" >&2
+}
+
+generate_root_table_rows() {
+    local manifest="$1"
+    local category="$2"
+
+    jq -r --arg cat "$category" '.examples[] | select(.category == $cat) | [.name, .description, (.languages | map(. | gsub("^r";"R") | gsub("^g";"G") | gsub("^p";"P")) | join(", "))] | @tsv' "$manifest" | \
+    while IFS=$'\t' read -r name desc langs; do
+        echo "| [${name}](examples/${category}/${name}/) | ${desc} | ${langs} |"
+        # Scenario sub-rows
+        jq -r --arg n "$name" '.examples[] | select(.name == $n) | .scenarios // [] | .[] | "| \u0026nbsp;\u0026nbsp;↳ `\(.name)` | \(.description) | |"' "$manifest"
+    done
 }
 
 # --- Validate mode -----------------------------------------------------------

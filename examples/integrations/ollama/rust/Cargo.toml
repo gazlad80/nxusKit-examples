@@ -5,7 +5,7 @@ edition = "2024"
 publish = false
 
 [dependencies]
-nxuskit = { path = "../../../../packages/nxuskit" }
+nxuskit = { path = "../../../../sdk/nxuskit-rust" }
 nxuskit-examples-interactive = { path = "../../../shared/rust" }
 tokio = { version = "1.49", features = ["full"] }
 futures = "0.3"

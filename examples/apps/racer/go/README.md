@@ -4,6 +4,8 @@ A benchmarking framework that races CLIPS and LLM approaches head-to-head on log
 
 > Race CLIPS rule engines against LLMs on logic puzzles and let the data choose your AI strategy.
 
+**Scenarios**: `race` · `benchmark` · `list` · `describe`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.

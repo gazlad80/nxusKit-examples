@@ -357,6 +357,72 @@ def insert_tagline_blockquote(text: str, tagline: str | None) -> str:
     return "\n".join(new_lines)
 
 
+def insert_scenarios_line(text: str, scenarios: list[dict]) -> str:
+    """Insert or replace a **Scenarios**: line between tagline and first H2.
+
+    For examples with a scenarios array, inserts a line like:
+        **Scenarios**: `maze-rat` · `potion` · `food-truck`
+
+    Idempotent: removes any existing **Scenarios**: line before inserting.
+    Skips insertion if scenarios is empty.
+    """
+    lines = text.split("\n")
+    h1_idx = None
+    first_h2_idx = None
+
+    for i, line in enumerate(lines):
+        if h1_idx is None and line.startswith("# "):
+            h1_idx = i
+        elif h1_idx is not None and line.startswith("## "):
+            first_h2_idx = i
+            break
+
+    if h1_idx is None:
+        return text
+
+    if first_h2_idx is None:
+        first_h2_idx = len(lines)
+
+    # Remove any existing **Scenarios**: line and collapse consecutive blanks
+    region_start = h1_idx + 1
+    new_lines = list(lines[:region_start])
+    for i in range(region_start, first_h2_idx):
+        if lines[i].startswith("**Scenarios**:"):
+            continue
+        # Collapse consecutive blank lines
+        if not lines[i].strip() and new_lines and not new_lines[-1].strip():
+            continue
+        new_lines.append(lines[i])
+
+    # Insert the scenarios line if we have scenarios
+    if scenarios:
+        names = [f"`{s['name']}`" for s in scenarios]
+        scenarios_line = f"**Scenarios**: {' · '.join(names)}"
+
+        # Insert after tagline blockquote (or after H1 + blank line)
+        insert_idx = len(new_lines)
+        # Find the blockquote if it exists
+        for i in range(region_start, len(new_lines)):
+            if new_lines[i].startswith("> "):
+                insert_idx = i + 1
+                break
+
+        # Ensure blank line before scenarios line
+        if insert_idx < len(new_lines) and new_lines[insert_idx - 1].strip():
+            new_lines.insert(insert_idx, "")
+            insert_idx += 1
+
+        new_lines.insert(insert_idx, scenarios_line)
+
+    # Ensure blank line before H2
+    while new_lines and new_lines[-1].strip() == "" and len(new_lines) > region_start + 1:
+        new_lines.pop()
+    new_lines.append("")
+
+    new_lines.extend(lines[first_h2_idx:])
+    return "\n".join(new_lines)
+
+
 def transform_text(
     text: str,
     langs: set[str],
@@ -367,6 +433,7 @@ def transform_text(
 ) -> str:
     if ex is not None:
         text = insert_tagline_blockquote(text, ex.get("tagline"))
+        text = insert_scenarios_line(text, ex.get("scenarios", []))
         text = manifest_demonstrates_prerequisites(text, ex, langs, readme, root)
         text = _insert_or_update_difficulty_badge(text, ex)
 

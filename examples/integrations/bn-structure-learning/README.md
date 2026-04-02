@@ -4,6 +4,8 @@ Demonstrates Bayesian Network structure learning: discovering causal relationshi
 
 > Discover causal structure hidden in your data — learn Bayesian network topology and parameters directly from CSV observations using Hill-Climb and K2 search algorithms.
 
+**Scenarios**: `golf` · `bmx` · `sourdough`
+
 ## Edition
 
 **Community** — runs on the OSS / Community SDK edition.

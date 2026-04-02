@@ -147,12 +147,59 @@ fi
 
 check_bash_syntax() {
   local fail=0
-  for f in scripts/setup-sdk.sh scripts/test-examples.sh scripts/test-entitlements.sh scripts/check-rust-example-linkage.sh; do
-    [ -f "$f" ] && bash -n "$f" || fail=1
+  for f in scripts/*.sh; do
+    [ -f "$f" ] || continue
+    bash -n "$f" 2>/dev/null || fail=1
   done
   return $fail
 }
 run_check "Bash syntax (helper scripts)" check_bash_syntax
+
+# ── 8b. README normalizer dry-run ───────────────────────────────
+
+run_check "README normalizer (dry-run)" python3 scripts/normalize_example_readme_build_run.py --dry-run
+
+# ── 8c. Showcase validate ───────────────────────────────────────
+
+if [ -f scripts/generate-examples-showcase.sh ]; then
+  run_check "Showcase validate" bash scripts/generate-examples-showcase.sh --validate
+else
+  skip_check "Showcase validate" "script missing"
+fi
+
+# ── 8d. NOTICE assembly check ───────────────────────────────────
+
+if [ -f scripts/assemble-notice.sh ]; then
+  run_check "NOTICE assembly (check)" scripts/assemble-notice.sh --check
+else
+  skip_check "NOTICE assembly" "script missing"
+fi
+
+# ── 8e. Manifest schema validation ──────────────────────────────
+
+check_schema() {
+  python3 -c "
+import json, jsonschema
+with open('conformance/harness/schema.json') as f:
+    schema = json.load(f)
+with open('conformance/examples_manifest.json') as f:
+    manifest = json.load(f)
+jsonschema.validate(manifest, schema)
+" 2>/dev/null
+}
+if python3 -c "import jsonschema" 2>/dev/null; then
+  run_check "Manifest schema validation" check_schema
+else
+  skip_check "Manifest schema validation" "jsonschema not installed (pip install jsonschema)"
+fi
+
+# ── 8f. Dependency audit check ──────────────────────────────────
+
+if [ -f conformance/dependency-audit.json ]; then
+  run_check "Dependency audit (check)" python3 scripts/audit-example-deps.py --check
+else
+  skip_check "Dependency audit" "inventory not generated yet"
+fi
 
 # ── 9. Leak gate (forbidden terms) ───────────────────────────────
 

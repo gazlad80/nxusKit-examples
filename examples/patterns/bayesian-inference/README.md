@@ -4,6 +4,8 @@ Demonstrates Bayesian Network inference using multiple algorithms: load a BIF mo
 
 > Run exact and approximate Bayesian inference on real-world diagnostic models using four algorithms and three themed scenarios — all from a single SDK call.
 
+**Scenarios**: `haunted-house` · `coffee-shop` · `plant-doctor`
+
 ## Edition
 
 **Community** — runs on the OSS / Community SDK edition.

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nxuskit.dev/schemas/examples-manifest.json",
   "title": "nxusKit Examples Manifest",
-  "description": "Schema for cross-language example parity manifest (v3.0.0)",
+  "description": "Schema for cross-language example parity manifest (v5.0.0 — adds scenarios array)",
   "type": "object",
   "required": ["version", "examples"],
   "properties": {
@@ -154,6 +154,30 @@
         "difficulty_override_reason": {
           "type": "string",
           "description": "Reason for manual difficulty override. Required when difficulty_override is true."
+        },
+        "scenarios": {
+          "type": "array",
+          "description": "Named scenarios supported by this example. Omit for single-scenario examples. Each entry has a name, description, and CLI invocation.",
+          "items": {
+            "type": "object",
+            "required": ["name", "description", "cli"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Short scenario identifier (kebab-case, used in CLI flags and display)"
+              },
+              "description": {
+                "type": "string",
+                "description": "One-line description of what this scenario demonstrates (10-25 words)"
+              },
+              "cli": {
+                "type": "string",
+                "description": "CLI flag or argument to invoke this scenario (e.g., '--scenario maze-rat')"
+              }
+            },
+            "additionalProperties": false
+          },
+          "minItems": 2
         }
       }
     },

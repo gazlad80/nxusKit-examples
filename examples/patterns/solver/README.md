@@ -4,6 +4,8 @@ Demonstrates the full solver lifecycle: satisfaction checking, single- and multi
 
 > Define variables, add constraints, and solve complex planning problems with Z3 — without leaving your nxusKit workflow.
 
+**Scenarios**: `theme-park` · `space-colony` · `fantasy-draft`
+
 ## Edition
 
 **Pro** — requires a Pro (or trial) entitlement.
