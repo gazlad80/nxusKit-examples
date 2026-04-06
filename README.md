@@ -1,5 +1,10 @@
 # nxusKit Examples
 
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE-MIT)
+![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?logo=go&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+
 **[nxus.SYSTEMS](https://nxus.systems)** · **[Examples Portfolio](https://nxus.systems/examples)** · **[nxusKit SDK](https://github.com/nxus-SYSTEMS/nxusKit)**
 
 32 production examples for the nxusKit SDK in Rust, Go, and Python, plus selected CLI/Bash implementations for shell-first orchestration — covering LLM patterns, CLIPS rule engines, Z3 constraint solvers, Bayesian networks, and ZEN decision tables.
@@ -165,10 +170,17 @@ go run -tags nxuskit ./examples/<category>/<name>/go/cmd
 python examples/<category>/<name>/python/main.py
 ```
 
-## Acknowledgements
+---
 
-These examples build on outstanding open-source projects. See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for the full list, and [NOTICE](NOTICE) for third-party license details.
+<!-- ACKNOWLEDGEMENTS START -->
+Built with gratitude for the open-source projects that make nxusKit possible.
+See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for a curated list of key projects.
+<!-- ACKNOWLEDGEMENTS END -->
+
+---
 
 ## License
 
-Dual-licensed under [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE).
+nxusKit Examples is dual-licensed under MIT and Apache 2.0. See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE).
+
+Copyright 2025-2026 nxus.SYSTEMS LLC.
